@@ -2,15 +2,9 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-확인해보세요
-세팅
+메인
 </body>
 </html>
