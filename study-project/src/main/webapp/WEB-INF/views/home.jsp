@@ -11,5 +11,6 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 확인해보세요
+세팅
 </body>
 </html>
