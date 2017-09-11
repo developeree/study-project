@@ -12,6 +12,16 @@ public class User {
 	private String password;
 	private String birth;
 	private String phone;
+	
+	@Override
+	public String toString() {
+		return "User [idx=" + idx + ", name=" + name + ", gender=" + gender
+				+ ", sign_out_date=" + sign_out_date + ", sign_out=" + sign_out
+				+ ", mail=" + mail + ", sign_date=" + sign_date + ", id=" + id
+				+ ", password=" + password + ", birth=" + birth + ", phone="
+				+ phone + "]";
+	}
+	
 	public Integer getIdx() {
 		return idx;
 	}
