@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public User loginUser(User user) {
 		User resultUser = null;
-		resultUser = session.selectOne("loginSql.login", resultUser);
+		resultUser = session.selectOne("loginSql.login", user);
 		
 		if (resultUser == null) {
 			resultUser = new User();
