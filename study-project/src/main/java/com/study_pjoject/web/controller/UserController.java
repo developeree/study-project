@@ -20,13 +20,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home () {
-		logger.info("[ Home Controller ]");
-		return "/user/login.jsp";
-	}
-	
-	@RequestMapping(value="login.do", method = RequestMethod.POST)
+	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String login (HttpSession session) throws Exception {
 		logger.info(" [ login.do ] ");
 		User user = new User();

@@ -3,7 +3,7 @@
 
 <mapper namespace="loginSql">
 	
-	<select id="login" resultType="com.study_project.web.model.User" parameterType="com.study_project.web.model.User">
+	<select id="login" resultType="com.study_pjoject.web.model.User" parameterType="com.study_pjoject.web.model.User">
 		SELECT
 			*
 		FROM
