@@ -6,7 +6,6 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User loginUser(User user) {
-		String ar;
 		return null;
 	}
 	
