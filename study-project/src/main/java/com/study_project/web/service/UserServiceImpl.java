@@ -1,10 +1,10 @@
-package com.study_pjoject.web.service;
+package com.study_project.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.study_pjoject.web.dao.UserDao;
-import com.study_pjoject.web.model.User;
+import com.study_project.web.dao.UserDao;
+import com.study_project.web.model.User;
 
 @Service
 public class UserServiceImpl implements UserService{

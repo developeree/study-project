@@ -1,4 +1,4 @@
-package com.study_pjoject.web.controller;
+package com.study_project.web.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.study_pjoject.web.model.User;
-import com.study_pjoject.web.service.UserService;
+import com.study_project.web.model.User;
+import com.study_project.web.service.UserService;
+
+
 
 @Controller
 public class UserController {
@@ -21,7 +23,7 @@ public class UserController {
 	private UserService userService;
 	
 	//로그인 처리
-	@RequestMapping(value="/login.do", method = RequestMethod.POST)
+	@RequestMapping(value="login.do", method = RequestMethod.POST)
 	public String login (HttpSession session, User user) throws Exception {
 		logger.info(" [ welcome login.do ] ");
 		logger.info("[Model User value > ] " + user.toString());
