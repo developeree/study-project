@@ -20,12 +20,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	//로그인 처리
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
-	public String login (HttpSession session) throws Exception {
-		logger.info(" [ login.do ] ");
-		User user = new User();
+	public String login (HttpSession session, User user) throws Exception {
+		logger.info(" [ welcome login.do ] ");
 		logger.info("[Model User value > ] " + user.toString());
 		user = userService.loginUser(user);
-		return "";
+		session.setAttribute("user", user);
+		
+		return "user/loginsuccesstest";
 	}
 }

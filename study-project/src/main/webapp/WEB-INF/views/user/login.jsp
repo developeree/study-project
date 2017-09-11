@@ -9,12 +9,40 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#id, #password, #btnLogin').keydown(function (key) {
+			if (key.keyCode == 13) {
+				login();
+			}
+ 		});
 		
+		$("#btnLogin").click(function(e){ 
+			login();
+			e.preventDefault();
+		});
+		
+		//로그인메서드
+		function login() {
+			var userName = $("input[name=id]").val();
+			var password = $("input[name=password]").val();
+			
+			if (userName == null || userName.trim().length == 0) {
+				alert("아이디를 입력하세요.");
+				$("input[name=id]").focus();
+				return;
+			} else if (password == null || password.trim().length == 0) {
+				alert("패스워드를 입력하세요.");
+				$("input[name=password]").focus();
+				return;
+			} else {
+				document.form0.action = 'login.do';
+				document.form0.submit();
+			}
+		}
 	});
 </script>
 </head>
 <body>
-	<form name=form0 method="get">
+	<form name=form0 method="post">
 		<div id="login-form">
 			
 			<!-- 로그인 영역 -->
@@ -27,8 +55,12 @@
 				</div>
 				
 				<div>
-					<input type="text" name="user_id" id="user_id" style="width: 200px;" tabindex="1">
-					<input type="password" name="user_password" id="user_password" style="width: 200px;" tabindex="2">
+					<input type="text" name="id" id="id" style="width: 200px;" tabindex="1">
+					<input type="password" name="password" id="password" style="width: 200px;" tabindex="2">
+				</div>
+				<div>
+					<input type="button" id="btnLogin" name="btnLogin" tabindex="3" value="로그인">
+					
 				</div>
 			</div>
 		</div>
