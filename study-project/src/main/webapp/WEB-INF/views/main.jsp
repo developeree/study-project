@@ -9,7 +9,7 @@
 <jsp:include page="include/header.jsp"/>
 <body>
 ${sessionScope.user.name }님 안녕하세요 
-시발
+시발올라가라고
 
 </body>
 <jsp:include page="include/footer.jsp"/>
