@@ -8,7 +8,7 @@
 </head>
 <jsp:include page="include/header.jsp"/>
 <body>
-<<<<<<< HEAD
+
 ${sessionScope.user.name }님 안녕하세요 
 
 </body>
