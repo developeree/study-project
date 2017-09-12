@@ -1,4 +1,4 @@
-package com.study_project.web.controller;
+package com.study_project.web.user.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.study_project.web.model.User;
-import com.study_project.web.service.UserService;
+import com.study_project.web.user.model.User;
+import com.study_project.web.user.service.UserService;
+
+
 
 
 

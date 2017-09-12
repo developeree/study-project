@@ -1,6 +1,7 @@
-package com.study_project.web.service;
+package com.study_project.web.user.service;
 
-import com.study_project.web.model.User;
+import com.study_project.web.user.model.User;
+
 
 
 public interface UserService {
