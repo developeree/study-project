@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-jsp test
+메인페이지
 </body>
 </html>
