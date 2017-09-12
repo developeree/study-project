@@ -2,6 +2,7 @@ package com.study_project.web.service;
 
 import com.study_project.web.model.User;
 
+
 public interface UserService {
 
 	/**

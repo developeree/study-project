@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.study_project.web.model.User;
 
+
 @Repository
 public class UserDaoImpl implements UserDao{
 	
@@ -14,16 +15,14 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User loginUser(User user) {
-
 		User resultUser = null;
-		resultUser = session.selectOne("loginSql.login", resultUser);
+		resultUser = session.selectOne("loginSql.login", user);
 		
 		if (resultUser == null) {
 			resultUser = new User();
 		}
 		
 		return resultUser;
-
 	}
 	
 }

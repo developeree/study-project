@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.study_project.web.model.User;
 import com.study_project.web.service.UserService;
 
+
+
 @Controller
 public class UserController {
 
@@ -20,18 +22,28 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home () {
-		logger.info("[ Home Controller ]");
-		return "/user/login";
+	@RequestMapping(value="main", method = RequestMethod.GET)
+	public String main () {
+		logger.info(" [ welcome main ] ");
+		return "main";
 	}
 	
+	@RequestMapping(value="login.html", method = RequestMethod.GET)
+	public String login () {
+		logger.info(" [ welcome login.html ] ");
+		return "user/login";
+	}
+	
+	//로그인 처리
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
-	public String login (HttpSession session) throws Exception {
-		logger.info(" [ login.do ] ");
-		User user = new User();
-		logger.info("[Model User value > ] " + user.toString());
+	public String login (HttpSession session, User user) throws Exception {
+		logger.info(" [ welcome login.do ] ");
 		user = userService.loginUser(user);
-		return "";
+		if(user!=null){
+		session.setAttribute("user", user);
+		logger.info("[Model User value > ] " + user.toString());
+		 return "redirect:/main";
+		}
+		return "redirect:/loginfail";
 	}
 }
