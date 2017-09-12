@@ -9,9 +9,9 @@
 	<bean id="dataSource"
        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://192.168.0.40:3306/root"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/root"/>
         <property name="username" value="root"/>
-        <property name="password" value="123123"/>
+        <property name="password" value="13579"/>
         <property name="maxActive" value="100"/>
         <property name="maxWait" value="1000"/>
         <property name="poolPreparedStatements" value="true"/>
@@ -24,16 +24,15 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:config/mybatis-config.xml"/>
 	</bean>
-	
-	<!-- MultipartResolver 설정 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    	<!-- value = 100000000 첨부파일 최대 크기 10MB -->
-        <property name="maxUploadSize" value="100000000" />
-        <property name="maxInMemorySize" value="100000000" />
-    </bean>
-    
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
+	
+	<!-- MultipartResolver 설정 -->
+<!--     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+<!--     	value = 100000000 첨부파일 최대 크기 10MB -->
+<!--         <property name="maxUploadSize" value="100000000" /> -->
+<!--         <property name="maxInMemorySize" value="100000000" /> -->
+<!--     </bean> -->
 </beans>

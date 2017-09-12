@@ -3,6 +3,9 @@
 <html>
 <head>
 <title>Home</title>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 메인
