@@ -22,6 +22,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(value="login.html", method = RequestMethod.GET)
+	public String login () {
+		logger.info(" [ welcome login.html ] ");
+		return "user/login";
+	}
+	
 	//로그인 처리
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
 	public String login (HttpSession session, User user) throws Exception {

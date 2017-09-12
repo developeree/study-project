@@ -6,7 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<jsp:include page="include/header.jsp"/>
 <body>
-메인페이지
+
+
+
 </body>
+<jsp:include page="include/footer.jsp"/>
 </html>
