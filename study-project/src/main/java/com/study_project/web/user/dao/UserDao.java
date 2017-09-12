@@ -1,6 +1,8 @@
-package com.study_project.web.dao;
+package com.study_project.web.user.dao;
 
-import com.study_project.web.model.User;
+import com.study_project.web.user.model.User;
+
+
 
 
 

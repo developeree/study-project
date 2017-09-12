@@ -1,4 +1,4 @@
-package com.study_project.web.model;
+package com.study_project.web.user.model;
 
 public class User {
 	private Integer idx;
