@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
+<link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
 <jsp:include page="../include/util.jsp" />
 
 <script type="text/javascript">

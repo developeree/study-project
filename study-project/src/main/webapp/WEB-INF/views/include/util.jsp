@@ -1,2 +1,4 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>

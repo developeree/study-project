@@ -44,7 +44,7 @@ public class UserController {
 		if(user!=null){
 		session.setAttribute("user", user);
 		logger.info("[Model User value > ] " + user.toString());
-		 return "redirect:/main";
+			return "redirect:/main";
 		}
 		return "redirect:/loginfail";
 	}
