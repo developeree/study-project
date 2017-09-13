@@ -3,8 +3,20 @@
 <jsp:include page="../include/util.jsp" />
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	//로그인 뷰로 이동
 	$("#herderLogin").click(function(e){ 
 		document.location.href = 'login.html';
+	});
+	
+	//메인으로 이동
+	$("#btnMain").click(function(e){ 
+		document.location.href = 'main.html';
+	});
+	
+	//소주 카테고리로 이동
+	$("#btnSoju").click(function(e){ 
+		document.location.href = 'soju.html';
 	});
 });
 </script>
@@ -26,8 +38,8 @@ $(document).ready(function(){
 	<!-- 탭매뉴(카테고리)영역 -->
 	<div id="tab-menu">
 		<div align="center">
-			<input type="button" class="tab-button nav" id="" value="카테고리1">
-			<input type="button" class="tab-button nav" id="" value="카테고리2">
+			<input type="button" class="tab-button nav" id="btnMain" value="메인">
+			<input type="button" class="tab-button nav" id="btnSoju" value="소주">
 			<input type="button" class="tab-button nav" id="" value="카테고리3">
 			<input type="button" class="tab-button nav" id="" value="카테고리1">
 		</div>

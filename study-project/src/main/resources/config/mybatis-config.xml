@@ -5,6 +5,7 @@
 
 	<mappers>
 		<mapper resource="sqlMap/sqlmap_login.xml"/>
+		<mapper resource="sqlMap/sqlmap_soju.xml"/>
 	</mappers>
 
 </configuration>

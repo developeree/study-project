@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="../include/util.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="../include/header.jsp" />
 <html>
@@ -8,7 +10,7 @@
 <title>소주에 대한 모든것!</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	<%-- <jsp:include page="../include/header.jsp" /> --%>
 	<div id="wrap">
 		<div id="body" style="width: 1560px; height: 1560px;">
 			<div style="width: 100%; height: 10%;" align="right">
@@ -22,12 +24,15 @@
 			</div><br/>
 			
 			<!-- 리스트 컨테이너 -->
-			<div>
-				<div>
-					<span>
-					
-					</span>
-				</div>
+			<div style="border-top: 1px solid #FF8000;">
+				<c:forEach var="sl" items="${sojuList}" varStatus="status">
+					<div style="border-bottom: 1px solid #F7BE81;">
+						<span>썸네일이미지</span>
+						<span>${sl.title}</span>
+						<span>${sl.price}</span>
+						<span>${sl.company}</span>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
