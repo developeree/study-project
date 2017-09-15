@@ -5,14 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.study_project.web.beer.service.BeerService;
+import com.study_project.web.soju.service.SojuService;
 
 @Controller
 @RequestMapping("/beer")
 public class BeerController {
+//	@Autowired
+//	private BeerService beerService;
 	@Autowired
-	private BeerService beerService;
-
+	private SojuService beerService;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String list() throws Exception{
 		return "beer/beerList";

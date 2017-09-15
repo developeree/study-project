@@ -19,11 +19,15 @@
         <property name="defaultAutoCommit" value="true"/>
         <property name="validationQuery" value=" SELECT 1 FROM DUAL" />
     </bean>	
-    
+
 	<!-- MyBatis setting -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:config/mybatis-config.xml"/>
+	</bean>
+	<bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:com/study_project/web/mapper/mybatis-config.xml"/>
 	</bean>
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
