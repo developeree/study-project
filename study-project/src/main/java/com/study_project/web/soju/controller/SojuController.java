@@ -49,7 +49,7 @@ public class SojuController {
 		return "soju/sojuReg";
 	}
 	
-	public String sojuReg (HttpSession session) throws Exception {
+	public String sojuReg1 (HttpSession session) throws Exception {
 		
 		return "redirect:/image.html";
 	}
