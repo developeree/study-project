@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sojuSql">
-	
+
 	<!-- 목록 SELECT -->
 	<select id="selectSojuList" resultType="com.study_project.web.soju.model.Soju" parameterType="com.study_project.web.soju.model.Soju">
 		SELECT 
@@ -37,7 +37,7 @@
 				#{content},
 				#{price},
 				CURRENT_TIMESTAMP,
-				CURRENT_TIMESTAMP,
+				NOW(),
 				#{area},
 				#{tumbnail},
 				#{ad},
