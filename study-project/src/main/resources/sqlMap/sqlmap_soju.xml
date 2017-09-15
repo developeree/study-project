@@ -3,6 +3,7 @@
 
 <mapper namespace="sojuSql">
 	
+	<!-- 목록 SELECT -->
 	<select id="selectSojuList" resultType="com.study_project.web.soju.model.Soju" parameterType="com.study_project.web.soju.model.Soju">
 		SELECT 
 			idx,
@@ -16,4 +17,31 @@
 			1 = 1
 	</select>
 	
+	<!-- 글쓰기 -->
+	<insert id="insertSoju" parameterType="com.study_project.web.soju.model.Soju" useGeneratedKeys="true" keyProperty="idx">
+		INSERT INTO soju
+			(
+				title,
+				content,
+				price,
+				create_date,
+				edit_date,
+				area,
+				tumbnail,
+				ad,
+				company
+			)
+		VALUES
+			(
+				#{title},
+				#{content},
+				#{price},
+				CURRENT_TIMESTAMP,
+				CURRENT_TIMESTAMP,
+				#{area},
+				#{tumbnail},
+				#{ad},
+				#{company}
+			)
+	</insert>
 </mapper>
