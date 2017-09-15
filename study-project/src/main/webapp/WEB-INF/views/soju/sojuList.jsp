@@ -38,7 +38,12 @@
 	</div>
 
 <script type="text/javascript">
-
+$(function() {
+	$('#btnReg').click(function() {//등록
+		/* document.location.href = "sojuReg.html"; */
+		window.open("sojuReg.html","소주등록","width=1000px,height=700px");
+	});
+});
 </script>
 </body>
 </html>

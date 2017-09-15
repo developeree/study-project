@@ -19,6 +19,11 @@ public class SojuServiceImpl implements SojuService {
 	public List<Soju> selectSojuList(Map<String, Object> map) {
 		return sojuDao.selectSojuList(map);
 	}
+
+	@Override
+	public Integer insertSoju(Soju soju) {
+		return sojuDao.insertSoju(soju);
+	}
 	
 	
 }

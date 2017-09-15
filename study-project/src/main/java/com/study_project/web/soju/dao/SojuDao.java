@@ -14,4 +14,11 @@ public interface SojuDao {
 	 * @return List of Soju
 	 */
 	public List<Soju> selectSojuList (Map<String, Object> map);
+	
+	/**
+	 * 소주 정보를 등록한다.
+	 * @param Soju (model)
+	 * @return int insertResult
+	 */
+	public Integer insertSoju (Soju soju);
 }

@@ -26,6 +26,7 @@ public class SojuController {
 	@Autowired
 	private SojuService sojuService;
 	
+	//글목록
 	@RequestMapping(value="/soju.html", method = RequestMethod.GET)
 	public String sojuList (HttpSession session, Model model) throws Exception {
 		logger.info("[ welcome sojuList.html ]");
@@ -39,6 +40,18 @@ public class SojuController {
 		
 		model.addAttribute("sojuList", sojuList);
 		return "soju/sojuList";
+	}
+	
+	//입력
+	@RequestMapping(value="/sojuReg.html", method = RequestMethod.GET)
+	public String sojuReg (HttpSession session) throws Exception {
+		logger.info("[ welcome soju,html ]");
+		return "soju/sojuReg";
+	}
+	
+	public String sojuReg (HttpSession session) throws Exception {
+		
+		return "redirect:/image.html";
 	}
 	
 }
