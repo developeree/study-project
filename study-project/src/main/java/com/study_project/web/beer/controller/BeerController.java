@@ -10,8 +10,7 @@ import com.study_project.web.soju.service.SojuService;
 @Controller
 @RequestMapping("/beer")
 public class BeerController {
-//	@Autowired
-//	private BeerService beerService;
+
 	@Autowired
 	private SojuService beerService;
 	
