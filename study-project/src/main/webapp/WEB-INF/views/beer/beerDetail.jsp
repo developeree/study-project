@@ -11,12 +11,10 @@
 <body>
 <div>
 <fieldset>
-<c:forEach var="beer" items="${beer}" varStatus="status">
 <span>이미지</span>
 <span>${beer.title }</span>
 <span>${beer.content}</span>
 <span>${beer.price }</span>
-</c:forEach>
 </fieldset>
 </div>
 <div>
@@ -24,5 +22,7 @@
 <input type="button" value="수정"/>
 <input type="button" value="삭제" />
 </div>
+<script type="text/javascript">
+</script>
 </body>
 </html>

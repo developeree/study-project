@@ -22,22 +22,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		beer
 		(
 		title,
-		comment,
+		content,
 		price,
 		edit_date,
 		area,
-		tumbnail,
+<!-- 		tumbnail, -->
 		ad,
 		company
 		)
 		VALUES
 		(
 		#{title},
-		#{comment},
+		#{content},
 		#{price},
 		now(),
 		#{area},
-		#{tumbnail},
+<!-- 		#{tumbnail}, -->
+		#{ad},
 		#{company}
 		)
 	</insert>
@@ -45,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateBeer" parameterType="Beer">
 		UPDATE beer SET
 		title=#{title},
-		comment=#{comment},
+		content=#{content},
 		price=#{price},
 		edit_date=now(),
 		area=#{area},

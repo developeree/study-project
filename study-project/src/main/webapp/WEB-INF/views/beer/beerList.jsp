@@ -20,7 +20,7 @@
 <fieldset>
 <c:forEach var="beer" items="${list}" varStatus="status">
 <span>이미지</span>
-<span>${beer.title }</span>
+<span><a href="../web/beer/${beer.idx}">${beer.title }</a></span>
 <span>${beer.price }</span>
 <span>${beer.comment_count } 개의 상품평</span>
 </c:forEach>
@@ -32,7 +32,7 @@ function insertPopup() {
     window.name = "/beer";
     // window.open("자식창 이름", "불러올 자식 창의 닉네임", "팝업창 옵션");
     window.open("beer/board", "insert",
-            "width = 450, height = 320, resizable = no, scrollbars = no, status = no");
+            "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
 }
 </script>
 </body>

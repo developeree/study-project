@@ -41,21 +41,24 @@ public class BeerController {
 	}
 	
 	@RequestMapping(value = "/board", method=RequestMethod.POST)
-	public String doWrite(Beer beer, @RequestParam("mediaFile") List<MultipartFile> files) throws Exception{
+	public String doWrite(Beer beer 
+//			,@RequestParam("mediaFile") List<MultipartFile> files
+			) throws Exception{
 		beerService.writeBeer(beer);
-		return "redirect:beer/beerList";
+		System.out.println("제목"+beer.getTitle());
+		return "redirect:/beer";
 	}
 	
 	//PUT과 PATCH차이 PUT은 전체데이터 수정 (즉  insert문이랑 비슷) PATCH는 부분데이터 수정
 	@RequestMapping(value = "/board/{idx}", method=RequestMethod.PATCH)
 	public String doModify(@PathVariable("idx") Integer idx, Beer beer) throws Exception{
 		beerService.modifyBeer(beer);
-		return "redirect:beer/beerDetail";
+		return "redirect:/beer";
 	}
 	
 	@RequestMapping(value = "/board/{idx}", method=RequestMethod.DELETE)
 	public String doRemove(@PathVariable("idx") Integer idx) throws Exception{
 		beerService.removeBeer(idx);
-		return "redirect:beer/beerList";
+		return "redirect:/beer";
 	}
 }
