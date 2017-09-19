@@ -9,8 +9,7 @@
 	<bean id="dataSource"
        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <!-- <property name="url" value="jdbc:mysql://172.30.1.42:3306/project"/> -->
-        <property name="url" value="jdbc:mysql://172.30.1.25:3306/project"/>
+        <property name="url" value="jdbc:mysql://172.30.1.9:3306/project"/>
         <property name="username" value="project"/>
         <property name="password" value="123123"/>
         <property name="maxActive" value="100"/>
@@ -23,11 +22,7 @@
 	<!-- MyBatis setting -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:config/mybatis-config.xml"/>
-	</bean>
-	<bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean" >
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:com/study_project/web/mapper/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:com/study_project/web/mapper/config/mybatis-config.xml"/>
 	</bean>
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">

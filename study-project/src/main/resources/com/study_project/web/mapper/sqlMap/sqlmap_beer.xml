@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study_project.web.mapper.sqlMap.BeerDao">
+
+	<select id="selectBeerList" resultType="Beer">
+		SELECT * FROM beer ORDER
+		BY idx DESC
+	</select>
+
+	<select id="readBeer" resultType="Beer">
+		SELECT *
+		FROM beer
+		WHERE
+		idx=#{idx}
+	</select>
+
+	<insert id="createBeer" parameterType="Beer" useGeneratedKeys="true"
+		keyProperty="idx">
+		INSERT INTO
+		beer
+		(
+		title,
+		comment,
+		price,
+		edit_date,
+		area,
+		tumbnail,
+		ad,
+		company
+		)
+		VALUES
+		(
+		#{title},
+		#{comment},
+		#{price},
+		now(),
+		#{area},
+		#{tumbnail},
+		#{company}
+		)
+	</insert>
+
+	<update id="updateBeer" parameterType="Beer">
+		UPDATE beer SET
+		title=#{title},
+		comment=#{comment},
+		price=#{price},
+		edit_date=now(),
+		area=#{area},
+		tumbnail=#{tumbnail},
+		ad=#{ad},
+		company=#{company},
+		WHERE
+		idx=#{idx}
+	</update>
+
+	<delete id="deleteBeer" parameterType="Beer">
+		DELETE FROM beer
+		WHERE
+		idx=#{idx}
+	</delete>
+</mapper>

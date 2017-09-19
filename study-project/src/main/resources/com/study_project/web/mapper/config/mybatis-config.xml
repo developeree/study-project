@@ -7,7 +7,9 @@
     </typeAliases>
     
 	<mappers>
-		<mapper resource="com/study_project/web/mapper/sqlmap_beer.xml"/>
+		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_login.xml"/>
+		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_soju.xml"/>
+		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_beer.xml"/>
 	</mappers>
 
 </configuration>
