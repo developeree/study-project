@@ -41,7 +41,8 @@
 $(function() {
 	$('#btnReg').click(function() {//등록
 		/* document.location.href = "sojuReg.html"; */
-		window.open("sojuReg.html","소주등록","width=1000px,height=700px");
+		window.name = "/soju";
+		window.open("sojuReg","insert","width=1000px,height=700px");
 	});
 });
 </script>

@@ -35,6 +35,28 @@ public class SojuDaoImpl implements SojuDao {
 		result = session.insert("sojuSql.insertSoju",soju);
 		return result;
 	}
+	@Override
+	public Soju getSoju(Integer idx) {
+		Soju result = null;
+		result = session.selectOne("sojuSql.getSoju", idx);
+		
+		if (result == null) {
+			result = new Soju();
+		}
+		return result;
+	}
+
+	@Override
+	public Integer updateSoju(Soju soju) {
+		Integer result = 0;
+		result = session.update("sojuSql.updateSoju", soju);
+		return result;
+	}
+
+	@Override
+	public void deleteSoju(Integer idx) {
+		session.delete("sojuSql.deleteSoju", idx);
+	}
 	
 	
 	

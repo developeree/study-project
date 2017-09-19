@@ -24,6 +24,20 @@ public class SojuServiceImpl implements SojuService {
 	public Integer insertSoju(Soju soju) {
 		return sojuDao.insertSoju(soju);
 	}
-	
+
+	@Override
+	public Soju getSoju(Integer idx) {
+		return sojuDao.getSoju(idx);
+	}
+
+	@Override
+	public Integer updateSoju(Soju soju) {
+		return sojuDao.updateSoju(soju);
+	}
+
+	@Override
+	public void deleteSoju(Integer idx) {
+		sojuDao.deleteSoju(idx);
+	}
 	
 }
