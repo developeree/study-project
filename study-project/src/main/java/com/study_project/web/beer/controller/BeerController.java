@@ -17,6 +17,7 @@ import com.study_project.web.beer.service.BeerService;
 @Controller
 @RequestMapping("/beer")
 public class BeerController {
+
 	@Autowired
 	private BeerService beerService;
 	

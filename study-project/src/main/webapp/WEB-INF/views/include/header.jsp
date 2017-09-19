@@ -18,7 +18,7 @@ $(document).ready(function(){
 	$("#btnSoju").click(function(e){ 
 		document.location.href = 'soju.html';
 	});
-	
+
 });
 </script>
 
@@ -42,6 +42,7 @@ $(document).ready(function(){
 			<input type="button" class="tab-button nav" id="btnMain" value="메인">
 			<input type="button" class="tab-button nav" id="btnSoju" value="소주">
 			<input type="button" class="tab-button nav" id="btnBeer" value="맥주" onclick="location.href='/web/beer'" >
+
 		</div>
 	</div>
 </div>

@@ -15,12 +15,12 @@ public class BeerServiceImpl implements BeerService{
 
 	@Override
 	public List<Beer> getBeerList() {
-		return beerDao.selectBeerList();
+		return beerDao.readBeerList();
 	}
 
 	@Override
 	public Beer getBeerOne(Integer idx) {
-		return beerDao.readBeer(idx);
+		return beerDao.readBeerOne(idx);
 	}
 
 	@Override
@@ -37,6 +37,5 @@ public class BeerServiceImpl implements BeerService{
 	public void removeBeer(Integer idx) {
 		beerDao.deleteBeer(idx);
 	}
-	
 
 }
