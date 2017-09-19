@@ -27,7 +27,6 @@
 				create_date,
 				edit_date,
 				area,
-				tumbnail,
 				ad,
 				company
 			)
@@ -39,9 +38,46 @@
 				CURRENT_TIMESTAMP,
 				NOW(),
 				#{area},
-				#{tumbnail},
 				#{ad},
 				#{company}
 			)
 	</insert>
+	
+	<select id="getSoju" resultType="com.study_project.web.soju.model.Soju" parameterType="java.lang.Integer">
+		SELECT
+			idx,
+			title,
+			content,
+			price,
+			create_date,
+			eidt_date,
+			area,
+			tumbnail,
+			ad,
+			comment_count,
+			company
+		FROM
+			soju
+		WHERE
+			idx = #{idx}
+	</select>
+	
+	<update id="updateSoju" parameterType="com.study_project.web.soju.model.Soju">
+		UPDATE soju
+		SET
+			title = #{title},
+			content = #{content},
+			price = #{price},
+			edit_date = NOW(),
+			area = #{area},
+			ad = #{ad},
+			company = #{company}
+		WHERE
+			idx = #{idx}
+	</update>
+	
+	<delete id="deleteSoju" parameterType="java.lang.Integer">
+		DELETE FROM soju
+		WHERE idx = #{idx}
+	</delete>
 </mapper>

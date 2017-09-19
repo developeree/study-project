@@ -21,4 +21,25 @@ public interface SojuDao {
 	 * @return int insertResult
 	 */
 	public Integer insertSoju (Soju soju);
+	
+	/**
+	 * 선택된 소주 정보를 불러온다.
+	 * @param ntmPid(idx)
+	 * @return Soju
+	 */
+	public Soju getSoju (Integer idx);
+	
+	/**
+	 * 소주 정보를 수정한다.
+	 * @param Soju
+	 * @return Integer updateResult
+	 */
+	public Integer updateSoju (Soju soju);
+	
+	/**
+	 * 소주 정보를 삭제한다.
+	 * @param Soju
+	 * @return void
+	 */
+	public void deleteSoju (Integer idx);
 }

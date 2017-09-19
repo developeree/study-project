@@ -16,7 +16,7 @@ $(document).ready(function(){
 	
 	//소주 카테고리로 이동
 	$("#btnSoju").click(function(e){ 
-		document.location.href = 'soju.html';
+		document.location.href = 'soju';
 	});
 
 });

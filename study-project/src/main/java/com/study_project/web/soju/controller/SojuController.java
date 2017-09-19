@@ -27,7 +27,7 @@ public class SojuController {
 	private SojuService sojuService;
 	
 	//글목록
-	@RequestMapping(value="/soju.html", method = RequestMethod.GET)
+	@RequestMapping(value="/soju", method = RequestMethod.GET)
 	public String sojuList (HttpSession session, Model model) throws Exception {
 		logger.info("[ welcome sojuList.html ]");
 		
@@ -42,16 +42,26 @@ public class SojuController {
 		return "soju/sojuList";
 	}
 	
-	//입력
-	@RequestMapping(value="/sojuReg.html", method = RequestMethod.GET)
-	public String sojuReg (HttpSession session) throws Exception {
-		logger.info("[ welcome soju,html ]");
+	//입력폼 전환
+	@RequestMapping(value="/sojuReg", method = RequestMethod.GET)
+	public String sojuRegForm (HttpSession session) throws Exception {
+		logger.info("[ welcome sojuReg ]");
 		return "soju/sojuReg";
 	}
 	
-	public String sojuReg1 (HttpSession session) throws Exception {
-		
-		return "redirect:/image.html";
+	//db입력
+	@RequestMapping(value="/sojuReg", method = RequestMethod.POST)
+	public String sojuReg (HttpSession session, Soju soju) throws Exception {
+		logger.info("[ welcome sojuReg logic ]");
+		try{
+			sojuService.insertSoju(soju);
+			logger.info("[ sojuReg toString ] " + soju.toString());
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/soju";
 	}
+	
+	
 	
 }

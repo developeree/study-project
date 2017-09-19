@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="../include/util.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<jsp:include page="../include/header.jsp" />
+<%-- <jsp:include page="../include/header.jsp" /> --%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -67,7 +68,7 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#btnCancel').click(function() { //취소버튼
-			history.back(0);
+			window.close();
 		});
 		
 		$('#btnInsert').click(function() { //입력버튼
@@ -76,7 +77,8 @@
 		
 		function insertCheck() {
 			var title = $("input[name=title]").val(); //필수
-			var content = $("input[name=content]").val(); //필수
+			var content = $("textarea[name=content]").val(); //필수
+			
 			var price = $("input[name=price]").val(); //필수
 			var area = $("input[name=area]").val(); //필수
 			var ad = $("input[name=ad]").val();
@@ -88,7 +90,7 @@
 				return;
 			} else if (content == null || content.trim().length == 0) {
 				alert("상품 소개를 입력해 주세요.");
-				$("input[name=content]"),focus();
+				$("textarea[name=content]"),focus();
 				return;
 			} else if (price == null || price.trim().length == 0) {
 				alert("상품 가격을 입력해 주세요.");
@@ -103,9 +105,11 @@
 				$("input[name=company]"),focus();
 				return;
 			} else {
-				document.form0.action = 'insertSoju.do';
+				form0.target = opener.name;
+				document.form0.action = '/web/sojuReg';
 				document.form0.submit();
 				alert("등록이 완료 되었습니다");
+				window.close();
 			}
 			
 		};

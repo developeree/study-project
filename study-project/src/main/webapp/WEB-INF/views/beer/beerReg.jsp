@@ -14,17 +14,17 @@
        		<div>
 <!--        		<span>썸네일<input type="file" id="fileUpload" name="mediaFile" style="width: 300px; height: 20px" maxlength="200" multiple/></span> -->
 <!--        		<p/> -->
-				<span>제목<input type="text" id="title" name="beerTitle" style="width: 300px; height: 20px" maxlength="200"/></span>
+				<span>제목<input type="text" id="title" name="title" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-				<span>상세정보<textarea cols="80" rows="10" name="beerContent" id="content" style="width: 300px; height: 100px"></textarea></span>
+				<span>상세정보<textarea cols="80" rows="10" name="content" id="content" style="width: 300px; height: 100px"></textarea></span>
 				<p/>
-				<span>가격<input type="text" id="price" name="beerPrice" style="width: 300px; height: 20px" maxlength="200"/></span>
+				<span>가격<input type="text" id="price" name="price" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-				<span>생산지<input type="text" id="area" name="beerArea" style="width: 300px; height: 20px" maxlength="200"/></span>
+				<span>생산지<input type="text" id="area" name="area" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-				<span>광고<input type="text" id="ad" name="beerAd" style="width: 300px; height: 20px" maxlength="200"/></span>
+				<span>광고<input type="text" id="ad" name="ad" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-				<span>제조회사<input type="text" id="company" name="beerCompany" style="width: 300px; height: 20px" maxlength="200"/></span>
+				<span>제조회사<input type="text" id="company" name="company" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
 			</div>
 			<span style="align:left"><input type="reset" value="취소" onclick="window.close()"/></span> 

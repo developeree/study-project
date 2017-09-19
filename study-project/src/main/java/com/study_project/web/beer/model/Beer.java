@@ -78,5 +78,11 @@ public class Beer {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+	@Override
+	public String toString() {
+		return "Beer [idx=" + idx + ", title=" + title + ", content=" + content + ", price=" + price + ", create_date="
+				+ create_date + ", edit_date=" + edit_date + ", area=" + area + ", tumbnail=" + tumbnail + ", ad=" + ad
+				+ ", comment_count=" + comment_count + ", company=" + company + "]";
+	}
 	
 }
