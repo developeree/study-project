@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="beer">
+<mapper namespace="com.study_project.web.beer.dao.BeerDao">
 
-	<insert id="createBeer" parameterType="com.study_project.web.beer.model.Beer" useGeneratedKeys="true" keyProperty="idx">
+	<insert id="createBeer" parameterType="Beer" useGeneratedKeys="true" keyProperty="idx">
 		insert into
 		beer
 		(

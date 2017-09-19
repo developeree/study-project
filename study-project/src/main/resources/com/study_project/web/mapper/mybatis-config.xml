@@ -2,14 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<!-- <typeAliases>
+	<typeAliases>
         <typeAlias type="com.study_project.web.beer.model.Beer" alias="Beer" />
-    </typeAliases> -->
+    </typeAliases>
     
 	<mappers>
-		<mapper resource="sqlMap/sqlmap_login.xml"/>
-		<mapper resource="sqlMap/sqlmap_soju.xml"/>
-		<mapper resource="sqlMap/sqlmap_beer.xml"/>
+		<mapper resource="com/study_project/web/mapper/sqlmap_beer.xml"/>
 	</mappers>
 
 </configuration>

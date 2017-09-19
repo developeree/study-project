@@ -18,6 +18,7 @@ public class SojuDaoImpl implements SojuDao {
 
 	@Override
 	public List<Soju> selectSojuList(Map<String, Object> map) {
+		
 		List<Soju> resultList = null;
 		resultList = session.selectList("sojuSql.selectSojuList", map);
 		
