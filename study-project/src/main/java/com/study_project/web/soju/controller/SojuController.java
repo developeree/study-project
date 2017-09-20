@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -62,6 +63,19 @@ public class SojuController {
 		return "redirect:/soju";
 	}
 	
+	@RequestMapping(value="/sojuDetail/{idx}", method = RequestMethod.GET)
+	public String detail (@PathVariable("idx") Integer idx, Model model) throws Exception {
+		logger.info("[ welcome sojuDetailForm ]");
+		Soju soju = sojuService.getSoju(idx);
+		model.addAttribute("soju", soju);
+		return "/soju/sojuDetail";
+	}
+	
+	@RequestMapping(value="/sojuDelete/{idx}", method = RequestMethod.DELETE)
+	public String delete () throws Exception {
+		
+		return "redirect:/soju";
+	}
 	
 	
 }
