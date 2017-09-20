@@ -13,23 +13,25 @@
 <title>리스트 페이지</title>
 </head>
 <body>
+<div align="center">
 <div>
 <input type="button" value="글쓰기" onclick="insertPopup();"/>
 </div>
 <div>
-<fieldset>
 <c:forEach var="beer" items="${list}" varStatus="status">
+<fieldset>
 <span>이미지</span>
 <span><a href="../web/beer/${beer.idx}">${beer.title }</a></span>
 <span>${beer.price }</span>
 <span>${beer.comment_count } 개의 상품평</span>
-</c:forEach>
 </fieldset>
+</c:forEach>
+</div>
 </div>
 <script type="text/javascript">
 function insertPopup() {
     // window.name = "부모창 이름";            
-    window.name = "/beer";
+//     window.name = "/beer";
     // window.open("자식창 이름", "불러올 자식 창의 닉네임", "팝업창 옵션");
     window.open("beer/board", "insert",
             "width = 450, height = 500, resizable = no, scrollbars = no, status = no");

@@ -14,18 +14,18 @@
        		<div>
 <!--        		<span>썸네일<input type="file" id="fileUpload" name="mediaFile" style="width: 300px; height: 20px" maxlength="200" multiple/></span> -->
 <!--        		<p/> -->
-				<span>제목<input type="text" id="title" name="title" style="width: 300px; height: 20px" maxlength="200"/></span>
+				<span>제목<input type="text" name="title" value="${beer.title }"style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-				<span>상세정보<textarea cols="80" rows="10" name="content" id="content" style="width: 300px; height: 100px"></textarea></span>
-				<p/>
-				<span>가격<input type="text" id="price" name="price" style="width: 300px; height: 20px" maxlength="200"/></span>
-				<p/>
-				<span>생산지<input type="text" id="area" name="area" style="width: 300px; height: 20px" maxlength="200"/></span>
-				<p/>
-				<span>광고<input type="text" id="ad" name="ad" style="width: 300px; height: 20px" maxlength="200"/></span>
-				<p/>
-				<span>제조회사<input type="text" id="company" name="company" style="width: 300px; height: 20px" maxlength="200"/></span>
-				<p/>
+<!-- 				<span>상세정보<textarea cols="80" rows="10" name="content" style="width: 300px; height: 100px"></textarea></span> -->
+<!-- 				<p/> -->
+<!-- 				<span>가격<input type="text" name="price" style="width: 300px; height: 20px" maxlength="200"/></span> -->
+<!-- 				<p/> -->
+<!-- 				<span>생산지<input type="text" name="area" style="width: 300px; height: 20px" maxlength="200"/></span> -->
+<!-- 				<p/> -->
+<!-- 				<span>광고<input type="text" name="ad" style="width: 300px; height: 20px" maxlength="200"/></span> -->
+<!-- 				<p/> -->
+<!-- 				<span>제조회사<input type="text" name="company" style="width: 300px; height: 20px" maxlength="200"/></span> -->
+<!-- 				<p/> -->
 			</div>
 			<span style="align:left"><input type="reset" value="취소" onclick="window.close()"/></span> 
 			<span style="align:right"><input type="submit" value="등록" onclick="window.close()"/></span>
@@ -33,16 +33,7 @@
 	</form>
 </div>
 <script type="text/javascript">
-// 자동으로 팝업 창이 닫히게 하는 함수
-function popupClose(form) {
-    // form의 target을 부모 창으로 설정함            
-    form.target = opener.name;
-    form.submit();
-    if (opener != null) {
-        opener.insert = null;
-        self.close();
-    }
-}
+
 </script>
 </body>
 </html>

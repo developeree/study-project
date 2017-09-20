@@ -20,24 +20,30 @@
 <div>
 
 <input type="button" value="목록" onclick="location.href='/web/beer'"/>
-<input type="button" value="수정" />
-<form:form method="DELETE" action="board/${beer.idx}">
-<!-- <input id="dele" type="hidden" name="_method" value="DELETE"/> -->
-<input id="dele" type="submit"value="삭제"/>
-<%-- <input type="button" value="삭제" onclick="del(${beer.idx })"/> --%>
+<%-- <form:form method="PATCH" action="board/${beer.idx}"> --%>
+<!-- <input type="submit" value="수정" onclick="updatePopup();"/> -->
+<%-- </form:form> --%>
+<form:form name="form1" method="DELETE" action="board/${beer.idx}">
+<input  type="button" value="삭제" onclick="del();"/>
 </form:form>
+
 </div>
 <script type="text/javascript">
-// function del(idx){
-// 	window.alert("글번호는: "+idx);
-// 	var answer=confirm("삭제하시겠습니까?");
-//     if(answer){
-//     	document.form.method = 'DELETE'
-//         var url = 'board/'+idx;
+function del(){
+	var answer=confirm("삭제하시겠습니까?");
+    if(answer){
+    	document.form1.method = 'DELETE';
+//         var url = 'board/${beer.idx}';
 //             window.open(url, "_self",  '');
-// 	}
-// }
-
+            document.form1.submit();
+	}else{
+		return;
+	}
+}
+function updatePopup() {
+    window.open("${beer.idx}", "update",
+            "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
+}
 </script>
 </body>
 </html>
