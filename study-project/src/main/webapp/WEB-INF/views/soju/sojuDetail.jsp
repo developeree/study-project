@@ -57,7 +57,8 @@
 $(document).ready(function() {
 	$('#btnDelete').click(function() { //삭제버튼
 		var idx = $("input[name=h_idx]").val();
-		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		var answer = confirm("정말 삭제하시겠습니까??");
+		if (answer == true){    //확인
 				document.form0.action = '/web/soju/board/' + idx;
 			    document.form0.submit();
 			}else{   //취소
