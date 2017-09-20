@@ -67,7 +67,10 @@
 					
 					<!-- 히든 영역 -->
 					<div>
+						<c:if test="${soju.idx != null }">
 						<input type="hidden" id="method" name="_method" value="PATCH">
+						</c:if>
+						<input type="hidden" id="h_idx" name="h_idx" value="${soju.idx}">
 					</div>
 					
 				</div>
@@ -79,24 +82,17 @@
 		$('#btnCancel').click(function() { //취소버튼
 			window.close();
 		});
-		
 		$('#btnInsert').click(function() { //입력버튼
 			insertCheck();
 		});
-		
-		$('#btnModify').click(function() { //입력버튼
-			$('#method').val('patch');
-			form0.target = opener.name;
-			document.form0.action = '/web/soju/board/' + ${soju.idx};
-			document.form0.submit();
-			alert("수정이 완료 되었습니다");
-			window.close();
+		$('#btnModify').click(function() { //수정버튼
+			updateCheck();
 		});
+		
 		
 		function insertCheck() {
 			var title = $("input[name=title]").val(); //필수
 			var content = $("textarea[name=content]").val(); //필수
-			
 			var price = $("input[name=price]").val(); //필수
 			var area = $("input[name=area]").val(); //필수
 			var ad = $("input[name=ad]").val();
@@ -123,14 +119,51 @@
 				$("input[name=company]"),focus();
 				return;
 			} else {
-				$('#method').val('get');
 				form0.target = opener.name;
 				document.form0.action = '/web/soju/board';
 				document.form0.submit();
 				alert("등록이 완료 되었습니다");
 				window.close();
 			}
+		};
+		function updateCheck() {
+			var title = $("input[name=title]").val(); //필수
+			var content = $("textarea[name=content]").val(); //필수
+			var price = $("input[name=price]").val(); //필수
+			var area = $("input[name=area]").val(); //필수
+			var ad = $("input[name=ad]").val();
+			var company = $("input[name=company]").val(); //필수
 			
+			if (title == null || title.trim().length == 0) {
+				alert("상품이름 및 소제목을 입력해주세요.");
+				$("input[name=title]"),focus();
+				return;
+			} else if (content == null || content.trim().length == 0) {
+				alert("상품 소개를 입력해 주세요.");
+				$("textarea[name=content]"),focus();
+				return;
+			} else if (price == null || price.trim().length == 0) {
+				alert("상품 가격을 입력해 주세요.");
+				$("input[name=price]"),focus();
+				return;
+			} else if (area == null || area.trim().length == 0) {
+				alert("생산지를 입력해 주세요.");
+				$("input[name=area]"),focus();
+				return;
+			} else if (company == null || company.trim().length == 0) {
+				alert("유통회사명을 입력해 주세요.");
+				$("input[name=company]"),focus();
+				return;
+			} else {
+				$('#method').val('patch');
+				var idx = $('#h_idx').val();
+				alert("idx = "+idx);
+				document.form0.target = opener.name;
+				document.form0.action = '/web/soju/board/'+idx;
+				document.form0.submit();
+				alert("수정이 완료 되었습니다");
+				window.close();
+			}
 		};
 	});
 	</script>

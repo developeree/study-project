@@ -44,6 +44,7 @@
 			<div class="control-container">
 				<input type="button" class="control-button" id="btnDelete" value="삭제">
 				<input type="button" class="control-button" id="btnModify" value="수정">
+				<input type="button" class="control-button" id="btnCancel" value="취소">
 			</div>
 			
 			<!-- 히든 영역 -->
@@ -56,7 +57,11 @@
 	
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#btnDelete').click(function() { //삭제버튼
+	$('#btnCancel').click(function() {			//취소버튼
+		history.back();
+	});
+	
+	$('#btnDelete').click(function() { 			//삭제버튼
 		var answer = confirm("정말 삭제하시겠습니까??");
 		if (answer == true){    //확인
 				document.form0.action = '/web/soju/board/' + ${soju.idx};
@@ -66,13 +71,12 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#btnModify').click(function() { //수정버튼
+	$('#btnModify').click(function() { 			//수정버튼
 		$('#method').val('get');
 		var idx = $('#h_idx').val();
-		alert(idx);
 		window.name = "/soju/board/" + ${soju.idx};
-		window.open("/web/soju/board/"+idx,"insert","width=1000px,height=700px");
-		/* document.form0.action = '/wㄴeb/soju/board/' + ${soju.idx};
+		window.open("/web/soju/board/"+idx,"modify","width=1000px,height=700px");
+		/* document.form0.action = '/web/soju/board/' + ${soju.idx};
 		document.form0.submit(); */
 	});
 });
