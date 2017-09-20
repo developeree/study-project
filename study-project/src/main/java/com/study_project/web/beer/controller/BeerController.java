@@ -46,6 +46,7 @@ public class BeerController {
 	public String doWrite(Beer beer 
 //			,@RequestParam("mediaFile") List<MultipartFile> files
 			) throws Exception{
+		logger.info("[ welcome beerReg logic ]");
 		beerService.writeBeer(beer);
 		logger.info("[ beerReg toString ] " + beer.toString());
 		return "redirect:/beer";
@@ -62,6 +63,7 @@ public class BeerController {
 	@RequestMapping(value = "/board/{idx}", method=RequestMethod.PATCH)
 	public String doModify(@PathVariable("idx") Integer idx, Beer beer) throws Exception{
 		beerService.modifyBeer(beer);
+		logger.info("[ beerReg toString ] " + beer.toString());
 		return "redirect:/beer";
 	}
 	
