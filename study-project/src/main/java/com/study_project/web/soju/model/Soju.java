@@ -10,29 +10,23 @@ public class Soju {
 	private String area;
 	private String thumbnail;
 	private String ad;
-	private String commentcount;
+	private String comment_count;
 	private String company;
 	
-	@Override
-	public String toString() {
-		return "Soju [idx=" + idx + ", title=" + title + ", content=" + content
-				+ ", price=" + price + ", create_date=" + create_date
-				+ ", edit_date=" + edit_date + ", area=" + area
-				+ ", thumbnail=" + thumbnail + ", ad=" + ad + ", commentcount="
-				+ commentcount + ", company=" + company + "]";
-	}
+	
 
 	//getter
-	public Integer getIdx() 		{return idx;}
-	public String getTitle() 		{return title;}
-	public String getContent() 		{return content;}
-	public String getPrice() 		{return price;}
-	public String getCreate_date() 	{return create_date;}
-	public String getEdit_date() 	{return edit_date;}
-	public String getArea() 		{return area;}
-	public String getThumbnail() 	{return thumbnail;}
-	public String getAd() 			{return ad;}
-	public String getCommentcount() {return commentcount;}
+	public Integer getIdx() 			{return idx;}
+	public String getTitle() 			{return title;}
+	public String getContent() 			{return content;}
+	public String getPrice() 			{return price;}
+	public String getCreate_date() 		{return create_date;}
+	public String getEdit_date() 		{return edit_date;}
+	public String getArea() 			{return area;}
+	public String getThumbnail() 		{return thumbnail;}
+	public String getAd() 				{return ad;}
+	public String getComment_count() 	{return comment_count;}
+	
 	public String getCompany() 		{return company;}
 
 	//setter
@@ -45,7 +39,6 @@ public class Soju {
 	public void setArea(String area) 					{this.area = area;}
 	public void setThumbnail(String thumbnail) 			{this.thumbnail = thumbnail;}
 	public void setAd(String ad) 						{this.ad = ad;}
-	public void setCommentcount(String commentcount) 	{this.commentcount = commentcount;}
 	public void setCompany(String company) 				{this.company = company;}
-	
+	public void setComment_count(String comment_count) 	{this.comment_count = comment_count;}
 }

@@ -106,7 +106,7 @@
 				return;
 			} else {
 				form0.target = opener.name;
-				document.form0.action = '/web/sojuReg';
+				document.form0.action = '/web/soju/board';
 				document.form0.submit();
 				alert("등록이 완료 되었습니다");
 				window.close();

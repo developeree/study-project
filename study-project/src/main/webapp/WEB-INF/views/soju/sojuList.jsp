@@ -26,7 +26,7 @@
 			<!-- 리스트 컨테이너 -->
 			<div style="border-top: 1px solid #FF8000;">
 				<c:forEach var="sl" items="${sojuList}" varStatus="status">
-					<div style="border-bottom: 1px solid #F7BE81;">
+					<div class="sojuDetail" idx="${sl.idx}" style="border-bottom: 1px solid #F7BE81;">
 						<span>썸네일이미지</span>
 						<span>${sl.title}</span>
 						<span>${sl.price}</span>
@@ -42,7 +42,12 @@ $(function() {
 	$('#btnReg').click(function() {//등록
 		/* document.location.href = "sojuReg.html"; */
 		window.name = "/soju";
-		window.open("sojuReg","insert","width=1000px,height=700px");
+		window.open("/web/soju/board","insert","width=1000px,height=700px");
+	});
+	
+	$('.sojuDetail').click(function() {
+		var idx = $(this).attr('idx');
+		document.location.href = "/web/soju/board/" + idx;
 	});
 });
 </script>

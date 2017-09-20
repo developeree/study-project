@@ -10,7 +10,8 @@
 			title,
 			price,
 			company,
-			tumbnail
+			tumbnail,
+			comment_count
 		FROM
 			soju
 		WHERE 
@@ -50,7 +51,7 @@
 			content,
 			price,
 			create_date,
-			eidt_date,
+			edit_date,
 			area,
 			tumbnail,
 			ad,
