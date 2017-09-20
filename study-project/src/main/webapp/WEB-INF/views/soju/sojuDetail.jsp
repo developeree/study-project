@@ -43,12 +43,13 @@
 			<!-- 버튼 영역 -->
 			<div class="control-container">
 				<input type="button" class="control-button" id="btnDelete" value="삭제">
+				<input type="button" class="control-button" id="btnModify" value="수정">
 			</div>
 			
 			<!-- 히든 영역 -->
 			<div>
-				<input type="hidden" name="_method" value="DELETE">
-				<input type="hidden" name="h_idx" id="h_idx" value="${soju.idx}">
+				<input type="hidden" id="h_idx" name="h_idx" value="${soju.idx}">
+				<input type="hidden" id="method" name="_method" value="DELETE">
 			</div>
 		</form>
 	</div>
@@ -56,14 +57,23 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#btnDelete').click(function() { //삭제버튼
-		var idx = $("input[name=h_idx]").val();
 		var answer = confirm("정말 삭제하시겠습니까??");
 		if (answer == true){    //확인
-				document.form0.action = '/web/soju/board/' + idx;
+				document.form0.action = '/web/soju/board/' + ${soju.idx};
 			    document.form0.submit();
-			}else{   //취소
-			    return;
-			}
+		}else{   //취소
+		    return;
+		}
+	});
+	
+	$('#btnModify').click(function() { //수정버튼
+		$('#method').val('get');
+		var idx = $('#h_idx').val();
+		alert(idx);
+		window.name = "/soju/board/" + ${soju.idx};
+		window.open("/web/soju/board/"+idx,"insert","width=1000px,height=700px");
+		/* document.form0.action = '/wㄴeb/soju/board/' + ${soju.idx};
+		document.form0.submit(); */
 	});
 });
 </script>
