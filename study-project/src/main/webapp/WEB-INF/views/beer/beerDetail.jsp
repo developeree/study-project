@@ -21,11 +21,16 @@
 
 <input type="button" value="목록" onclick="location.href='/web/beer'"/>
 <input type="button" value="수정" />
-<form:form method="DELETE" action="board/${beer.idx}">
+<%-- <form:form method="DELETE" action="board/${beer.idx}"> --%>
+<form name="form0" method="post">
 <!-- <input id="dele" type="hidden" name="_method" value="DELETE"/> -->
 <input id="dele" type="submit"value="삭제"/>
+<input type="hidden" name="h_idx" id="h_idx" value="${beer.idx}">
+<input type="hidden" name="_method" value="DELETE">
+<input type="button" id="btnDelete" value="삭제추가한거" onclick="del()">
 <%-- <input type="button" value="삭제" onclick="del(${beer.idx })"/> --%>
-</form:form>
+</form>
+<%-- </form:form> --%>
 </div>
 <script type="text/javascript">
 // function del(idx){
@@ -37,6 +42,18 @@
 //             window.open(url, "_self",  '');
 // 	}
 // }
+
+function del(){
+	var idx = $("input[name=h_idx]").val();
+	var answer=confirm("삭제하시겠습니까?");
+	if (answer == true) {
+		document.form0.action = '/web/beer/board/' + idx;
+		document.form0.submit();
+	} else {
+		return;
+	}
+}
+
 
 </script>
 </body>

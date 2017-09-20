@@ -42,12 +42,12 @@ $(function() {
 	$('#btnReg').click(function() {//등록
 		/* document.location.href = "sojuReg.html"; */
 		window.name = "/soju";
-		window.open("sojuReg","insert","width=1000px,height=700px");
+		window.open("/web/soju/board","insert","width=1000px,height=700px");
 	});
 	
 	$('.sojuDetail').click(function() {
 		var idx = $(this).attr('idx');
-		document.location.href = "sojuDetail/" + idx;
+		document.location.href = "/web/soju/board/" + idx;
 	});
 });
 </script>
