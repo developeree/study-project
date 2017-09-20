@@ -64,7 +64,7 @@ public class BeerController {
 	public String doModify(@PathVariable("idx") Integer idx, Beer beer) throws Exception{
 		beerService.modifyBeer(beer);
 		logger.info("[ beerReg toString ] " + beer.toString());
-		return "redirect:/beer";
+		return "redirect:/beer/{idx}";
 	}
 	
 	@RequestMapping(value = "/{idx}", method=RequestMethod.DELETE)

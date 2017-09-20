@@ -48,11 +48,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		title=#{title},
 		content=#{content},
 		price=#{price},
-		edit_date=now()
+		edit_date=now(),
 		area=#{area},
 <!-- 		tumbnail=#{tumbnail}, -->
 		ad=#{ad},
-		company=#{company},
+		company=#{company}
 		WHERE
 		idx=#{idx}
 	</update>

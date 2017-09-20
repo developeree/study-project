@@ -27,8 +27,8 @@
 </div>
 <script type="text/javascript">
 function updatePopup() {
-	window.name = "beer/${beer.idx}";
-    window.open("board/${beer.idx}", "update",
+	window.name = "/web/beer/${beer.idx}";
+    window.open("/web/beer/board/${beer.idx}", "update",
             "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
 }
 $('#del').click(function() {

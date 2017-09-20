@@ -16,6 +16,7 @@
 <div align="center">
 <div>
 <input type="button" value="글쓰기" onclick="insertPopup();"/>
+<!-- <input type="button" value="글쓰기" onclick="location.href='/web/beer/board'"/> -->
 </div>
 <div>
 <c:forEach var="beer" items="${list}" varStatus="status">
@@ -31,7 +32,7 @@
 <script type="text/javascript">
 function insertPopup() {
     // window.name = "부모창 이름";            
-//     window.name = "/beer";
+    window.name = "/beer";
     // window.open("자식창 이름", "불러올 자식 창의 닉네임", "팝업창 옵션");
     window.open("beer/board", "insert",
             "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
