@@ -46,15 +46,24 @@
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+	
+	<!-- 	하지만 이 HiddenHttpMethodFilter의 경우, enctype을 multipart/form-data 즉, 파일업로드를 위한 인코딩 타입을 지정할 경우 동작하지 않습니다. -->
+
+	<filter> 
+		<filter-name>multipartFilter</filter-name> 
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class> 
+	</filter> 
+	<filter-mapping> 
+		<filter-name>multipartFilter</filter-name> 
+		<url-pattern>/*</url-pattern> 
+	</filter-mapping>
+	
 <!-- 	http rest 인식 -->
 	<filter>
 		<filter-name>httpMethodFilter</filter-name>
@@ -65,4 +74,6 @@
 		<filter-name>httpMethodFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+
 </web-app>

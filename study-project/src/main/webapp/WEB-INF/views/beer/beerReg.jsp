@@ -46,12 +46,12 @@
 	</form>
 </div>
 <script type="text/javascript">
-// $('#new').click(function() { //수정버튼
+// $('#new').click(function() {
 // 	document.form0.action = '/web/beer/board';
 // 	document.form0.submit();
 // 	window.close();
 // });
-// $('#edit').click(function() { //수정버튼
+// $('#edit').click(function() {
 // 		$('#method').val('patch');
 // 		document.form0.action = '/web/beer/board/${beer.idx}';
 // 		document.form0.submit();
