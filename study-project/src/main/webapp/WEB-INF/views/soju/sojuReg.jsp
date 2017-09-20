@@ -28,38 +28,47 @@
 					<div>
 						<div>
 							<p>상품이름 및 소제목</p>
-							<input type="text" name="title">
+							<input type="text" name="title" value="${soju.title}">
 						</div>
 						<div>
 							<p>상품 소개</p>
-							<textarea name="content" rows="" cols=""></textarea>
+							<textarea name="content" rows="" cols="">${soju.content}</textarea>
 						</div>
 						<div>
 							<p>상품 가격</p>
-							<input type="text" name="price">
+							<input type="text" name="price" value="${soju.price}">
 						</div>
 						<div>
 							<p>생산지</p>
-							<input type="text" name="area">
+							<input type="text" name="area" value="${soju.area}">
 						</div>
 						<div>
 							<p>유튜브광고 URL</p>
-							<input type="text" name="ad">
+							<input type="text" name="ad" value="${soju.ad}">
 						</div>
 						<div>
 							<p>유통회사</p>
-							<input type="text" name="company">
+							<input type="text" name="company" value="${soju.company}">
 						</div>
 					</div>
 					
 					<!-- 입력 버튼영역 -->
 					<div>
 						<div class="control-container">
+							<c:if test="${soju.idx == null}">
 							<input type="button" class="control-button" id="btnInsert" value="등록">
+							</c:if>
+							<c:if test="${soju.idx != null}">
+							<input type="button" class="control-button" id="btnModify" value="수정">
+							</c:if>
 							<input type="button" class="control-button" id="btnCancel" value="취소">
 						</div>
 					</div>
 					
+					<!-- 히든 영역 -->
+					<div>
+						<input type="hidden" id="method" name="_method" value="PATCH">
+					</div>
 					
 				</div>
 			</div>
@@ -73,6 +82,15 @@
 		
 		$('#btnInsert').click(function() { //입력버튼
 			insertCheck();
+		});
+		
+		$('#btnModify').click(function() { //입력버튼
+			$('#method').val('patch');
+			form0.target = opener.name;
+			document.form0.action = '/web/soju/board/' + ${soju.idx};
+			document.form0.submit();
+			alert("수정이 완료 되었습니다");
+			window.close();
 		});
 		
 		function insertCheck() {
@@ -105,6 +123,7 @@
 				$("input[name=company]"),focus();
 				return;
 			} else {
+				$('#method').val('get');
 				form0.target = opener.name;
 				document.form0.action = '/web/soju/board';
 				document.form0.submit();

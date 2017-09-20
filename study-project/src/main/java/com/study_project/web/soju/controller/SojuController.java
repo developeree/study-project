@@ -41,36 +41,37 @@ public class SojuController {
 		}
 		
 		model.addAttribute("sojuList", sojuList);
-		return "soju/sojuList";
-	}
-	
-	//글쓰기 입력폼으로 이동
-	@RequestMapping(value="/board", method = RequestMethod.GET)
-	public String sojuRegForm (HttpSession session, Model model,
-			@PathVariable(value="idx") Integer idx) throws Exception {
-		logger.info("[ welcome sojuReg ]");
-		System.out.println("if 밖에서 idx = " + idx);
-		if ( idx != 0 || idx != null) {
-			System.out.println("if 안에서 idx = " + idx);
-			Soju soju = sojuService.getSoju(idx);
-			model.addAttribute("soju", soju);
-		}
-			
-		return "soju/sojuReg";
+		return "/soju/sojuList";
 	}
 	
 	//상세보기 입력폼전환
-	@RequestMapping(value="/board/{idx}", method = RequestMethod.GET)
-	public String detail (@PathVariable("idx") Integer idx, Model model) throws Exception {
+	@RequestMapping(value="/{idx}", method = RequestMethod.GET)
+	public String detailForm (@PathVariable("idx") Integer idx, Model model) throws Exception {
 		logger.info("[ welcome sojuDetailForm ]");
 		Soju soju = sojuService.getSoju(idx);
 		model.addAttribute("soju", soju);
 		return "/soju/sojuDetail";
 	}
 	
-	//소주 db입력
+	//글쓰기로 페이지전환
+	@RequestMapping(value="/board", method = RequestMethod.GET)
+	public String insertForm (HttpSession session, Model model) throws Exception {
+		logger.info("[ welcome sojuReg ]");
+		return "/soju/sojuReg";
+	}
+	
+	//수정하기로 페이지전환
+	@RequestMapping(value="/board/{idx}", method = RequestMethod.GET)
+	public String modifyForm (@PathVariable(value="idx") Integer idx, Model model) throws Exception {
+		logger.info("[ wecome sojuModifyForm ]");
+		Soju soju = sojuService.getSoju(idx);
+		model.addAttribute("soju", soju);
+		return "/soju/sojuReg";
+	}
+	
+	//글쓰기 로직 수행
 	@RequestMapping(value="/board", method = RequestMethod.POST)
-	public String sojuReg (HttpSession session, Soju soju) throws Exception {
+	public String insert (HttpSession session, Soju soju) throws Exception {
 		logger.info("[ welcome sojuReg logic ]");
 		try{
 			sojuService.insertSoju(soju);
@@ -81,13 +82,21 @@ public class SojuController {
 		return "redirect:/soju";
 	}
 	
-	//삭제
+	@RequestMapping(value="/board/{idx}", method = RequestMethod.PATCH)
+	public String modify (@PathVariable("idx") Integer idx, Soju soju) throws Exception {
+		sojuService.updateSoju(soju);
+		return "redirect:/soju";
+	}
+	
+	//삭제 로직 수행
 	@RequestMapping(value="/board/{idx}", method = RequestMethod.DELETE)
 	public String delete (@PathVariable("idx") Integer idx) throws Exception {
 		logger.info("[ welcome sojuDelete ]");
 		sojuService.deleteSoju(idx);
 		return "redirect:/soju";
 	}
+	
+	
 	
 	
 }
