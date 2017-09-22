@@ -157,7 +157,6 @@
 			} else {
 				$('#method').val('patch');
 				var idx = $('#h_idx').val();
-				alert("idx = "+idx);
 				document.form0.target = opener.name;
 				document.form0.action = '/web/soju/board/'+idx;
 				document.form0.submit();

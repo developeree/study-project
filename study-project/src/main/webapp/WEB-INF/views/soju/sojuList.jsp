@@ -48,6 +48,8 @@ $(function() {
 		var idx = $(this).attr('idx');
 		document.location.href = "/web/soju/" + idx;
 	});
+	
+	
 });
 </script>
 </body>
