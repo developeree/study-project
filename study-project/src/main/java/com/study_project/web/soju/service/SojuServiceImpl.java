@@ -14,6 +14,11 @@ public class SojuServiceImpl implements SojuService {
 
 	@Autowired
 	private SojuDao sojuDao;
+	
+	@Override
+	public int count(Map<String, Object> paramMap) {
+		return sojuDao.count(paramMap);
+	}
 
 	@Override
 	public List<Soju> selectSojuList(Map<String, Object> map) {

@@ -6,6 +6,14 @@ import java.util.Map;
 import com.study_project.web.soju.model.Soju;
 
 public interface SojuService {
+	
+	/**
+	 * 등록된 소주정보 글정보의  전체 갯수를 얻어옵니다.
+	 * @param paramMap
+	 * 			searchCol, searchVal이 있는 경우 해당 항목만 가져옵니다.
+	 * @return count :: int
+	 */
+	public int count(Map<String, Object> paramMap);
 
 	/**
 	 * Soju 정보 목록을 불러온다.

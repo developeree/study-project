@@ -15,6 +15,12 @@ public class SojuDaoImpl implements SojuDao {
 
 	@Autowired
 	private SqlSession session;
+	
+
+	@Override
+	public int count(Map<String, Object> paramMap) {
+		return session.selectOne("sojuSql.count", paramMap);
+	}
 
 	@Override
 	public List<Soju> selectSojuList(Map<String, Object> map) {

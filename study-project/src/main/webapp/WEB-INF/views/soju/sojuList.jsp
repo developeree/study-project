@@ -20,9 +20,9 @@
 				<select class="search-select" id="searchCol">
 					<option value="">선택/초기화</option>
 					<option value="title">제목</option>
+					<option value="company">유통회사</option>
 				</select>
 			</div><br/>
-			
 			<!-- 리스트 컨테이너 -->
 			<div style="border-top: 1px solid #FF8000;">
 				<c:forEach var="sl" items="${sojuList}" varStatus="status">
@@ -34,6 +34,50 @@
 					</div>
 				</c:forEach>
 			</div>
+			
+			<!-- 페이징 -->
+			<div class="paging-container">
+			<c:set var="isLoof" value="true" />
+			<c:if test="${totalRecord != 0}">
+				
+				<!-- <<부분 -->
+					<c:if test="${selectBlock > 0}">
+						<span onclick="paging('${selectBlock - 1}','${((selectBlock - 1) * 10)}')">
+							왼쪽
+							<!-- <img src="resources/images/pager/btn_first.gif"/> -->
+						</span>
+					</c:if>
+					
+					<!-- 가운데 숫자부분 -->
+					<c:forEach begin="0" end="9" step="1" var="i">
+						<c:if test="${isLoof}"> 
+							<c:choose>
+								<c:when test="${selectPage == (selectBlock * 10) + i}">
+									<font class="paging-current">${(selectBlock * 10) + i + 1 }</font>
+								</c:when>
+								<c:otherwise>
+									<span onclick="paging('${selectBlock}','${(selectBlock * 10) + i }')">
+										<font class="paging-clickable"> ${(selectBlock * 10) + i + 1 }</font>
+									</span>
+								</c:otherwise>
+							</c:choose>
+							<c:if test="${(selectBlock * 10) + i + 1 == totalPage}">
+								<c:set var="isLoof" value="false"/> 
+							</c:if>
+						</c:if>
+					</c:forEach>
+					
+					<!-- >>부분 -->
+					<c:if test="${totalBlock > selectBlock}">
+						<span onclick="paging('${selectBlock + 1 }','${((selectBlock + 1) * 10)}')" >
+							오른쪽
+							<!-- <img src="resources/images/pager/btn_last.gif"/> -->
+						</span>
+					</c:if>
+				
+			</c:if>
+			</div>
+			
 		</div>
 	</div>
 
@@ -49,6 +93,40 @@ $(function() {
 		document.location.href = "/web/soju/" + idx;
 	});
 	
+	//검색
+	$('#btnSearch').click(function() {
+		var pageNo = "${selectPage}";
+		var blockNo = "${selectBlock}";
+		
+		var url = "soju.html?pageNo="+pageNo+"&blockNo="+blockNo;
+		
+		var searchCol = $('#searchCol').val();
+		var searchVal = $('#searchVal').val().trim();
+		if (searchCol == '' || searchVal == '') {
+			$('#searchCol').val('');
+			$('#searchVal').val('');
+		} else {
+			url += "&searchCol="+searchCol+"&searchVal="+searchVal;
+		}
+		
+		document.location.href = url;
+	});
+	
+	//페이징
+	paging = function(blockNo, pageNo) {
+		var url = "soju.html?pageNo="+pageNo+"&blockNo="+blockNo;
+		var searchCol = $('#searchCol').val();
+		var searchVal = $('#searchVal').val().trim();
+		
+		if (searchCol == '' || searchVal == '') {
+			$('#searchCol').val('');
+			$('#searchVal').val('');
+		} else {
+			url += "&searchCol="+searchCol+"&searchVal="+searchVal;
+		}
+		
+		document.location.href = url;
+	};
 	
 });
 </script>
