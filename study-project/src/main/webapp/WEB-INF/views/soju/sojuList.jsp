@@ -16,7 +16,7 @@
 			<div style="width: 100%; height: 10%;" align="right">
 				<input type="button" class="reg-button" id="btnReg" value="등록" />
 				<input type="button" class="search-button" id="btnSearch" value="검색" />
-				<input type="text" class="search-input" id="searchVal" value="" />
+				<input type="text" class="search-input" id="searchVal" value="${searchVal}" />
 				<select class="search-select" id="searchCol">
 					<option value="">선택/초기화</option>
 					<option value="title">제목</option>
@@ -94,6 +94,7 @@ $(function() {
 	});
 	
 	//검색
+	$("#searchCol").val("${searchCol}").prop("selected", true);
 	$('#btnSearch').click(function() {
 		var pageNo = "${selectPage}";
 		var blockNo = "${selectBlock}";

@@ -5,7 +5,7 @@
 
 	<!-- 글목록 갯수구하기 -->
 	<select id="count" resultType="java.lang.Integer" parameterType="java.util.Map">
-		SELECT COUNT(*) 
+		SELECT COUNT(*)
 		FROM soju
 		WHERE 1 = 1
 	</select>
@@ -26,7 +26,7 @@
 		<if test="searchCol != null">
 			AND ${searchCol} LIKE CONCAT('%',#{searchVal},'%')
 		</if>
-		ORDER BY idx desc
+		ORDER BY idx asc
 		LIMIT #{pageSize} OFFSET #{pageNo}
 	</select>
 	<!-- 글쓰기 -->

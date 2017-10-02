@@ -18,6 +18,11 @@ $(document).ready(function(){
 	$("#btnSoju").click(function(e){ 
 		document.location.href = '/web/soju/soju.html';
 	});
+	
+	//소주 카테고리로 이동
+	$("#btnTest").click(function(e){ 
+		document.location.href = '/web/soju/test.html';
+	});
 
 });
 </script>
@@ -42,7 +47,7 @@ $(document).ready(function(){
 			<input type="button" class="tab-button nav" id="btnMain" value="메인">
 			<input type="button" class="tab-button nav" id="btnSoju" value="소주">
 			<input type="button" class="tab-button nav" id="btnBeer" value="맥주" onclick="location.href='/web/beer'" >
-
+			<input type="button" class="tab-button nav" id="btnTest" value="테스트">
 		</div>
 	</div>
 </div>
