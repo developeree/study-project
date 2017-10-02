@@ -13,6 +13,14 @@ public class Soju {
 	private String comment_count;
 	private String company;
 	
+	//파일관련
+	private Integer file_idx;
+	private String original_name;
+	private String trans_name;
+	private String file_path;
+	private Integer file_size;
+	private Integer soju_idx;
+	private String content_type;
 	
 
 	//getter
@@ -26,9 +34,15 @@ public class Soju {
 	public String getThumbnail() 		{return thumbnail;}
 	public String getAd() 				{return ad;}
 	public String getComment_count() 	{return comment_count;}
+	public String getCompany() 			{return company;}
+	public Integer getFile_idx() 		{return file_idx;}
+	public String getOriginal_name() 	{return original_name;}
+	public String getTrans_name() 		{return trans_name;}
+	public String getFile_path() 		{return file_path;}
+	public Integer getFile_size() 		{return file_size;}
+	public Integer getSoju_idx() 		{return soju_idx;}
+	public String getContent_type() 	{return content_type;}
 	
-	public String getCompany() 		{return company;}
-
 	//setter
 	public void setIdx(Integer idx) 					{this.idx = idx;}
 	public void setTitle(String title) 					{this.title = title;}
@@ -41,4 +55,24 @@ public class Soju {
 	public void setAd(String ad) 						{this.ad = ad;}
 	public void setCompany(String company) 				{this.company = company;}
 	public void setComment_count(String comment_count) 	{this.comment_count = comment_count;}
+	public void setFile_idx(Integer file_idx) {
+		this.file_idx = file_idx;
+	}
+	public void setOriginal_name(String original_name) {
+		this.original_name = original_name;
+	}
+	public void setTrans_name(String trans_name) {
+		this.trans_name = trans_name;
+	}
+	public void setFile_path(String file_path) {
+		this.file_path = file_path;
+	}
+	public void setFile_size(Integer file_size) {
+		this.file_size = file_size;
+	}
+	public void setSoju_idx(Integer soju_idx) {
+		this.soju_idx = soju_idx;
+	}
+	public void setContent_type(String content_type) {this.content_type = content_type;}
+	
 }
