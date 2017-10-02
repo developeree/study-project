@@ -28,7 +28,6 @@
 </fieldset>
 </c:forEach>
 </div>
-
 <!-- <form action="beer" method="get"> -->
 <div>
 <c:forEach var="i" begin="1" end="${totalBeer}" step="1" varStatus="status">
@@ -42,6 +41,8 @@
 <option value="">선택</option>
 <option value="title" >제목</option>
 <option value="company" >제조회사</option>
+<%-- <option value="title" <c:if test="keyfield==${beer.keyfield}">selected</c:if>>제목</option> --%>
+<%-- <option value="company" <c:if test="keyfield==${beer.keyfield}">selected</c:if>>제조회사</option> --%>
 </select>
 <input type="text" name="search" value="${beer.search}"/>
 <input type="button" value="검색" id="search"/>
@@ -63,11 +64,11 @@ $(document).ready(function() {
 	var pageNo="1";
 	var keyfield=$('select[name=keyfield]').val();
 	var search=$('input[name=search]').val();
-// 	$('#selectBox').val(keyfield).prop("selected",true);
-	alert("${list.keyfield}");
+	if(keyfield==''){alert("검색어 안넣자나")};
 	 document.location.href="/web/beer?pageNo="+pageNo+"&keyfield="+keyfield+"&search="+search;
 });
 });
+$('#selectBox').val("${beer.keyfield}").prop("selected",true);
 function insertPopup() {
     // window.name = "부모창 이름";            
     window.name = "/beer";
