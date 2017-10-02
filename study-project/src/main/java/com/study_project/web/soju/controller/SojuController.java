@@ -14,9 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study_project.web.soju.model.Soju;
 import com.study_project.web.soju.service.SojuService;
+import com.study_project.web.util.Pager;
 
 
 @Controller
@@ -29,16 +31,41 @@ public class SojuController {
 	private SojuService sojuService;
 	
 	//글목록
-	@RequestMapping(method = RequestMethod.GET)
-	public String sojuList (HttpSession session, Model model) throws Exception {
+	@RequestMapping(value="soju.html", method = RequestMethod.GET)
+	public String sojuList (HttpSession session, Model model,
+			@RequestParam(value="pageNo", defaultValue = "0", required = false) int pageNo,
+			@RequestParam(value="blockNo", defaultValue = "0", required = false) int blockNo,
+			@RequestParam(value="searchCol", required = false) String searchCol,
+			@RequestParam(value="searchVal", required = false) String searchVal) throws Exception {
 		logger.info("[ welcome soju ]");
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("pageNo", (int)(pageNo * Pager.PAGE_SIZE));
+		paramMap.put("pageSize", Pager.PAGE_SIZE);
+		
+		paramMap.put("searchCol", searchCol);
+		paramMap.put("searchVal", searchVal);
+		
 		List<Soju> sojuList = sojuService.selectSojuList(paramMap);
 		
 		for (Soju soju : sojuList) {
 			logger.info(soju.toString());
 		}
+		
+		int totalRecord = sojuService.count(paramMap);
+		int totalPage = (int)Math.ceil((double)totalRecord / Pager.PAGE_SIZE);
+		int totalBlock = (int)Math.ceil((double)totalPage / Pager.PAGE_PER_BLOCK);
+		
+		model.addAttribute("selectPage", pageNo);
+		model.addAttribute("selectBlock", blockNo);
+		
+		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("totalBlock", totalBlock);
+		
+		model.addAttribute("searchCol", searchCol);
+		model.addAttribute("searchVal", searchVal);
 		
 		model.addAttribute("sojuList", sojuList);
 		return "/soju/sojuList";
@@ -79,13 +106,13 @@ public class SojuController {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return "redirect:/soju";
+		return "redirect:/soju/soju.html";
 	}
 	
 	@RequestMapping(value="/board/{idx}", method = RequestMethod.PATCH)
 	public String modify (@PathVariable("idx") Integer idx, Soju soju) throws Exception {
 		sojuService.updateSoju(soju);
-		return "redirect:/soju";
+		return "redirect:/soju/soju.html";
 	}
 	
 	//삭제 로직 수행
@@ -93,7 +120,7 @@ public class SojuController {
 	public String delete (@PathVariable("idx") Integer idx) throws Exception {
 		logger.info("[ welcome sojuDelete ]");
 		sojuService.deleteSoju(idx);
-		return "redirect:/soju";
+		return "redirect:/soju/soju.html";
 	}
 	
 	

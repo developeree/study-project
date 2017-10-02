@@ -3,8 +3,15 @@
 
 <mapper namespace="sojuSql">
 
+	<!-- 글목록 갯수구하기 -->
+	<select id="count" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+		FROM soju
+		WHERE 1 = 1
+	</select>
+	
 	<!-- 목록 SELECT -->
-	<select id="selectSojuList" resultType="com.study_project.web.soju.model.Soju" parameterType="com.study_project.web.soju.model.Soju">
+	<select id="selectSojuList" resultType="com.study_project.web.soju.model.Soju" parameterType="java.util.Map">
 		SELECT 
 			idx,
 			title,
@@ -16,8 +23,12 @@
 			soju
 		WHERE 
 			1 = 1
+		<if test="searchCol != null">
+			AND ${searchCol} LIKE CONCAT('%',#{searchVal},'%')
+		</if>
+		ORDER BY idx desc
+		LIMIT #{pageSize} OFFSET #{pageNo}
 	</select>
-	
 	<!-- 글쓰기 -->
 	<insert id="insertSoju" parameterType="com.study_project.web.soju.model.Soju" useGeneratedKeys="true" keyProperty="idx">
 		INSERT INTO soju
@@ -44,6 +55,7 @@
 			)
 	</insert>
 	
+	<!-- 상세보기 -->
 	<select id="getSoju" resultType="com.study_project.web.soju.model.Soju" parameterType="java.lang.Integer">
 		SELECT
 			idx,
@@ -63,6 +75,7 @@
 			idx = #{idx}
 	</select>
 	
+	<!-- 글수정 -->
 	<update id="updateSoju" parameterType="com.study_project.web.soju.model.Soju">
 		UPDATE soju
 		SET
@@ -77,6 +90,7 @@
 			idx = #{idx}
 	</update>
 	
+	<!-- 글삭제 -->
 	<delete id="deleteSoju" parameterType="java.lang.Integer">
 		DELETE FROM soju
 		WHERE idx = #{idx}
