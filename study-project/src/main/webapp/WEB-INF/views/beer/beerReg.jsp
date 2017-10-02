@@ -16,8 +16,8 @@
 <!--        		<p/> -->
 				<span>제목<input type="text" name="title" value="${beer.title }" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-				<span>상세정보<textarea cols="80" rows="10" name="content" style="width: 300px; height: 100px">${beer.content }</textarea></span>
-				<p/>
+<%-- 				<span>상세정보<textarea cols="80" rows="10" name="content" style="width: 300px; height: 100px">${beer.content }</textarea></span> --%>
+<!-- 				<p/> -->
 				<span>가격<input type="text" name="price" value="${beer.price }" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
 				<span>생산지<input type="text" name="area" value="${beer.area }" style="width: 300px; height: 20px" maxlength="200"/></span>
@@ -26,6 +26,15 @@
 				<p/>
 				<span>제조회사<input type="text" name="company" value="${beer.company }" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
+				<fieldset><div id="drop" class="drop" contentEditable="true">
+<%-- 				${beer.content }  --%>
+				텍스트에리어에는 이미지를 못넣고 이렇게 컨텐트에디터블을 div에 사용하면 이미지+텍스트 사용가능
+				# 숨겨진 textarea 태그를 사용하기
+				이를 해결하려면 숨겨진 textarea 태그를 하나 더 만들어서 div 태그에 담긴 내용을 서버 전송시에 전달 후 submit 하는 방법입니다.
+				<img id="dropped"/>
+				<input type="hidden" name="content" value="${beer.content }"/>
+				</div></fieldset>
+
 			</div>
 			<span style="align:left"><input type="reset" value="취소" onclick="window.close()"/></span> 
 			<c:if test="${beer.idx ==null}">
@@ -46,6 +55,22 @@
 <!-- 	</form> -->
 </div>
 <script type="text/javascript">
+$(function(){
+	$('#drop').on({
+		'drop':function(e){
+			var f=e.originalEvent.dataTransfer.files[0];
+			var reader=new FileReader();
+			$(reader).on('load',function(){
+				$('#dropped').attr('src',reader.result);
+			});
+			reader.readAsDataURL(f);
+			e.preventDefault();
+		},
+		'dragover':function(e){
+			e.preventDefault();
+		}
+	})
+});
  $('#new').click(function() {
 	form0.target = opener.name;
  	document.form0.action = '/web/beer/board';

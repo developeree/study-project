@@ -16,25 +16,63 @@
 <div align="center">
 <div>
 <input type="button" value="글쓰기" onclick="insertPopup();"/>
-<!-- <input type="button" value="글쓰기" onclick="location.href='/web/beer/board'"/> -->
 </div>
 <div>
 <c:forEach var="beer" items="${list}" varStatus="status">
 <fieldset>
 <span>이미지</span>
-<span><a href="../web/beer/${beer.idx}">${beer.title }</a></span>
+<span><a href="/web/beer/${beer.idx}">${beer.title }</a></span>
 <span>${beer.price }</span>
 <span>${beer.comment_count } 개의 상품평</span>
+<span>${beer.company }</span>
 </fieldset>
 </c:forEach>
 </div>
+
+<!-- <form action="beer" method="get"> -->
+<div>
+<c:forEach var="i" begin="1" end="${totalBeer}" step="1" varStatus="status">
+<input type="button" name="pageNo" value="${i}" id="page" onclick="paging(${status.index})"/>
+<%-- <a href="/web/beer?pageNo=${i}&keyfield=${keyfield}&search=${search}" >${i}</a> --%>
+</c:forEach>
+</div>
+
+<div>
+<select name="keyfield" id="selectBox">
+<option value="">선택</option>
+<option value="title" >제목</option>
+<option value="company" >제조회사</option>
+</select>
+<input type="text" name="search" value="${beer.search}"/>
+<input type="button" value="검색" id="search"/>
+<!-- <input type="submit" value="검색" id="search"/> -->
+</div>
+<!-- </form> -->
+
 </div>
 <script type="text/javascript">
+function paging(status){
+// 	var pageNo=status;
+// 	var keyfield="${beer.keyfield}";
+// 	var search="${beer.search}";
+// 	document.location.href="/web/beer?pageNo="+pageNo+"&keyfield="+keyfield+"&search="+search;
+	document.location.href="/web/beer?pageNo="+status+"&keyfield="+"${beer.keyfield}"+"&search="+"${beer.search}";
+}
+$(document).ready(function() {
+	$('#search').click(function search(){
+	var pageNo="1";
+	var keyfield=$('select[name=keyfield]').val();
+	var search=$('input[name=search]').val();
+// 	$('#selectBox').val(keyfield).prop("selected",true);
+	alert("${list.keyfield}");
+	 document.location.href="/web/beer?pageNo="+pageNo+"&keyfield="+keyfield+"&search="+search;
+});
+});
 function insertPopup() {
     // window.name = "부모창 이름";            
     window.name = "/beer";
     // window.open("자식창 이름", "불러올 자식 창의 닉네임", "팝업창 옵션");
-    window.open("beer/board", "insert",
+    window.open("/web/beer/board", "insert",
             "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
 }
 </script>

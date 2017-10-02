@@ -12,6 +12,44 @@ public class Beer {
 	private String ad;
 	private Integer comment_count;
 	private String company;
+	
+	private int currentNo;
+	private int pageNo;
+	private int totalBeer;
+	private String keyfield;
+	private String search;
+	
+	public int getCurrentNo() {
+		return currentNo;
+	}
+	public void setCurrentNo(int currentNo) {
+		this.currentNo = currentNo;
+	}
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo) {
+		this.pageNo = (pageNo-1)*5;
+	}
+	public int getTotalBeer() {
+		return totalBeer;
+	}
+	public void setTotalBeer(int totalBeer) {
+		this.totalBeer = totalBeer;
+	}
+	public String getKeyfield() {
+		return keyfield;
+	}
+	public void setKeyfield(String keyfield) {
+		this.keyfield = keyfield;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	public Integer getIdx() {
 		return idx;
 	}
