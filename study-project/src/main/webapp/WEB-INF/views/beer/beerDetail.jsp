@@ -35,7 +35,7 @@ $('#del').click(function() {
 	var answer=confirm("삭제하시겠습니까?");
 	if (answer == true) {
 		$('#method').val('delete');
-		document.form0.action = '${beer.idx}';
+		document.form0.action = '/web/beer/board/${beer.idx}';
 		document.form0.submit();
 	} else {
 		return;

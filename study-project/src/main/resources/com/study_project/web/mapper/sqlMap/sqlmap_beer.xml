@@ -4,9 +4,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study_project.web.mapper.sqlMap.BeerDao">
 
-	<select id="readBeerList" resultType="Beer">
-		SELECT * FROM beer ORDER
+	<select id="readBeerList" parameterType="Beer" resultType="Beer">
+		SELECT * FROM beer
+		<if test="search != null">
+		<choose>
+		<when test="keyfield=='title'">
+		WHERE title
+		LIKE
+		CONCAT('%',#{search},'%')
+		</when>
+		<when test="keyfield=='company'">
+		WHERE company
+		LIKE
+		CONCAT('%',#{search},'%')
+		</when>
+		</choose>
+		</if>
+		ORDER
 		BY edit_date DESC
+		LIMIT #{pageNo},5
+	</select>
+	
+	<select id="totalBeerCount" parameterType="Beer" resultType="Integer">
+		SELECT count(*) FROM beer
+		<if test="search != null">
+		<choose>
+		<when test="keyfield=='title'">
+		WHERE title
+		LIKE
+		CONCAT('%',#{search},'%')
+		</when>
+		<when test="keyfield=='company'">
+		WHERE company
+		LIKE
+		CONCAT('%',#{search},'%')
+		</when>
+		</choose>
+		</if>
 	</select>
 
 	<select id="readBeerOne" resultType="Beer">
@@ -62,4 +96,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		idx=#{idx}
 	</delete>
+	
+<!-- 	<select id="searchBeer" resultType="Beer"> -->
+<!-- 		SELECT * FROM beer -->
+<!-- 		<if test="search != null"> -->
+<!-- 		<choose> -->
+<!-- 		<when test="keyfield=='title'"> -->
+<!-- 		WHERE title -->
+<!-- 		LIKE -->
+<!-- 		CONCAT('%',#{search},'%') -->
+<!-- 		</when> -->
+<!-- 		<when test="keyfield=='company'"> -->
+<!-- 		WHERE company -->
+<!-- 		LIKE -->
+<!-- 		CONCAT('%',#{search},'%') -->
+<!-- 		</when> -->
+<!-- 		</choose> -->
+<!-- 		</if> -->
+<!-- 		ORDER -->
+<!-- 		BY edit_date DESC -->
+<!-- 	</select> -->
 </mapper>
