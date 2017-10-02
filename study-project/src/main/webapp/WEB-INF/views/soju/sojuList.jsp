@@ -94,6 +94,7 @@ $(function() {
 	});
 	
 	//검색
+	$("#searchCol").val("${searchCol}").prop("selected", true);
 	$('#btnSearch').click(function() {
 		var pageNo = "${selectPage}";
 		var blockNo = "${selectBlock}";

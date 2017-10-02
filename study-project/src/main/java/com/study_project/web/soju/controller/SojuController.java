@@ -81,6 +81,12 @@ public class SojuController {
 	}
 	
 	//글쓰기로 페이지전환
+		@RequestMapping(value="/test.html", method = RequestMethod.GET)
+		public String test (HttpSession session, Model model) throws Exception {
+			return "/soju/test";
+		}
+	
+	//글쓰기로 페이지전환
 	@RequestMapping(value="/board", method = RequestMethod.GET)
 	public String insertForm (HttpSession session, Model model) throws Exception {
 		logger.info("[ welcome sojuReg ]");
