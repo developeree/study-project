@@ -46,6 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="readBeerOne" resultType="Beer">
 		SELECT *
 		FROM beer
+<!-- 		LEFT JOIN beer_files ON beer.idx -->
 		WHERE
 		idx=#{idx}
 	</select>
@@ -60,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		price,
 		edit_date,
 		area,
-<!-- 		tumbnail, -->
+		thumbnail,
 		ad,
 		company
 		)
@@ -71,9 +72,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{price},
 		now(),
 		#{area},
-<!-- 		#{tumbnail}, -->
+		#{thumbnail},
 		#{ad},
 		#{company}
+		)
+	</insert>
+	
+	<insert id="createMediaFile" parameterType="Beer" useGeneratedKeys="true"
+		keyProperty="idx">
+		INSERT INTO
+		beer_files
+		(
+		original_name,
+		trans_name,
+		content_type,
+		file_size,
+		file_path,
+		beer_id
+		)
+		VALUES
+		(
+		#{original_name},
+		#{trans_name},
+		#{content_type},
+		#{file_size},
+		#{file_path},
+		#{beer_id}
 		)
 	</insert>
 
