@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div>
-		<form action="form0" name="form0" method="post">
+		<form action="form0" name="form0" method="post" enctype="multipart/form-data">
 			<div>
 				<div style="margin: 0px auto;">
 					
@@ -49,6 +49,10 @@
 						<div>
 							<p>유통회사</p>
 							<input type="text" name="company" value="${soju.company}">
+						</div>
+						<div>
+							<p>썸네일(목록이미지)</p>
+							<input type="file" name="file">
 						</div>
 					</div>
 					

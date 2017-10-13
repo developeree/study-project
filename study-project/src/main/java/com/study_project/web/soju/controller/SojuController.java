@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.study_project.web.soju.model.Soju;
 import com.study_project.web.soju.service.SojuService;
+import com.study_project.web.util.FileUtil;
 import com.study_project.web.util.Pager;
 
 
@@ -104,8 +107,16 @@ public class SojuController {
 	
 	//글쓰기 로직 수행
 	@RequestMapping(value="/board", method = RequestMethod.POST)
-	public String insert (HttpSession session, Soju soju) throws Exception {
+	public String insert (HttpSession session, Soju soju, HttpServletRequest request
+			, @RequestParam("file") MultipartFile multipart) throws Exception {
 		logger.info("[ welcome sojuReg logic ]");
+		FileUtil fileUtil = new FileUtil();
+		String MultiFileName = multipart.getOriginalFilename();
+		System.out.println("multipart 값 : " + multipart);
+		//시간+파일이름 이름을 만듬
+		String transFileName = fileUtil.makeServerFileName(fileUtil.getStrNowTime(), MultiFileName);
+		logger.info("MultiFileName > " + MultiFileName);
+		logger.info("transFileName > " + transFileName);
 		try{
 			sojuService.insertSoju(soju);
 			logger.info("[ sojuReg toString ] " + soju.toString());
