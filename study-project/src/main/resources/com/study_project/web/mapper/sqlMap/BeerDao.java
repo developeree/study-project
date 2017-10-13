@@ -18,4 +18,5 @@ public interface BeerDao {
 //	public List<Beer> searchBeer(@Param("search")String search,@Param("keyfield")String keyfield) throws SQLException;
 //	public int totalBeerCount(@Param("search")String search,@Param("keyfield")String keyfield) throws SQLException;
 	public int totalBeerCount(Beer beer) throws SQLException;
+	public void createMediaFile(Beer beer) throws SQLException;
 }

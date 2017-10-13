@@ -2,8 +2,6 @@ package com.study_project.web.beer.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.study_project.web.beer.model.Beer;
 import com.study_project.web.beer.service.BeerService;
@@ -67,11 +67,37 @@ public class BeerController {
 	//글쓰기로직
 	@RequestMapping(value = "/board", method=RequestMethod.POST)
 	public String doWrite(Beer beer 
-//			,@RequestParam("mediaFile") List<MultipartFile> files
+//			, HttpSession session
+			, @RequestParam("thumbnail") MultipartFile thumbnail
+			, MultipartHttpServletRequest mhsq
 			) throws Exception{
 		logger.info("[ welcome beerReg logic ]");
+		String title=beer.getTitle();
+		String ban=title.replaceAll("<[^>]*>", "");
+		beer.setTitle(ban);
+//		MultipartFile file=mhsq.getFile("thumbnail");
+//		System.out.println("들어와"+file);
+		System.out.println("이것도"+thumbnail);
 		beerService.writeBeer(beer);
+//		String root_path = session.getServletContext().getRealPath("/"); 
+//        String attach_path = "files/";
+        
+//      단일업로드
+//      String filename = thumbnail.getOriginalFilename();
+//      
+//      System.out.println("나오냐"+filename);
+//		File f = new File(root_path+attach_path+filename);
+//		try {
+//			thumbnail.transferTo(f);
+//			   if(filename!=null){
+//				   beerService.writeBeer(beer);
+//			   }
+//			  } catch (Exception e) {
+//			   System.out.println(e.getMessage());
+//			  }
+
 		logger.info("[ beerReg toString ] " + beer.toString());
+		//html태그막기 자바정규식 필요함
 		return "redirect:/beer";
 	}
 	

@@ -34,6 +34,7 @@ public class BeerServiceImpl implements BeerService{
 
 	@Override
 	public void writeBeer(Beer beer) throws Exception{
+//		beerDao.createMediaFile(beer);
 		beerDao.createBeer(beer);
 	}
 

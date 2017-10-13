@@ -8,16 +8,88 @@ public class Beer {
 	private String create_date;
 	private String edit_date;
 	private String area;
-	private String tumbnail;
+	private String thumbnail;
 	private String ad;
 	private Integer comment_count;
 	private String company;
 	
+	//페이징,검색
 	private int currentNo;
 	private int pageNo;
 	private int totalBeer;
 	private String keyfield;
 	private String search;
+	
+	//파일
+	private Integer file_idx;
+	private String original_name;
+	private String trans_name;
+	private String file_size;
+	private String file_path;
+	private String beer_id;
+	private String content_type;
+	private String soju_idx;
+	
+//	public static Beer createMediaFile(Beer beer1, String original_name
+//			) {
+//		Beer beer = new Beer();
+//		beer.setOriginal_name(original_name);
+//        return beer;
+//    }
+//	public static Beer createMediaFile(Beer beer1
+//			) {
+//		Beer beer = new Beer();
+//        return beer;
+//    }
+
+	public Integer getFile_idx() {
+		return file_idx;
+	}
+	public void setFile_idx(Integer file_idx) {
+		this.file_idx = file_idx;
+	}
+	public String getOriginal_name() {
+		return original_name;
+	}
+	public void setOriginal_name(String original_name) {
+		this.original_name = original_name;
+	}
+	public String getTrans_name() {
+		return trans_name;
+	}
+	public void setTrans_name(String trans_name) {
+		this.trans_name = trans_name;
+	}
+	public String getFile_size() {
+		return file_size;
+	}
+	public void setFile_size(String file_size) {
+		this.file_size = file_size;
+	}
+	public String getFile_path() {
+		return file_path;
+	}
+	public void setFile_path(String file_path) {
+		this.file_path = file_path;
+	}
+	public String getBeer_id() {
+		return beer_id;
+	}
+	public void setBeer_id(String beer_id) {
+		this.beer_id = beer_id;
+	}
+	public String getContent_type() {
+		return content_type;
+	}
+	public void setContent_type(String content_type) {
+		this.content_type = content_type;
+	}
+	public String getSoju_idx() {
+		return soju_idx;
+	}
+	public void setSoju_idx(String soju_idx) {
+		this.soju_idx = soju_idx;
+	}
 	
 	public int getCurrentNo() {
 		return currentNo;
@@ -92,11 +164,11 @@ public class Beer {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public String getTumbnail() {
-		return tumbnail;
+	public String getThumbnail() {
+		return thumbnail;
 	}
-	public void setTumbnail(String tumbnail) {
-		this.tumbnail = tumbnail;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	public String getAd() {
 		return ad;
@@ -119,8 +191,12 @@ public class Beer {
 	@Override
 	public String toString() {
 		return "Beer [idx=" + idx + ", title=" + title + ", content=" + content + ", price=" + price + ", create_date="
-				+ create_date + ", edit_date=" + edit_date + ", area=" + area + ", tumbnail=" + tumbnail + ", ad=" + ad
-				+ ", comment_count=" + comment_count + ", company=" + company + "]";
+				+ create_date + ", edit_date=" + edit_date + ", area=" + area + ", thumbnail=" + thumbnail + ", ad=" + ad
+				+ ", comment_count=" + comment_count + ", company=" + company + ", currentNo=" + currentNo + ", pageNo="
+				+ pageNo + ", totalBeer=" + totalBeer + ", keyfield=" + keyfield + ", search=" + search + ", file_idx="
+				+ file_idx + ", original_name=" + original_name + ", trans_name=" + trans_name + ", file_size="
+				+ file_size + ", file_path=" + file_path + ", beer_id=" + beer_id + ", content_type=" + content_type
+				+ ", soju_idx=" + soju_idx + "]";
 	}
 	
 }
