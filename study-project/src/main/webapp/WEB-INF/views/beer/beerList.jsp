@@ -20,7 +20,10 @@
 <div>
 <c:forEach var="beer" items="${list}" varStatus="status">
 <fieldset>
-<span>${beer.thumbnail }</span>
+<!-- 상대경로 -->
+<span><img alt="${beer.thumb}" src="files/${beer.thumb}" style="width:100px; height:100px;"/></span>
+<!-- 절대경로 -->
+<%-- <span><img alt="${beer.thumb}" src="/study_project_files/${beer.thumb}" style="width:100px; height:100px;"/></span> --%>
 <span><a href="/web/beer/${beer.idx}">${beer.title }</a></span>
 <span>${beer.price }</span>
 <span>${beer.comment_count } 개의 상품평</span>

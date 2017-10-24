@@ -8,7 +8,7 @@ public class Beer {
 	private String create_date;
 	private String edit_date;
 	private String area;
-	private String thumbnail;
+	private String thumb;
 	private String ad;
 	private Integer comment_count;
 	private String company;
@@ -164,11 +164,11 @@ public class Beer {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public String getThumbnail() {
-		return thumbnail;
+	public String getThumb() {
+		return thumb;
 	}
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
 	}
 	public String getAd() {
 		return ad;
@@ -191,7 +191,7 @@ public class Beer {
 	@Override
 	public String toString() {
 		return "Beer [idx=" + idx + ", title=" + title + ", content=" + content + ", price=" + price + ", create_date="
-				+ create_date + ", edit_date=" + edit_date + ", area=" + area + ", thumbnail=" + thumbnail + ", ad=" + ad
+				+ create_date + ", edit_date=" + edit_date + ", area=" + area + ", thumb=" + thumb + ", ad=" + ad
 				+ ", comment_count=" + comment_count + ", company=" + company + ", currentNo=" + currentNo + ", pageNo="
 				+ pageNo + ", totalBeer=" + totalBeer + ", keyfield=" + keyfield + ", search=" + search + ", file_idx="
 				+ file_idx + ", original_name=" + original_name + ", trans_name=" + trans_name + ", file_size="

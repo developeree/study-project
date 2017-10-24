@@ -11,7 +11,10 @@
 <body>
 <div>
 <fieldset>
-<span>이미지</span>
+<!-- 상대경로 -->
+<img alt="${beer.thumb}" src="../files/${beer.thumb}" style="width:100px; height:100px;"/>
+<!-- 절대경로 -->
+<%-- <img alt="${beer.thumb}" src="/study_project_files/${beer.thumb}" style="width:100px; height:100px;"/> --%>
 <span>${beer.title }</span>
 <span>${beer.content}</span>
 <span>${beer.price }</span>

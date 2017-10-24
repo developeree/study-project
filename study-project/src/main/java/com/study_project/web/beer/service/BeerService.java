@@ -2,6 +2,10 @@ package com.study_project.web.beer.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.study_project.web.beer.model.Beer;
 
 public interface BeerService {
@@ -14,4 +18,5 @@ public interface BeerService {
 //	public List<Beer> searchList(String search,String keyfield) throws Exception;
 //	public int totalBeerCount(String search,String keyfield) throws Exception;
 	public int totalBeerCount(Beer beer) throws Exception;
+	public void fileBeer(Beer beer,  MultipartFile thumbnail, HttpSession session) throws Exception;
 }
