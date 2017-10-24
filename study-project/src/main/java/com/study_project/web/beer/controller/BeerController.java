@@ -1,6 +1,9 @@
 package com.study_project.web.beer.controller;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,16 @@ public class BeerController {
 	@Autowired
 	private BeerService beerService;
 	
+	@RequestMapping(value = "/test", method=RequestMethod.GET)
+	public String test(
+			) throws Exception{
+		return "beer/test";
+	}
+	@RequestMapping(value = "/test2", method=RequestMethod.GET)
+	public String test2(
+			) throws Exception{
+		return "beer/test2";
+	}
 	//리스트폼
 	@RequestMapping(method=RequestMethod.GET)
 	public String list(Model model
@@ -67,35 +80,34 @@ public class BeerController {
 	//글쓰기로직
 	@RequestMapping(value = "/board", method=RequestMethod.POST)
 	public String doWrite(Beer beer 
-//			, HttpSession session
-			, @RequestParam("thumbnail") MultipartFile thumbnail
+			, HttpSession session
+//			요청파라미터와 매개변수 이름이 같으면 @RequestParam생략가능
+			, MultipartFile thumbnail
+//			, @RequestParam("media") String media
+			, @RequestParam("media") List<MultipartFile> mediaTest
 			, MultipartHttpServletRequest mhsq
 			) throws Exception{
 		logger.info("[ welcome beerReg logic ]");
 		String title=beer.getTitle();
 		String ban=title.replaceAll("<[^>]*>", "");
 		beer.setTitle(ban);
-//		MultipartFile file=mhsq.getFile("thumbnail");
-//		System.out.println("들어와"+file);
-		System.out.println("이것도"+thumbnail);
-		beerService.writeBeer(beer);
-//		String root_path = session.getServletContext().getRealPath("/"); 
-//        String attach_path = "files/";
-        
-//      단일업로드
-//      String filename = thumbnail.getOriginalFilename();
-//      
-//      System.out.println("나오냐"+filename);
-//		File f = new File(root_path+attach_path+filename);
-//		try {
-//			thumbnail.transferTo(f);
-//			   if(filename!=null){
-//				   beerService.writeBeer(beer);
-//			   }
-//			  } catch (Exception e) {
-//			   System.out.println(e.getMessage());
-//			  }
-
+		
+//		String test=media;
+		for(int i=0; i<mediaTest.size(); i++){
+			String filename=mediaTest.get(i).getOriginalFilename();
+			System.out.println("테스트요: "+filename);
+		}
+//		String test2=mediaTest.getOriginalFilename();
+//		MultipartFile files=mhsq.getFile("files");
+//		System.out.println("테스트으: "+files);
+//		System.out.println("테스트요: "+test2);
+		
+		if(thumbnail.isEmpty()){
+			   beerService.writeBeer(beer);
+		   }
+		if(thumbnail.isEmpty()==false){
+			   beerService.fileBeer(beer, thumbnail, session);
+		   }
 		logger.info("[ beerReg toString ] " + beer.toString());
 		//html태그막기 자바정규식 필요함
 		return "redirect:/beer";
