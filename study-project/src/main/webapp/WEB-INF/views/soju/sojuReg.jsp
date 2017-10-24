@@ -54,6 +54,12 @@
 							<p>썸네일(목록이미지)</p>
 							<input type="file" name="file">
 						</div>
+						<div style="width: 500px; height: 500px;">
+							<p>상품소개이미지(다중)</p>
+							<input class="file" type="file" id="file1" name="file1" multiple style="width: 300px; height: 300px; display: none;" value="dropZone" accept="jpg,jpeg,png,bmf">
+							<div class="filediv" style="border: 1px solid #111111; width: 300px; height: 300px;" onclick="check()">클릭해서 파일을 추가해주세요(여러개 선택가능)</div>
+							<input type="file" id="file2" name="file2" multiple style="width: 1000px; height: 1000px;">
+						</div>
 					</div>
 					
 					<!-- 입력 버튼영역 -->
@@ -82,6 +88,41 @@
 		</form>
 	</div>
 	<script type="text/javascript">
+	function eventOccur(evEle,evType,e) {
+		if (evEle.fireEvent) {
+			evEle.fireEvent('on' + evType);
+		} else {
+			var mouseEvent = document.createEvent("MouseEvents");
+			mouseEvent.initEvent(evType,true,false);
+			var transCheck = evEle.dispatchEvent(mouseEvent);
+			if (!transCheck) {
+				//이벤트 실패시
+				console.log("클릭이 실패");
+			}
+		}
+		e.preventDefault();
+	}
+	
+	function check(e) {
+		eventOccur(document.getElementById('file1'),'click',e);
+	}
+	
+	function setDnDhandler(obj) {
+        obj.addEventListener("dragover", function(event) {
+            event.preventDefault();
+        }, true);
+        obj.addEventListener("drop", function(event) {
+            event.preventDefault();
+            var allTheFiles = event.dataTransfer.files;
+            for (var i=0; i<allTheFiles.length; i++) {
+                var element = document.createElement('div');
+                element.id = 'f' + i;
+                document.body.appendChild(element);
+                sendFile(allTheFiles[i], element.id);
+            }
+        }, true);
+    }
+	
 	$(document).ready(function() {
 		$('#btnCancel').click(function() { //취소버튼
 			window.close();
@@ -94,13 +135,14 @@
 		});
 		
 		
-		function insertCheck() {
+		function insertCheck(obj) {
 			var title = $("input[name=title]").val(); //필수
 			var content = $("textarea[name=content]").val(); //필수
 			var price = $("input[name=price]").val(); //필수
 			var area = $("input[name=area]").val(); //필수
 			var ad = $("input[name=ad]").val();
 			var company = $("input[name=company]").val(); //필수
+			var dropzone = document.getElementById('file1');
 			
 			if (title == null || title.trim().length == 0) {
 				alert("상품이름 및 소제목을 입력해주세요.");
@@ -123,6 +165,19 @@
 				$("input[name=company]"),focus();
 				return;
 			} else {
+				dropzone.addEventListener("dragover", function(event) {
+		            event.preventDefault();
+		        }, true);
+		        dropzone.addEventListener("drop", function(event) {
+		            event.preventDefault();
+		            var allTheFiles = event.dataTransfer.files;
+		            for (var i=0; i<allTheFiles.length; i++) {
+		                var element = document.createElement('div');
+		                element.id = 'f' + i;
+		                document.body.appendChild(element);
+		                sendFile(allTheFiles[i], element.id);
+		            }
+		        }, true);
 				form0.target = opener.name;
 				document.form0.action = '/web/soju/board';
 				document.form0.submit();

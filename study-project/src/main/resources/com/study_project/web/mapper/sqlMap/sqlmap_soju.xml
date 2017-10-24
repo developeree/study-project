@@ -3,6 +3,8 @@
 
 <mapper namespace="sojuSql">
 
+	
+
 	<!-- 글목록 갯수구하기 -->
 	<select id="count" resultType="java.lang.Integer" parameterType="java.util.Map">
 		SELECT COUNT(*)
@@ -17,7 +19,7 @@
 			title,
 			price,
 			company,
-			tumbnail,
+			thumbnail,
 			comment_count
 		FROM
 			soju
@@ -29,6 +31,28 @@
 		ORDER BY idx asc
 		LIMIT #{pageSize} OFFSET #{pageNo}
 	</select>
+	
+	<insert id="insertSojuFile" parameterType="com.study_project.web.soju.model.Soju">
+		INSERT INTO soju_file
+			(
+				original_name,
+				trans_name,
+				file_path,
+				file_size,
+				soju_idx,
+				content_type
+			)
+			VALUES
+			(
+				#{original_name},
+				#{trans_name},
+				#{file_path},
+				#{file_size},
+				#{idx},
+				#{content_type}
+			)
+	</insert>
+	
 	<!-- 글쓰기 -->
 	<insert id="insertSoju" parameterType="com.study_project.web.soju.model.Soju" useGeneratedKeys="true" keyProperty="idx">
 		INSERT INTO soju
@@ -36,9 +60,9 @@
 				title,
 				content,
 				price,
-				create_date,
 				edit_date,
 				area,
+				thumbnail,
 				ad,
 				company
 			)
@@ -47,12 +71,33 @@
 				#{title},
 				#{content},
 				#{price},
-				CURRENT_TIMESTAMP,
 				NOW(),
 				#{area},
+				#{thumbnail},
 				#{ad},
 				#{company}
 			)
+	</insert>
+	
+	<insert id="insertDragSoju" parameterType="com.study_project.web.soju.model.Soju">
+		INSERT INTO soju_file
+		(
+			original_name,
+			trans_name,
+			file_path,
+			file_size,
+			soju_idx,
+			content_type
+		)
+		VALUES
+		(
+			#{original_name},
+			#{trans_name},
+			#{file_path},
+			#{file_size},
+			#{soju_idx},
+			#{content_type},
+		)
 	</insert>
 	
 	<!-- 상세보기 -->
@@ -65,7 +110,7 @@
 			create_date,
 			edit_date,
 			area,
-			tumbnail,
+			thumbnail,
 			ad,
 			comment_count,
 			company

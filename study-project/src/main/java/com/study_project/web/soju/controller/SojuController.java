@@ -1,10 +1,12 @@
 package com.study_project.web.soju.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.study_project.web.soju.model.Soju;
 import com.study_project.web.soju.service.SojuService;
@@ -53,6 +56,8 @@ public class SojuController {
 		List<Soju> sojuList = sojuService.selectSojuList(paramMap);
 		
 		for (Soju soju : sojuList) {
+			String fileName = soju.getThumbnail();
+			System.out.println("파일이름 = " + fileName);
 			logger.info(soju.toString());
 		}
 		
@@ -83,11 +88,17 @@ public class SojuController {
 		return "/soju/sojuDetail";
 	}
 	
-	//글쓰기로 페이지전환
-		@RequestMapping(value="/test.html", method = RequestMethod.GET)
-		public String test (HttpSession session, Model model) throws Exception {
-			return "/soju/test";
-		}
+	@RequestMapping(value="/test.html", method = RequestMethod.GET)
+	public String test () {
+		return "/soju/note";
+	}
+	
+	//드래그 페이지전환
+	@RequestMapping(value="/dragAndDrop.html", method = RequestMethod.GET)
+	public String dragAndDrop (HttpSession session, Model model) throws Exception {
+		return "/soju/test";
+	}
+	
 	
 	//글쓰기로 페이지전환
 	@RequestMapping(value="/board", method = RequestMethod.GET)
@@ -107,18 +118,37 @@ public class SojuController {
 	
 	//글쓰기 로직 수행
 	@RequestMapping(value="/board", method = RequestMethod.POST)
-	public String insert (HttpSession session, Soju soju, HttpServletRequest request
+	public String insert (HttpSession session, Soju soju
+			, HttpServletRequest request, HttpServletResponse response
 			, @RequestParam("file") MultipartFile multipart) throws Exception {
 		logger.info("[ welcome sojuReg logic ]");
 		FileUtil fileUtil = new FileUtil();
-		String MultiFileName = multipart.getOriginalFilename();
-		System.out.println("multipart 값 : " + multipart);
-		//시간+파일이름 이름을 만듬
-		String transFileName = fileUtil.makeServerFileName(fileUtil.getStrNowTime(), MultiFileName);
-		logger.info("MultiFileName > " + MultiFileName);
-		logger.info("transFileName > " + transFileName);
 		try{
+			if (! (request instanceof MultipartHttpServletRequest)) {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Expected multipart requeest");
+				return null;
+			}
 			sojuService.insertSoju(soju);
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			for (String fileName : multipartRequest.getFileMap().keySet()) {
+				for (MultipartFile file : multipartRequest.getFiles(fileName)) {
+					String O_name = file.getOriginalFilename();
+					//시간+파일이름 이름을 만듬
+					String transFileName = fileUtil.makeServerFileName(fileUtil.getStrNowTime(), O_name);
+					soju.setThumbnail(multipart.getOriginalFilename());
+					soju.setOriginal_name(O_name);
+					soju.setTrans_name(transFileName);
+					soju.setFile_path(fileUtil.SojuproductImagePath);
+					soju.setFile_size(file.getSize());
+					soju.setSoju_idx(soju.getIdx());
+					soju.setContent_type(fileUtil.fileTypeTrans(O_name));
+					/*File destination = File.createTempFile("file", transFileName, new File(fileUtil.SojuproductImagePath));*/
+					fileUtil.uploadFile(file, fileUtil.SojuproductImagePath, transFileName);
+					sojuService.insertSojuFile(soju);
+				}
+			}
+			
+			
 			logger.info("[ sojuReg toString ] " + soju.toString());
 		} catch(Exception e){
 			e.printStackTrace();

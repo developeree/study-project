@@ -38,9 +38,15 @@ public class SojuDaoImpl implements SojuDao {
 	@Override
 	public Integer insertSoju(Soju soju) {
 		int result = 0;
-		result = session.insert("sojuSql.insertSoju",soju);
+		result = session.insert("sojuSql.insertSoju", soju);
 		return result;
 	}
+	
+	@Override
+	public void insertSojuFile(Soju soju) {
+		session.insert("sojuSql.insertSojuFile", soju);
+	}
+
 	@Override
 	public Soju getSoju(Integer idx) {
 		Soju result = null;

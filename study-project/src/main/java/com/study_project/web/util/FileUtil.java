@@ -9,25 +9,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
 	
-	//notice 파일의 걍로
-	public static final String noticefilePath = "C:" + File.separator + "dev" + File.separator + "FileuUpLoadTest";
-	
-	//qna 파일의 걍로
-	public static final String qnafilePath = "C:" + File.separator + "dev" + File.separator + "qnaFileUpload";
-	
-	//Image 파일의 경로
-	public static final String IMAGEFILEPATH = "C:"+ File.separator +"dev"+ File.separator +"workspace" + File.separator 
-			+ "lim" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator 
-			+ "resources" + File.separator + "ImageFileUpload";
-	
-	//목록 화면에 이미지 걍로 + 이름으로 합쳐서 뿌려줄 경로
-	public static final String IMAGEDISPLAYNAME = "resources/ImageFileUpload/";
-	
-	//썸네일 이미지가 저장될 장소
-	public static final String THUMBNAILIMAGE = "C:"+ File.separator +"dev"+ File.separator +"workspace" + File.separator 
-			+ "lim" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator 
-			+ "resources" + File.separator + "thumbnailImage";
-	
+	/*소주 썸네일 이미지파일 경로*/
+	public static final String SojuThumbnailPath = "C:" + File.separator + "webFile" + File.separator + "soju" + File.separator + "thumbnail";
+	/*소주 상품소개 이미지 경로(다중)*/
+	public static final String SojuproductImagePath = "C:" + File.separator + "webFile" + File.separator + "soju" + File.separator + "productImage";
+
 	/**
 	 * MultipartFile 객체를 File 객체로 변환.
 	 * @param multipart
@@ -183,6 +169,19 @@ public class FileUtil {
 		//파일이름 뽑아내기
 		String fileName = ServerFileName.substring(i+1);
 		return fileName;
+	}
+	
+	/**
+	 * 파일 확장자명 뽑아내기
+	 * @param fileName
+	 * @return transFileName
+	 */
+	public String fileTypeTrans (String fileName) {
+		int name = fileName.indexOf(".");
+		
+		String transName = fileName.substring(name+1);
+		
+		return transName;
 	}
 	
 }

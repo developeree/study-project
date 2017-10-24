@@ -19,6 +19,10 @@
 			<!-- 컨테이너 영역 -->
 			<div>
 				<div>
+					<p>대표이미지</p>
+					<span><img src="/thumbnail/${soju.thumbnail}"></span>
+				</div>
+				<div>
 					<p>상품명</p>
 					<span>${soju.title}</span>
 				</div>
