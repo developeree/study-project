@@ -69,7 +69,7 @@
 </p>
 </fieldset>
 <fieldset ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
-<p>파일을 끌거나 선택해 주세요</p>
+<p>파일을 끌거나 선택해 주세요.</p>
 <span id="thumbs"></span> 
 </fieldset>
 
