@@ -7,62 +7,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+   .file_input_textbox {float: left}
+   .file_input_div {position: relative; width: 300px; height: 300px; overflow: hidden;}
+   .file_input_button {width: 500px; height: 500px; position: absolute; top: 0px; background-color: #FFFFFF; color: #FFFFFF; border-style: solid;}
+   .file_input_hidden {font-size: 45px; position: absolute; right: 0px; top: 0px; opacity: 0; filter: alpha(opacity=0); -ms-filter: "alpha(opacity=0)"; -khtml-opacity: 0; -moz-opacity: 0;}
+
+</style>
 </head>
 <body>
-<script type="text/javascript">
-	var dropBox = document.getElementById("dropbox");
-	var dropImage = document.createElement("img");
-
-	function onDragEnter(event) {
-		if (event.dataTransfer.dropEffect == "move")
-			event.preventDefault();
-	}
-	function onDragOver(event) {
-		if (event.dataTransfer.dropEffect == "move") {
-			event.preventDefault();
-		}
-	}
-	function onDrop(event) {
-		var file = event.dataTransfer.files[0];
-
-		var imageType = /image.*/;
-		var textType = /text.*/;
-		var isImage;
-
-		if (file.type.match(imageType)) {
-			isImage = true;
-		} else if (file.type.match(textType)) {
-			isImage = false;
-		}
-
-		var reader = new FileReader();
-
-		reader.onload = (function(aFile) {
-			return function(e) {
-				var result = e.target.result;
-				if (isImage) {
-					dropImage.src = result;
-					dropBox.appendChild(dropImage)
-				} else {
-					dropBox.innerHTML = result;
-				}
-			};
-		})(file);
-
-		if (isImage) {
-			reader.readAsDataURL(file);
-		} else {
-			reader.readAsText(file, "EUC-KR");
-		}
-
-		event.stopPropagation();
-		event.preventDefault();
-	}
-
-	dropImage.addEventListener("load", function(e) {
-		//이미지 로딩 시 추가 처리할 로직 기입(사이즈 조절 등)           
-	}, true);
-</script>
-<div id="dropbox" ondragenter="onDragEnter(event)" ondragover="onDragOver(event)" ondrop="onDrop(event)">여기에 드랍</div>
+<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+  
+<div class="file_input_div">
+  <input type="button" value="Search files" class="file_input_button" />
+  <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
+</div>
 </body>
 </html>

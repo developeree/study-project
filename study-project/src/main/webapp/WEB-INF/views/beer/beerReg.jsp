@@ -30,14 +30,12 @@
 				<p/>
 				<span>제조회사<input type="text" name="company" value="${beer.company }" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
-<<<<<<< HEAD
 
 				<fieldset><div id="drop" class="drop" contentEditable="true">
 				<img id="dropped"/>
 				<input type="hidden" name="content" value="${beer.content }"/>
 				</div></fieldset>
 
-=======
 				
 
 <table width="485" border="1" cellspacing=0 cellpadding=5>
@@ -60,7 +58,6 @@
 </tr>
 </table>
 
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 <!-- 				<fieldset><div id="drop" class="drop" contentEditable="true"> -->
 <!-- 				<span>텍스트에리어에는 이미지를 못넣고 이렇게 컨텐트에디터블을 div에 사용하면 이미지+텍스트 사용가능 -->
 <!-- 				# 숨겨진 textarea 태그를 사용하기 -->
