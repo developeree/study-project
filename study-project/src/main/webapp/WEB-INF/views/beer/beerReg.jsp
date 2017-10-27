@@ -30,6 +30,7 @@
 				<p/>
 				<span>제조회사<input type="text" name="company" value="${beer.company }" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
+
 <!-- 				<div contentEditable="true" id="thumbs">글+이미지</div> -->
 
 <!-- <fieldset> -->

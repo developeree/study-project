@@ -21,6 +21,10 @@ $(document).ready(function(){
 	
 	//소주 카테고리로 이동
 	$("#btnTest").click(function(e){ 
+		document.location.href = '/web/soju/dragAndDrop.html';
+	});
+	
+	$("#btnTest1").click(function(e){ 
 		document.location.href = '/web/soju/test.html';
 	});
 
@@ -48,6 +52,7 @@ $(document).ready(function(){
 			<input type="button" class="tab-button nav" id="btnSoju" value="소주">
 			<input type="button" class="tab-button nav" id="btnBeer" value="맥주" onclick="location.href='/web/beer'" >
 			<input type="button" class="tab-button nav" id="btnTest" value="테스트">
+			<input type="button" class="tab-button nav" id="btnTest1" value="테스트1">
 		</div>
 	</div>
 </div>

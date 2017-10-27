@@ -31,6 +31,11 @@ public class SojuServiceImpl implements SojuService {
 	}
 
 	@Override
+	public void insertSojuFile(Soju soju) {
+		sojuDao.insertSojuFile(soju);
+	}
+
+	@Override
 	public Soju getSoju(Integer idx) {
 		return sojuDao.getSoju(idx);
 	}

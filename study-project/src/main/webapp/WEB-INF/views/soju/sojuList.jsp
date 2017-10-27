@@ -27,7 +27,7 @@
 			<div style="border-top: 1px solid #FF8000;">
 				<c:forEach var="sl" items="${sojuList}" varStatus="status">
 					<div class="sojuDetail" idx="${sl.idx}" style="border-bottom: 1px solid #F7BE81;">
-						<span>썸네일이미지</span>
+						<span><img src="/thumbnail/${sl.thumbnail}" style="width: 50px; height: 50px;"></span>
 						<span>${sl.title}</span>
 						<span>${sl.price}</span>
 						<span>${sl.company}</span>

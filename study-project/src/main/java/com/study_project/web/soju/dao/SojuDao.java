@@ -31,6 +31,13 @@ public interface SojuDao {
 	public Integer insertSoju (Soju soju);
 	
 	/**
+	 * 소주 파일정보를 등록한다.
+	 * @param Soju (model)
+	 * @return void
+	 */
+	public void insertSojuFile (Soju soju);
+	
+	/**
 	 * 선택된 소주 정보를 불러온다.
 	 * @param ntmPid(idx)
 	 * @return Soju

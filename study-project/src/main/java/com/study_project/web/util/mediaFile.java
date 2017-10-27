@@ -1,6 +1,7 @@
 package com.study_project.web.util;
 
 public class mediaFile {
+
 	private Integer idx;
 	private String original_name;
 	private String trans_name;
