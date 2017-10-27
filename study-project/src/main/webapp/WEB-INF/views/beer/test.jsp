@@ -96,7 +96,7 @@ table, td
 <tr>
 <td align="center">
 <p class="files">Drag & drop or choose images from your local file system: 
-<input  id="input" type="file" size="10" multiple="true" onchange="imagesSelected(this.files)"/>
+<input  id="input" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
 </p>
 </td>
 </tr>

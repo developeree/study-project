@@ -1,5 +1,7 @@
 package com.study_project.web.beer.model;
 
+import java.util.Arrays;
+
 public class Beer {
 	private Integer idx;
 	private String title;
@@ -24,11 +26,10 @@ public class Beer {
 	private Integer file_idx;
 	private String original_name;
 	private String trans_name;
-	private String file_size;
+	private Long file_size;
 	private String file_path;
-	private String beer_id;
 	private String content_type;
-	private String soju_idx;
+	private Integer beer_id;
 	
 //	public static Beer createMediaFile(Beer beer1, String original_name
 //			) {
@@ -60,10 +61,11 @@ public class Beer {
 	public void setTrans_name(String trans_name) {
 		this.trans_name = trans_name;
 	}
-	public String getFile_size() {
+
+	public Long getFile_size() {
 		return file_size;
 	}
-	public void setFile_size(String file_size) {
+	public void setFile_size(Long file_size) {
 		this.file_size = file_size;
 	}
 	public String getFile_path() {
@@ -72,23 +74,12 @@ public class Beer {
 	public void setFile_path(String file_path) {
 		this.file_path = file_path;
 	}
-	public String getBeer_id() {
-		return beer_id;
-	}
-	public void setBeer_id(String beer_id) {
-		this.beer_id = beer_id;
-	}
+
 	public String getContent_type() {
 		return content_type;
 	}
 	public void setContent_type(String content_type) {
 		this.content_type = content_type;
-	}
-	public String getSoju_idx() {
-		return soju_idx;
-	}
-	public void setSoju_idx(String soju_idx) {
-		this.soju_idx = soju_idx;
 	}
 	
 	public int getCurrentNo() {
@@ -188,6 +179,12 @@ public class Beer {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+	public Integer getBeer_id() {
+		return beer_id;
+	}
+	public void setBeer_id(Integer beer_id) {
+		this.beer_id = beer_id;
+	}
 	@Override
 	public String toString() {
 		return "Beer [idx=" + idx + ", title=" + title + ", content=" + content + ", price=" + price + ", create_date="
@@ -195,8 +192,8 @@ public class Beer {
 				+ ", comment_count=" + comment_count + ", company=" + company + ", currentNo=" + currentNo + ", pageNo="
 				+ pageNo + ", totalBeer=" + totalBeer + ", keyfield=" + keyfield + ", search=" + search + ", file_idx="
 				+ file_idx + ", original_name=" + original_name + ", trans_name=" + trans_name + ", file_size="
-				+ file_size + ", file_path=" + file_path + ", beer_id=" + beer_id + ", content_type=" + content_type
-				+ ", soju_idx=" + soju_idx + "]";
+				+ file_size + ", file_path=" + file_path + ", content_type=" + content_type + ", beer_id=" + beer_id
+				+ "]";
 	}
-	
+
 }

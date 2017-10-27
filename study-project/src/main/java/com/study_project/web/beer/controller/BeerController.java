@@ -83,31 +83,27 @@ public class BeerController {
 			, HttpSession session
 //			요청파라미터와 매개변수 이름이 같으면 @RequestParam생략가능
 			, MultipartFile thumbnail
-//			, @RequestParam("media") String media
-			, @RequestParam("media") List<MultipartFile> mediaTest
-			, MultipartHttpServletRequest mhsq
+			, MultipartFile file
+			, @RequestParam("media") List<MultipartFile> media
 			) throws Exception{
 		logger.info("[ welcome beerReg logic ]");
-		String title=beer.getTitle();
-		String ban=title.replaceAll("<[^>]*>", "");
-		beer.setTitle(ban);
+		//자바정규표현식
+//		String title=beer.getTitle();
+//		String ban=title.replaceAll("<[^>]*>", "");
+//		beer.setTitle(ban);
 		
-//		String test=media;
-		for(int i=0; i<mediaTest.size(); i++){
-			String filename=mediaTest.get(i).getOriginalFilename();
-			System.out.println("테스트요: "+filename);
-		}
-//		String test2=mediaTest.getOriginalFilename();
-//		MultipartFile files=mhsq.getFile("files");
-//		System.out.println("테스트으: "+files);
-//		System.out.println("테스트요: "+test2);
-		
-		if(thumbnail.isEmpty()){
+		if(thumbnail.isEmpty()||media.isEmpty()){
 			   beerService.writeBeer(beer);
 		   }
 		if(thumbnail.isEmpty()==false){
 			   beerService.fileBeer(beer, thumbnail, session);
 		   }
+		if(media.isEmpty()==false){
+			   beerService.filesBeer(beer, media, session);
+		   }
+//		if(file.isEmpty()==false){
+//			   beerService.fileBeer(beer, file, session);
+//		   }
 		logger.info("[ beerReg toString ] " + beer.toString());
 		//html태그막기 자바정규식 필요함
 		return "redirect:/beer";

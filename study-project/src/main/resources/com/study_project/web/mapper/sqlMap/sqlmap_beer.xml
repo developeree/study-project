@@ -78,8 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<insert id="createMediaFile" parameterType="Beer" useGeneratedKeys="true"
-		keyProperty="idx">
+	<insert id="createMediaFile" parameterType="Beer" >
 		INSERT INTO
 		beer_files
 		(

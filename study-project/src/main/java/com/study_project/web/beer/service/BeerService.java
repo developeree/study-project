@@ -19,4 +19,5 @@ public interface BeerService {
 //	public int totalBeerCount(String search,String keyfield) throws Exception;
 	public int totalBeerCount(Beer beer) throws Exception;
 	public void fileBeer(Beer beer,  MultipartFile thumbnail, HttpSession session) throws Exception;
+	public void filesBeer(Beer beer,  List<MultipartFile> media, HttpSession session) throws Exception;
 }
