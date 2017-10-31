@@ -128,14 +128,21 @@ public class SojuController {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Expected multipart requeest");
 				return null;
 			}
-			sojuService.insertSoju(soju);
+			Integer insertSojuResult = sojuService.insertSoju(soju);
+			if (insertSojuResult == 1) {
+				String thumbnailO_name = multipart.getOriginalFilename();
+				String thumbnailS_name = fileUtil.makeServerFileName(fileUtil.getStrNowTime(), thumbnailO_name);
+				fileUtil.uploadFile(multipart, fileUtil.SojuThumbnailPath, thumbnailS_name);
+				soju.setThumbnail(thumbnailS_name);
+				
+			}
+			
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			for (String fileName : multipartRequest.getFileMap().keySet()) {
 				for (MultipartFile file : multipartRequest.getFiles(fileName)) {
 					String O_name = file.getOriginalFilename();
 					//시간+파일이름 이름을 만듬
 					String transFileName = fileUtil.makeServerFileName(fileUtil.getStrNowTime(), O_name);
-					soju.setThumbnail(multipart.getOriginalFilename());
 					soju.setOriginal_name(O_name);
 					soju.setTrans_name(transFileName);
 					soju.setFile_path(fileUtil.SojuproductImagePath);

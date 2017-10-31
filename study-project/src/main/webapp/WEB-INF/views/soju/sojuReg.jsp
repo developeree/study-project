@@ -54,22 +54,22 @@
 							<p>썸네일(목록이미지)</p>
 							<input type="file" name="file">
 						</div>
-						<div style="width: 500px; height: 500px;">
-							<p style="font-size: small;">상품소개이미지(다중)</p>
-							<p style="font-size: x-small;">아래 영역을 클릭 하시거나</p>
-							<p style="font-size: x-small;">드래그 해서 파일을 넣으세요.</p>
-							<!-- <input class="file" type="file" id="file1" name="file1" multiple style="width: 300px; height: 300px; display: none;" value="dropZone" accept="jpg,jpeg,png,bmf">
-							<div class="filediv" style="border: 1px solid #111111; width: 300px; height: 300px;" onclick="check()">클릭해서 파일을 추가해주세요(여러개 선택가능)</div>
-							<br/><br/> -->
-							<div style="border: 1px solid #888888; width: 250px; height: 150px; margin-left: -7px;">
-								<input type="file" id="file" name="file" onchange="imagesSelected(this.files)" style="width: 250px; height: 150px; margin-left: -80px;" multiple accept="jpg,jpeg,png,bmf">
-							</div>
-							<div style="border: 1px solid #888888; margin-left: -7px;">
-								<p style="border-bottom: 1px solid #888888;">파일미리보기</p>
-								<span id="thumbs" ></span> 
-							</div>
-							
-						</div>
+						<fieldset>
+							<p>다중업로드폼</p>
+							<fieldset>
+							<p>
+							<input id="input" name="media" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
+							</p>
+							</fieldset>
+							<fieldset id="dropzone" class="dropzone" ondragstart="return false" ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
+							<p>파일을 끌거나 선택해 주세요.</p>
+							<p>최종 파일만 업로드되니 한번에 업로드 해주세요.</p>
+							<span id="thumbs" style="display: none;">
+								<img id="images" alt="" src="" style="width: 100px; height: 100px;">
+								<input type="button" value="삭제(미구현)" onclick="remove_item(this)">
+							</span> 
+							<div id="field"></div>
+						</fieldset>
 					</div>
 					
 
@@ -100,26 +100,52 @@
 	</div>
 	<script type="text/javascript">
 	function imagesSelected(myFiles) {
-		  for (var i = 0, f; f = myFiles[i]; i++) {
-		    var imageReader = new FileReader();
-		    imageReader.onload = (function(aFile) {
-		      return function(e) {
-		        var span = document.createElement('span');
-		        var files=aFile.name;
-		        span.innerHTML = ['<img id="images" style="width: 100px; height: 100px;" src="', e.target.result,'"alt="', aFile.name, '"/>'].join('');
-		        document.getElementById('thumbs').insertBefore(span, null);
-//	 	        $('#input').attr('name',files);
-//		        내가 추가한부분
-		        $("img").click(function(){
-		  		  alert("삭제염");
-		  		document.getElementById("images").remove();
-		  		 });
-//		        여기까지
-		      };
-		    })(f);
-		    imageReader.readAsDataURL(f);
-		  }
-		}
+		   
+	     for (var i = 0, f; f = myFiles[i]; i++) {
+	       var imageReader = new FileReader();
+	       imageReader.onload = (function(aFile) {
+	         return function(e) {
+	           var span = document.createElement('span');
+	           $("#images").attr('src',e.target.result);
+	           $("#images").attr('alt',aFile.name);
+// 	           span.innerHTML = ['<img id="images" name="', aFile.name,'" style="width:100px; height:100px;" src="', e.target.result,'"alt="', aFile.name, '"/><p/><span id="filen">파일명: ', aFile.name,'<input type="button" value="삭제" onclick="remove_item(this)"></span>'].join('');
+				span.innerHTML = document.getElementById('thumbs').innerHTML;
+	           // 	           document.getElementById('thumbs').insertBefore(span, null);
+	           document.getElementById('field').appendChild(span);
+
+//	            내가 추가한부분
+// 	           $("img").click(function(){
+// 		           alert("삭제염");
+// 		           document.getElementById("images").remove();
+// 			       document.getElementById("filen").remove();
+// 		           $('#input').val('');
+// 	            });
+
+//	            여기까지
+	         };
+	       })(f);
+	       imageReader.readAsDataURL(f);
+
+	     };
+	   };
+   function remove_item(obj){
+        // obj.parentNode 를 이용하여 삭제
+        var input = document.getElementById('input');
+        var alt = document.getElementById("images").alt
+        alert(document.getElementById("images").alt);
+        
+        document.getElementById("field").removeChild(obj.parentNode);
+        alert(obj.parentNode);
+    }
+
+	function dropIt(e) {
+	      var files=e.dataTransfer.files;
+	      var input=document.getElementById('input');
+	      input.files=files;
+
+	      e.stopPropagation();  
+	      e.preventDefault();
+	   }
 	
 	function eventOccur(evEle,evType,e) {
 		if (evEle.fireEvent) {

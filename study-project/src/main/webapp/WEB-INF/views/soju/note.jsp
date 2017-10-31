@@ -7,20 +7,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-   .file_input_textbox {float: left}
-   .file_input_div {position: relative; width: 300px; height: 300px; overflow: hidden;}
-   .file_input_button {width: 500px; height: 500px; position: absolute; top: 0px; background-color: #FFFFFF; color: #FFFFFF; border-style: solid;}
-   .file_input_hidden {font-size: 45px; position: absolute; right: 0px; top: 0px; opacity: 0; filter: alpha(opacity=0); -ms-filter: "alpha(opacity=0)"; -khtml-opacity: 0; -moz-opacity: 0;}
 
-</style>
 </head>
 <body>
-<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
-  
-<div class="file_input_div">
-  <input type="button" value="Search files" class="file_input_button" />
-  <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
+<body>
+<script type="text/javascript">
+
+    function add_item(){
+        // pre_set 에 있는 내용을 읽어와서 처리..
+        var div = document.createElement('div');
+        div.innerHTML = document.getElementById('pre_set').innerHTML;
+        document.getElementById('field').appendChild(div);
+    }
+ 
+    function remove_item(obj){
+        // obj.parentNode 를 이용하여 삭제
+        document.getElementById('field').removeChild(obj.parentNode);
+    }
+
+</script>
+ 
+<div id="pre_set" style="display:none">
+    <input type="text" name="" value="" style="width:200px"> <input type="button" value="삭제" onclick="remove_item(this)">
 </div>
+ 
+<div id="field"></div>
+ 
+<input type="button" value=" 추가 " onclick="add_item()"><br>
+추가 버튼을 눌러보세요.
 </body>
 </html>
