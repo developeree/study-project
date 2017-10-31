@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기</title>
 <style type="text/css">
-	#images{width: 100px; height: 100px;};
+ 	#images{width: 100px; height: 100px;} 
 </style>
 </head>
 <body>
@@ -65,12 +65,12 @@
 <p>다중업로드폼</p>
 <fieldset>
 <p>
-<input id="input" name="media" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
+<input id="input" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
 </p>
 </fieldset>
-<fieldset ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
-<p>파일을 끌거나 선택해 주세요.</p>
-<span id="thumbs"></span> 
+<fieldset ondragstart="return false"  ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
+<p>파일을 끌거나 선택해 주세요.<br/>현재 최종파일만 올라갑니다</p>
+<div id="thumbs"></div> 
 </fieldset>
 
 </fieldset>
@@ -135,43 +135,81 @@
 // file_dnd.onchange = function(evt){
 // 	showfns(this.files); //선택된 파일 목록 표시
 // }
+var index=1;
 function imagesSelected(myFiles) {
 
-	  for (var i = 0, f; f = myFiles[i]; i++) {
-	    var imageReader = new FileReader();
-	    imageReader.onload = (function(aFile) {
-	      return function(e) {
-	        var span = document.createElement('span');
-	        span.innerHTML = ['<img id="images" src="', e.target.result,'"alt="', aFile.name, '"/><p/><span id="filen">파일명: ', aFile.name,'</span>'].join('');
-	        document.getElementById('thumbs').insertBefore(span, null);
+// 	  for (var i = 0, f; f = myFiles[i]; i++) {
+		  var thumbs=document.getElementById('thumbs');
+		  var div=document.createElement('div');
+		  var input=document.createElement('input');
+		  var img=document.createElement('img');
+		  var imageReader = new FileReader();
+
+			thumbs.appendChild(div);
+
+			var clone=$("#input").clone();
+			clone.attr('data-index',index);
+			clone.attr('name', 'media');
+			clone.appendTo(div);
+			
+			div.setAttribute('id', 'file'+index);
+		 	div.appendChild(img);
+		 	div.appendChild(input);
+		 	
+		 	input.setAttribute('type', 'button');
+		 	input.setAttribute('id','butt');
+		 	input.setAttribute('value','삭제');
+		 	img.setAttribute('alt',clone.val());
+// 			$("#input").attr('name','media').clone().appendTo(thumbs).hide();
+			$("#input").val('');
+			index++;
+
+// 			$("#input").clone().appendTo(thumbs).hide();
+// 			$("#input").click(function(){
+// 				thumbs.innerHTML='';
+// 			});
+		
+			
+// 			var span = document.createElement('span');
+// 	        span.innerHTML = ['<span id="images">',f.name,'</span><p/>'].join('');
+// 	        document.getElementById('thumbs').insertBefore(span, null);
+// 	    var imageReader = new FileReader();
+// 	    imageReader.onload = (function(aFile) {
+// 	      return function(e) {
+// 	        var span = document.createElement('span');
+// 	        span.innerHTML = ['<img id="images" src="', e.target.result,'"alt="', aFile.name, '"/><p/><span id="filen">파일명: ', aFile.name,'</span>'].join('');
+// 	        document.getElementById('thumbs').insertBefore(span, null);
+	        
 // 	        내가 추가한부분
-	        $("img").click(function(){
-	  		alert("삭제염");
-	  		document.getElementById("images").remove();
-	  		document.getElementById("filen").remove();
-	  		 });
+// 	        	$("img").click(function(){
+// 	        		alert("테스트: "+$("img").index(this));
+// 	  		alert("삭제염");
+// 	  		alert("테스트: "+$("img").index(this));
+// 	  		$("#input").val('');
+// 	  		document.getElementById("images").remove();
+// 	  		document.getElementById("filen").remove();
+// 	  		 });
 // 	        여기까지
-	      };
-	    })(f);
-	    imageReader.readAsDataURL(f);
+
+// 	      };
+// 	    })(f);
+// 	    imageReader.readAsDataURL(f);
 
 	  }
-	}
 
 	function dropIt(e) {  
+// 		var thumbs=document.getElementById('thumbs');
+// 		thumbs.innerHTML='';
 		var files=e.dataTransfer.files;
 		var input=document.getElementById('input');
-		 input.files=files;
+		input.files=files;
+
 //문제가 탐색창 파일이랑 드래그 파일이랑 안합쳐진다.. 탐색+드래그로 올릴경우 마지막 이벤트파일에만 반응..이게 원래 탐색창이 초기화대버려서..
 // 	   imagesSelected(files); 
-	   var data = e.dataTransfer;
-	   for (var i = 0; i < data.files.length; i++) {
-		      alert(data.files[i].name);
-		    } 
 	   e.stopPropagation();  
 	   e.preventDefault();   
 	}
-    
+
  $('#new').click(function() {
 	form0.target = opener.name;
  	document.form0.action = '/web/beer/board';
