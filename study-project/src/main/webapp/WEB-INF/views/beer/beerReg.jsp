@@ -83,19 +83,15 @@
 <fieldset>
 <p>
 <input id="input" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 </p>
-<<<<<<< HEAD
 </td>
 </tr>
 </table>
-=======
 </fieldset>
 <fieldset ondragstart="return false"  ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
 <p>파일을 끌거나 선택해 주세요.<br/>현재 최종파일만 올라갑니다</p>
 <div id="thumbs"></div> 
 </fieldset>
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 
 <!-- 				<fieldset><div id="drop" class="drop" contentEditable="true"> -->
 <!-- 				<span>텍스트에리어에는 이미지를 못넣고 이렇게 컨텐트에디터블을 div에 사용하면 이미지+텍스트 사용가능 -->
@@ -128,8 +124,6 @@
 
 <script type="text/javascript">
 
-<<<<<<< HEAD
-=======
 // var div_dnd = document.getElementById('div_dnd');
 // var file_dnd = document.getElementById('file_dnd');
 // var div_fns = document.getElementById('div_fns');
@@ -169,28 +163,8 @@
 // 	showfns(this.files); //선택된 파일 목록 표시
 // }
 var index=1;
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 function imagesSelected(myFiles) {
-<<<<<<< HEAD
-	  for (var i = 0, f; f = myFiles[i]; i++) {
-	    var imageReader = new FileReader();
-	    imageReader.onload = (function(aFile) {
-	      return function(e) {
-	        var span = document.createElement('span');
-	        var files=aFile.name;
-	        span.innerHTML = ['<img id="images" src="', e.target.result,'"alt="', aFile.name, '"/>'].join('');
-	        document.getElementById('thumbs').insertBefore(span, null);
-// 	        $('#input').attr('name',files);
-//	        내가 추가한부분
-	        $("img").click(function(){
-	  		  alert("삭제염");
-	  		document.getElementById("images").remove();
-	  		 });
-//	        여기까지
-	      };
-	    })(f);
-	    imageReader.readAsDataURL(f);
-=======
+
 
 // 	  for (var i = 0, f; f = myFiles[i]; i++) {
 		  var thumbs=document.getElementById('thumbs');
@@ -249,18 +223,15 @@ function imagesSelected(myFiles) {
 // 	    })(f);
 // 	    imageReader.readAsDataURL(f);
 
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 	  }
 
 	function dropIt(e) {  
-<<<<<<< HEAD
 	   imagesSelected(e.dataTransfer.files); 
 	   var data = e.dataTransfer;
 	   $('#input').attr('name',data.files[0].name);
 	   for (var i = 0; i < data.files.length; i++) {
 		      alert(data.files[i].name);
 		    }
-=======
 // 		var thumbs=document.getElementById('thumbs');
 // 		thumbs.innerHTML='';
 		var files=e.dataTransfer.files;
@@ -269,12 +240,10 @@ function imagesSelected(myFiles) {
 
 //문제가 탐색창 파일이랑 드래그 파일이랑 안합쳐진다.. 탐색+드래그로 올릴경우 마지막 이벤트파일에만 반응..이게 원래 탐색창이 초기화대버려서..
 // 	   imagesSelected(files); 
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 	   e.stopPropagation();  
 	   e.preventDefault();   
 	}
 
-<<<<<<< HEAD
 // $(function(){
 // 	$('#drop').on({
 // 		'drop':function(e){
@@ -291,8 +260,6 @@ function imagesSelected(myFiles) {
 // 		}
 // 	})
 // });
-=======
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
  $('#new').click(function() {
 	form0.target = opener.name;
  	document.form0.action = '/web/beer/board';

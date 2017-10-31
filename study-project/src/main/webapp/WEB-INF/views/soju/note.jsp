@@ -27,8 +27,10 @@
 
 </script>
  
-<div id="pre_set" style="display:none">
-    <input type="text" name="" value="" style="width:200px"> <input type="button" value="삭제" onclick="remove_item(this)">
+<div id="pre_set" >
+<!--     <input type="text" name="" value="" style="width:200px">  -->
+	<input type="file" multiple>
+    <input type="button" value="삭제" onclick="remove_item(this)" onchange="add_item()">
 </div>
  
 <div id="field"></div>
