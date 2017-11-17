@@ -34,7 +34,7 @@
 <div>
 <%-- <c:if test=""> --%>
 <button><img src=""></img></button>
-<button>♥</button>
+
 </div>
 
 <div>
