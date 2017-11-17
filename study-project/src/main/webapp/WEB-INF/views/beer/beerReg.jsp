@@ -32,24 +32,6 @@
 				<span>제조회사<input type="text" name="company" value="${beer.company }" style="width: 300px; height: 20px" maxlength="200"/></span>
 				<p/>
 
-
-<<<<<<< HEAD
-<table width="485" border="1" cellspacing=0 cellpadding=5>
-<tr bgcolor="#F2F2F2">
-<td class="tableheader" align="left">
-<p>Thumbnail palette</p>
-</td>
-</tr>
-<tr>
-<td align="left" height="105" ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">    
-<span id="thumbs" ></span> 
-</td>
-</tr>
-<tr>
-<td align="center">
-<p class="files">Drag & drop or choose images from your local file system: 
-<input  id="input" type="file" name="media" size="10" multiple="true" onchange="imagesSelected(this.files)"/>
-=======
 <!-- <fieldset> -->
 <!-- 	<legend>drag and drop</legend> -->
 <!-- 	<input type="file" id="file_dnd" name="media" multiple> -->
@@ -84,23 +66,13 @@
 <p>
 <input id="input" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
 </p>
-</td>
-</tr>
-</table>
 </fieldset>
 <fieldset ondragstart="return false"  ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
 <p>파일을 끌거나 선택해 주세요.<br/>현재 최종파일만 올라갑니다</p>
 <div id="thumbs"></div> 
 </fieldset>
 
-<!-- 				<fieldset><div id="drop" class="drop" contentEditable="true"> -->
-<!-- 				<span>텍스트에리어에는 이미지를 못넣고 이렇게 컨텐트에디터블을 div에 사용하면 이미지+텍스트 사용가능 -->
-<!-- 				# 숨겨진 textarea 태그를 사용하기 -->
-<!-- 				이를 해결하려면 숨겨진 textarea 태그를 하나 더 만들어서 div 태그에 담긴 내용을 서버 전송시에 전달 후 submit 하는 방법입니다. -->
-<!-- 				</span> -->
-<!-- 				<img id="dropped"/> -->
-<%-- 				<input type="hidden" name="content" value="${beer.content }"/> --%>
-<!-- 				</div></fieldset> -->
+</fieldset>
 
 			</div>
 			<span style="align:left"><input type="reset" value="취소" onclick="window.close()"/></span> 
@@ -226,12 +198,6 @@ function imagesSelected(myFiles) {
 	  }
 
 	function dropIt(e) {  
-	   imagesSelected(e.dataTransfer.files); 
-	   var data = e.dataTransfer;
-	   $('#input').attr('name',data.files[0].name);
-	   for (var i = 0; i < data.files.length; i++) {
-		      alert(data.files[i].name);
-		    }
 // 		var thumbs=document.getElementById('thumbs');
 // 		thumbs.innerHTML='';
 		var files=e.dataTransfer.files;

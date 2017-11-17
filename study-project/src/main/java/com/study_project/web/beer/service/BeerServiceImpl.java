@@ -38,6 +38,12 @@ public class BeerServiceImpl implements BeerService{
 	}
 
 	@Override
+	public List<Beer> getBeerFiles(Integer idx) throws Exception {
+		return beerDao.readBeerFiles(idx);
+	}
+
+
+	@Override
 	public void writeBeer(Beer beer) throws Exception{
 		//		beerDao.createMediaFile(beer);
 		beerDao.createBeer(beer);
@@ -49,7 +55,16 @@ public class BeerServiceImpl implements BeerService{
 	}
 
 	@Override
-	public void removeBeer(Integer idx) throws Exception{
+	public void removeBeer(Integer idx, HttpSession session) throws Exception{
+		Beer get=beerDao.readBeerOne(idx);
+		String root_path = session.getServletContext().getRealPath("/"); 
+		String attach_path = "files/";
+		File f = new File(root_path+attach_path+get.getThumb());
+		System.out.println("삭제할 파일: "+f);
+		//서버에서 삭제하기
+		if(f.exists()==true){
+		f.delete();
+		}
 		beerDao.deleteBeer(idx);
 	}
 
@@ -71,6 +86,9 @@ public class BeerServiceImpl implements BeerService{
 
 	@Override
 	public void fileBeer(Beer beer,  MultipartFile thumbnail, HttpSession session) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		Calendar c1 = Calendar.getInstance();
+		String strToday = sdf.format(c1.getTime());
 		//서버경로
 		String root_path = session.getServletContext().getRealPath("/"); 
 		String attach_path = "files/";
@@ -85,13 +103,13 @@ public class BeerServiceImpl implements BeerService{
 		String cutname = filename.substring(lastIndex+1);
 		System.out.println("파일명: "+filename);
 		System.out.println("짜른명: "+cutname);
-		File f = new File(root_path+attach_path+cutname);
+		File f = new File(root_path+attach_path+strToday+"_"+filename);
 		//		File f = new File(save_path+filename);
 		System.out.println("루트: "+f);
 		try {
 			thumbnail.transferTo(f);
 			if(filename!=null){
-				beer.setThumb(cutname);
+				beer.setThumb(strToday+"_"+cutname);
 				beerDao.createBeer(beer);
 			}
 		} catch (Exception e) {
@@ -122,14 +140,14 @@ public class BeerServiceImpl implements BeerService{
 			System.out.println("파일크기: "+fileSize);
 			System.out.println("글번호: "+beer.getIdx());
 			System.out.println("현재시간: "+strToday);
-			File f = new File(save_path+strToday+"_"+filename);
+			File f = new File(save_path+strToday+"_"+transName);
 			String filePath=f.getAbsolutePath();
 			System.out.println("루트: "+f);
 			try {
 				media.get(i).transferTo(f);
 				if(filename!=null){
 					beer.setOriginal_name(filename);
-					beer.setTrans_name(transName);
+					beer.setTrans_name(strToday+"_"+transName);
 					beer.setContent_type(contentType);
 					beer.setFile_size(fileSize);
 					beer.setFile_path(filePath);

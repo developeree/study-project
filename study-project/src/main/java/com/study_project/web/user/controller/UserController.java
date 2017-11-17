@@ -1,5 +1,6 @@
 package com.study_project.web.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -43,10 +44,10 @@ public class UserController {
 	
 	//로그인 처리
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
-	public String login (HttpSession session, User user) throws Exception {
+	public String login (HttpSession session, User user, HttpServletRequest request) throws Exception {
 		logger.info(" [ welcome login.do ] ");
 		user = userService.loginUser(user);
-		
+		System.out.println("아이피: "+request.getRemoteAddr());
 		if(user!=null){
 			session.setAttribute("user", user);
 			logger.info("[Model User value > ] " + user.toString());

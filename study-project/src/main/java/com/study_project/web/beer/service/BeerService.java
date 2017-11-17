@@ -14,10 +14,12 @@ public interface BeerService {
 	public Beer getBeerOne(Integer idx) throws Exception;
 	public void writeBeer(Beer beer) throws Exception;
 	public void modifyBeer(Beer beer) throws Exception;
-	public void removeBeer(Integer idx) throws Exception;
+	public void removeBeer(Integer idx,HttpSession session) throws Exception;
 //	public List<Beer> searchList(String search,String keyfield) throws Exception;
 //	public int totalBeerCount(String search,String keyfield) throws Exception;
 	public int totalBeerCount(Beer beer) throws Exception;
 	public void fileBeer(Beer beer,  MultipartFile thumbnail, HttpSession session) throws Exception;
 	public void filesBeer(Beer beer,  List<MultipartFile> media, HttpSession session) throws Exception;
+	public List<Beer> getBeerFiles(Integer idx) throws Exception;
+	
 }

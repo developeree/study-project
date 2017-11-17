@@ -3,8 +3,6 @@ package com.study_project.web.mapper.sqlMap;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.study_project.web.beer.model.Beer;
 
 public interface BeerDao {
@@ -19,4 +17,6 @@ public interface BeerDao {
 //	public int totalBeerCount(@Param("search")String search,@Param("keyfield")String keyfield) throws SQLException;
 	public int totalBeerCount(Beer beer) throws SQLException;
 	public void createMediaFile(Beer beer) throws SQLException;
+	public List<Beer> readBeerFiles(Integer idx) throws SQLException;
+	
 }

@@ -2,6 +2,8 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 설계 완전 잘못함 모델,서비스 나눠서 해야댐 그래서 파라미터타입 리절트타입 다 다르게 받았어야 대는데.. -->
 <mapper namespace="com.study_project.web.mapper.sqlMap.BeerDao">
 
 	<select id="readBeerList" parameterType="Beer" resultType="Beer">
@@ -46,9 +48,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="readBeerOne" resultType="Beer">
 		SELECT *
 		FROM beer
-<!-- 		LEFT JOIN beer_files ON beer.idx -->
 		WHERE
 		idx=#{idx}
+	</select>
+	
+	<select id="readBeerFiles" resultType="Beer">
+<!-- 		SELECT * -->
+<!-- 		FROM beer -->
+<!-- 		LEFT outer JOIN beer_files -->
+<!-- 		ON beer_files.beer_id=beer.idx -->
+<!-- 		WHERE -->
+<!-- 		beer.idx=#{idx} -->
+		SELECT *
+		FROM beer_files
+		WHERE
+		beer_id=#{idx}
 	</select>
 
 	<insert id="createBeer" parameterType="Beer" useGeneratedKeys="true"
@@ -109,11 +123,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		area=#{area},
 <!-- 		thumb=#{thumb}, -->
 		ad=#{ad},
+		comment_count=#{comment_count},
 		company=#{company}
 		WHERE
 		idx=#{idx}
 	</update>
-
+	
 	<delete id="deleteBeer" parameterType="Beer">
 		DELETE FROM beer
 		WHERE

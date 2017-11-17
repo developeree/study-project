@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study_project.web.mapper.sqlMap.BeerCommentDao">
+
+	<select id="readCommentOne" resultType="Comment">
+		SELECT *
+		FROM beer_comments
+		WHERE
+		comment_idx=#{comment_idx}
+	</select>
+	
+	<select id="readCommentList" resultType="Comment">
+		SELECT *
+		FROM beer_comments
+		WHERE
+		beer_id=#{beer_id}
+	</select>
+	
+	<insert id="createComment" parameterType="Comment">
+		INSERT INTO
+		beer_comments
+		(
+		comment_content,
+		comment_edit_date,
+		beer_id
+		)
+		VALUES
+		(
+		#{comment_content},
+		now(),
+		#{beer_id}
+		)
+	</insert>
+	
+	<update id="updateComment" parameterType="Comment">
+		UPDATE beer_comments SET
+		comment_content=#{comment_content},
+		comment_edit_date=now(),
+		beer_id=#{beer_id}
+		WHERE
+		comment_idx=#{comment_idx}
+	</update>
+	
+	<delete id="deleteComment" parameterType="Comment">
+		DELETE FROM beer_comments
+		WHERE
+		comment_idx=#{comment_idx}
+	</delete>
+	
+</mapper>
