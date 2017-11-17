@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
 <jsp:include page="../include/util.jsp" />
 
 <script type="text/javascript">
@@ -35,7 +34,7 @@
 				$("input[name=password]").focus();
 				return;
 			} else {
-				document.form0.action = 'login.do';
+				document.form0.action = '/web/user/login.do';
 				document.form0.submit();
 			}
 		}
@@ -45,7 +44,9 @@
 <body>
 	<form name=form0 method="post">
 		<div id="login_background">
-			
+			<div style="margin-top: 0px;" align="center">
+				<span style="font-size: large; background-color: red; color: white;">${loginAdvice}</span>
+			</div>
 			<!-- 로그인 영역 -->
 			<div id="login_content" align="center">
 				<div style="margin-top: 50px;">

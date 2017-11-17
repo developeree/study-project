@@ -6,12 +6,12 @@ $(document).ready(function(){
 	
 	//로그인 뷰로 이동
 	$("#herderLogin").click(function(e){ 
-		document.location.href = 'login.html';
+		document.location.href = '/web/user/login.html';
 	});
 	
 	//메인으로 이동
 	$("#btnMain").click(function(e){ 
-		document.location.href = 'main.html';
+		document.location.href = '/web/user/main.html';
 	});
 	
 	//소주 카테고리로 이동

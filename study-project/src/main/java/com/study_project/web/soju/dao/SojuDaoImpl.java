@@ -48,6 +48,15 @@ public class SojuDaoImpl implements SojuDao {
 	}
 
 	@Override
+	public List<Soju> selectSojuFile(Integer idx) {
+		List<Soju> resultList = session.selectList("sojuSql.getSojuFileList",idx);
+		if (resultList == null) {
+			resultList = new ArrayList<Soju>();
+		}
+		return resultList;
+	}
+
+	@Override
 	public Soju getSoju(Integer idx) {
 		Soju result = null;
 		result = session.selectOne("sojuSql.getSoju", idx);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <jsp:include page="../include/util.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -16,14 +16,12 @@
 		<form action="form0" name="form0" method="post" enctype="multipart/form-data">
 			<div>
 				<div style="margin: 0px auto;">
-					
+
 					<!-- 타이틀 영역 -->
 					<div>
-						<h2 class="title-main" align="center">
-							소주 등록
-						</h2>
+						<h2 class="title-main" align="center">소주 등록</h2>
 					</div>
-					
+
 					<!-- 입력 양식 영역 -->
 					<div>
 						<div>
@@ -52,48 +50,52 @@
 						</div>
 						<div>
 							<p>썸네일(목록이미지)</p>
-							<input type="file" name="file">
+							<input type="file" name="file" accept="image/gif,image/jpeg,image/png">
 						</div>
 						<fieldset>
 							<p>다중업로드폼</p>
 							<fieldset>
-							<p>
-							<input id="input" name="media" type="file" multiple="true" onchange="imagesSelected(this.files)"/>
-							</p>
+								<p>
+									<input id="input" type="file" onchange="imagesSelected(this.files)" accept="image/gif,image/jpeg,image/png"/>
+								</p>
 							</fieldset>
 							<fieldset id="dropzone" class="dropzone" ondragstart="return false" ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
-							<p>파일을 끌거나 선택해 주세요.</p>
-							<p>최종 파일만 업로드되니 한번에 업로드 해주세요.</p>
-							<span id="thumbs" style="display: none;">
-								<img id="images" alt="" src="" style="width: 100px; height: 100px;">
-								<input type="button" value="삭제(미구현)" onclick="remove_item(this)">
-							</span> 
-							<div id="field"></div>
-						</fieldset>
+								<p>파일을 끌거나 선택해 주세요.</p>
+								<p>최종 파일만 업로드되니 한번에 업로드 해주세요.</p>
+								<span id="thumbs" style="display: none;"> <img
+									id="images" alt="" src="" style="width: 100px; height: 100px;">
+									<input type="button" value="삭제(미구현)"
+									onclick="remove_item(this)">
+								</span>
+								<div id="field"></div>
+							</fieldset>
 					</div>
-					
+
 
 					<!-- 입력 버튼영역 -->
 					<div>
 						<div class="control-container">
 							<c:if test="${soju.idx == null}">
-							<input type="button" class="control-button" id="btnInsert" value="등록">
+								<input type="button" class="control-button" id="btnInsert"
+									value="등록">
 							</c:if>
 							<c:if test="${soju.idx != null}">
-							<input type="button" class="control-button" id="btnModify" value="수정">
+								<input type="button" class="control-button" id="btnModify"
+									value="수정">
 							</c:if>
-							<input type="button" class="control-button" id="btnCancel" value="취소">
+							<input type="button" class="control-button" id="btnCancel"
+								value="취소">
 						</div>
 					</div>
-					
+
 					<!-- 히든 영역 -->
 					<div>
 						<c:if test="${soju.idx != null }">
-						<input type="hidden" id="method" name="_method" value="PATCH">
+							<input type="hidden" id="method" name="_method" value="PATCH">
 						</c:if>
 						<input type="hidden" id="h_idx" name="h_idx" value="${soju.idx}">
 					</div>
-					
+
 				</div>
 			</div>
 		</form>
@@ -106,12 +108,17 @@
 	       imageReader.onload = (function(aFile) {
 	         return function(e) {
 	           var span = document.createElement('span');
+	           var clone=$("#input").clone();
+			   clone.attr('name', 'media');
+
 	           $("#images").attr('src',e.target.result);
 	           $("#images").attr('alt',aFile.name);
 // 	           span.innerHTML = ['<img id="images" name="', aFile.name,'" style="width:100px; height:100px;" src="', e.target.result,'"alt="', aFile.name, '"/><p/><span id="filen">파일명: ', aFile.name,'<input type="button" value="삭제" onclick="remove_item(this)"></span>'].join('');
 				span.innerHTML = document.getElementById('thumbs').innerHTML;
 	           // 	           document.getElementById('thumbs').insertBefore(span, null);
 	           document.getElementById('field').appendChild(span);
+	           clone.appendTo(span);
+	           $('#input').val('');
 
 //	            내가 추가한부분
 // 	           $("img").click(function(){
@@ -199,8 +206,9 @@
 			var content = $("textarea[name=content]").val(); //필수
 			var price = $("input[name=price]").val(); //필수
 			var area = $("input[name=area]").val(); //필수
-			var ad = $("input[name=ad]").val();
+			var ad = $("input[name=ad]").val(); //필수
 			var company = $("input[name=company]").val(); //필수
+			var thumbnail = $("input[name=file]").val(); //필수
 // 			var dropzone = document.getElementById('file1');
 			
 			if (title == null || title.trim().length == 0) {
@@ -223,6 +231,9 @@
 				alert("유통회사명을 입력해 주세요.");
 				$("input[name=company]"),focus();
 				return;
+			} else if (thumbnail == null || thumbnail.trim().length == 0) {
+				alert("썸네일을 등록해 주세요.");
+				$("input[name=file]").focus();
 			} else {
 // 				dropzone.addEventListener("dragover", function(event) {
 // 		            event.preventDefault();
