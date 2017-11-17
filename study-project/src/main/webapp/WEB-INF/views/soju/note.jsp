@@ -29,8 +29,8 @@
  
 <div id="pre_set" >
 <!--     <input type="text" name="" value="" style="width:200px">  -->
-	<input type="file" multiple>
-    <input type="button" value="삭제" onclick="remove_item(this)" onchange="add_item()">
+	<input type="file" multiple onchange="add_item()">
+    <input type="button" value="삭제" onclick="remove_item(this)" >
 </div>
  
 <div id="field"></div>

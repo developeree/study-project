@@ -38,6 +38,13 @@ public interface SojuService {
 	public void insertSojuFile (Soju soju);
 	
 	/**
+	 * 선택된 소주 정보의 파일을 불러온다.
+	 * @param idx(idx)
+	 * @return Soju_file
+	 */
+	public List<Soju> selectSojuFile (Integer idx);
+	
+	/**
 	 * 선택된 소주 정보를 불러온다.
 	 * @param ntmPid(idx)
 	 * @return Soju

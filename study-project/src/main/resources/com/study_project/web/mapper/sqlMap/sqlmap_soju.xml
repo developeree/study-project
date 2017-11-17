@@ -3,8 +3,6 @@
 
 <mapper namespace="sojuSql">
 
-	
-
 	<!-- 글목록 갯수구하기 -->
 	<select id="count" resultType="java.lang.Integer" parameterType="java.util.Map">
 		SELECT COUNT(*)
@@ -12,6 +10,11 @@
 		WHERE 1 = 1
 	</select>
 	
+	<select id="commentCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM soju_comment
+		WHERE soju_idx = #{soju_idx}
+	</select>
 	<!-- 목록 SELECT -->
 	<select id="selectSojuList" resultType="com.study_project.web.soju.model.Soju" parameterType="java.util.Map">
 		SELECT 
@@ -100,6 +103,25 @@
 		)
 	</insert>
 	
+	<select id="getSojuFileList" parameterType="java.lang.Integer" resultType="com.study_project.web.soju.model.Soju">
+		SELECT
+			soju_file.idx,
+			soju_file.original_name,
+			soju_file.trans_name,
+			soju_file.file_path,
+			soju_file.file_size,
+			soju_file.soju_idx,
+			soju_file.content_type
+		FROM
+			soju_file
+		LEFT JOIN
+			soju
+		ON
+			soju.idx = soju_file.soju_idx
+		WHERE
+			soju_file.soju_idx = #{idx}
+	</select>
+	
 	<!-- 상세보기 -->
 	<select id="getSoju" resultType="com.study_project.web.soju.model.Soju" parameterType="java.lang.Integer">
 		SELECT
@@ -140,4 +162,57 @@
 		DELETE FROM soju
 		WHERE idx = #{idx}
 	</delete>
+	
+	
+	
+	<!-- 상품평 영역 -->
+	<insert id="insertSojuComment" parameterType="com.study_project.web.soju.model.SojuComment">
+		INSERT INTO soju_comment (
+			contents,
+			id,
+			edit_date,
+			soju_idx
+		)
+		VALUES (
+			#{contents},
+			#{id},
+			NOW(),
+			#{idx}
+		)
+	</insert>
+	
+	<!-- 상품평 목록 -->
+	<select id="selectSojuCommentList" parameterType="java.lang.Integer" resultType="com.study_project.web.soju.model.SojuComment">
+		SELECT
+			soju_comment.idx,
+			soju_comment.contents,
+			soju_comment.id,
+			soju_comment.created_date,
+			soju_comment.edit_date,
+			soju_comment.soju_idx
+		FROM
+			soju_comment
+		LEFT JOIN
+			soju
+		ON
+			soju.idx = soju_comment.soju_idx
+		WHERE
+			soju_comment.soju_idx = #{idx}
+		ORDER BY soju_idx desc
+	</select>
+	
+	<delete id="deleteSojuComment">
+		DELETE FROM soju_comment
+		WHERE idx = #{idx}
+		AND soju_idx = #{soju_idx}
+	</delete>
+	
+	<update id="updateSojuComment" parameterType="com.study_project.web.soju.model.SojuComment">
+		UPDATE soju_comment
+		SET
+			contents = #{contents},
+			edit_date = NOW()
+		WHERE idx = #{idx}
+		AND soju_idx = #{soju_idx}
+	</update>
 </mapper>
