@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sojuLikeSql">
+	<insert id="sojuLikeInsert" parameterType="com.study_project.web.soju.model.SojuLike">
+		INSERT INTO soju_like
+			(
+				soju_idx,
+				user_idx,
+				user_id,
+				status
+			)
+		VALUES
+			(
+				#{soju_idx},
+				#{user_idx},
+				#{user_id},
+				#{status}
+			)
+	</insert>
+	
+	<delete id="sojuLikeDelete">
+		DELETE soju_like
+		WHERE idx = #{idx}
+		AND soju_idx = #{soju_idx}
+		AND user_id = #{user_id}
+	</delete>
+</mapper>

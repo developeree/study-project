@@ -57,7 +57,9 @@
 			<!-- 상품평 영역 -->
 			
 			<div>
-				<p>상품평 ${sojuCommentCount} 개</p>
+				<span>상품평 ${sojuCommentCount} 개</span>
+				<span class="like" style="cursor:pointer;"><img style="width: 20px; height: 20px;" src="<c:url value='/resources/images/heart.jpg'/>"></img> 좋아요 </span>
+				<span class="noLike" style="cursor:pointer; display: none;"><img style="width: 20px; height: 20px;" src="<c:url value='/resources/images/heart2.jpg'/>"></img> 좋아요 </span>
 				<!-- 상품평 목록 -->
 				<c:forEach var="comment" items="${sojuCommentList}" varStatus="status">
 					<div class="more" style="display:none;border: solid 1px #777777;" idx="${comment.idx}">
@@ -196,6 +198,39 @@ function deleteComment (commentidx) {
 };
 
 $(document).ready(function() {
+	
+	//좋아요를 눌렀을 때
+	$('.like').click(function() {
+		$('.like').hide();
+		$('.noLike').show();
+		
+		var url="/web/soju/like.ajax";
+		var likeStatus = 1;
+		var idx = ${soju.idx};
+	    var data="likeStatus="+likeStatus; 
+		
+		$.ajax({
+		     type: "POST",
+		     url: url,
+		     data:  {"idx":idx, "likeStatus":likeStatus},
+		});
+	});
+	
+	//좋아요를 해제했을 때
+	$('.noLike').click(function() {
+		$('.noLike').hide();
+		$('.like').show();
+		
+		var url="/web/soju/like.ajax";
+		var idx = ${soju.idx};
+	    var data="likeStatus="+likeStatus; 
+		
+		$.ajax({
+		     type: "POST",
+		     url: url,
+		     data:  {"idx":idx},
+		});
+	});
 	
 	//더보기 버튼
 	$('#btnMore').click(function() {
