@@ -7,6 +7,7 @@ public class Comment {
 	private String comment_create_date;
 	private String comment_edit_date;
 	private Integer beer_id;
+	private Integer user_id;
 	
 	public Integer getComment_idx() {
 		return comment_idx;
@@ -38,10 +39,18 @@ public class Comment {
 	public void setBeer_id(Integer beer_id) {
 		this.beer_id = beer_id;
 	}
+	public Integer getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
+	}
 	@Override
 	public String toString() {
 		return "Comment [comment_idx=" + comment_idx + ", comment_content=" + comment_content + ", comment_create_date="
-				+ comment_create_date + ", comment_edit_date=" + comment_edit_date + "]";
+				+ comment_create_date + ", comment_edit_date=" + comment_edit_date + ", beer_id=" + beer_id
+				+ ", user_id=" + user_id + "]";
 	}
+	
 	
 }

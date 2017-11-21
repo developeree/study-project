@@ -52,4 +52,9 @@ public class UserController {
 		}
 		return "redirect:/user/loginfail";
 	}
+	  @RequestMapping(value="/logout", method = RequestMethod.GET)
+	  public String doLogout(HttpSession session){
+		session.invalidate();
+	    return "/main";
+	  }
 }

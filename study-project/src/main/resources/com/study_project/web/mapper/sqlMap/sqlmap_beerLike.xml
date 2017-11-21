@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study_project.web.mapper.sqlMap.BeerLikeDao">
+
+	<select id="readLikeOne" resultType="Like">
+		SELECT *
+		FROM beer_likes
+		WHERE
+		beer_id=#{beer_id}
+		AND
+		user_id=#{user_id}
+	</select>
+	
+	<select id="readLikeList" resultType="Like">
+		SELECT *
+		FROM beer_likes
+		WHERE
+		user_id=#{user_id}
+	</select>
+	
+	<insert id="createLike" parameterType="Like">
+		INSERT INTO
+		beer_likes
+		(
+		like_status,
+		beer_id,
+		user_id
+		)
+		VALUES
+		(
+		#{like_status},
+		#{beer_id},
+		#{user_id}
+		)
+	</insert>
+	
+	<delete id="deleteLike" parameterType="Like">
+		DELETE FROM beer_likes
+		WHERE
+		beer_id=#{beer_id}
+		AND
+		user_id=#{user_id}
+	</delete>
+	
+</mapper>

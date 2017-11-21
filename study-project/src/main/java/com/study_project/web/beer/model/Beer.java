@@ -13,7 +13,7 @@ public class Beer {
 	private String ad;
 	private Integer comment_count;
 	private String company;
-	private String user_mail;
+	private Integer user_id;
 	
 	//페이징,검색
 	private int currentNo;
@@ -185,21 +185,22 @@ public class Beer {
 	public void setBeer_id(Integer beer_id) {
 		this.beer_id = beer_id;
 	}
-	public String getUser_mail() {
-		return user_mail;
+	public Integer getUser_id() {
+		return user_id;
 	}
-	public void setUser_mail(String user_mail) {
-		this.user_mail = user_mail;
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 	@Override
 	public String toString() {
 		return "Beer [idx=" + idx + ", title=" + title + ", content=" + content + ", price=" + price + ", create_date="
 				+ create_date + ", edit_date=" + edit_date + ", area=" + area + ", thumb=" + thumb + ", ad=" + ad
-				+ ", comment_count=" + comment_count + ", company=" + company + ", user_mail=" + user_mail
-				+ ", currentNo=" + currentNo + ", pageNo=" + pageNo + ", totalBeer=" + totalBeer + ", keyfield="
-				+ keyfield + ", search=" + search + ", file_idx=" + file_idx + ", original_name=" + original_name
-				+ ", trans_name=" + trans_name + ", file_size=" + file_size + ", file_path=" + file_path
-				+ ", content_type=" + content_type + ", beer_id=" + beer_id + "]";
+				+ ", comment_count=" + comment_count + ", company=" + company + ", user_id=" + user_id + ", currentNo="
+				+ currentNo + ", pageNo=" + pageNo + ", totalBeer=" + totalBeer + ", keyfield=" + keyfield + ", search="
+				+ search + ", file_idx=" + file_idx + ", original_name=" + original_name + ", trans_name=" + trans_name
+				+ ", file_size=" + file_size + ", file_path=" + file_path + ", content_type=" + content_type
+				+ ", beer_id=" + beer_id + "]";
 	}
+
 
 }
