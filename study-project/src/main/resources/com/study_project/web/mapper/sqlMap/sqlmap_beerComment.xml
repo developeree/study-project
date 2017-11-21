@@ -25,21 +25,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(
 		comment_content,
 		comment_edit_date,
-		beer_id
+		beer_id,
+		user_id
 		)
 		VALUES
 		(
 		#{comment_content},
 		now(),
-		#{beer_id}
+		#{beer_id},
+		#{user_id}
 		)
 	</insert>
 	
 	<update id="updateComment" parameterType="Comment">
 		UPDATE beer_comments SET
 		comment_content=#{comment_content},
-		comment_edit_date=now(),
-		beer_id=#{beer_id}
+		comment_edit_date=now()
+<!-- 		beer_id=#{beer_id} -->
 		WHERE
 		comment_idx=#{comment_idx}
 	</update>

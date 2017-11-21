@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="../include/util.jsp" />
+<%@ include file="../include/util.jsp" %> 
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -27,6 +27,10 @@ $(document).ready(function(){
 	$("#btnTest1").click(function(e){ 
 		document.location.href = '/web/soju/test.html';
 	});
+	//로그아웃
+	$("#herderLogout").click(function(e){ 
+		document.location.href = '/web/user/logout';
+	});
 
 });
 </script>
@@ -42,7 +46,12 @@ $(document).ready(function(){
 	</div>
 	
 	<div>
+		<c:if test="${sessionScope.user.idx==null }">
 		<input type="button" id="herderLogin" name="herderLogin" value="로그인">
+		</c:if>
+		<c:if test="${sessionScope.user.idx!=null }">
+		<input type="button" id="herderLogout" name="herderLogout" value="로그아웃">
+		</c:if>
 	</div>
 	
 	<!-- 탭매뉴(카테고리)영역 -->

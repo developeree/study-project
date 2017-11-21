@@ -9,6 +9,7 @@
 <title>상세페이지</title>
 </head>
 <body>
+${sessionScope.user.name }
 <div>
 <fieldset>
 <!-- 상대경로 -->
@@ -24,17 +25,16 @@
 </div>
 <div>
 <form name="form0" method="post">
-<input type="hidden" name="_method" value="get" id="method"/>
-<input type="button" value="목록" onclick="location.href='/web/beer'"/>
-<input id="edit" type="button" value="수정" onclick="updatePopup();"/>
-<input id="del" type="button" value="삭제"/>
+<span><input type="hidden" name="_method" value="get" id="method"/></span>
+<span><input type="button" value="목록" onclick="location.href='/web/beer'"/></span>
+<span><input id="edit" type="button" value="수정" onclick="updatePopup();"/></span>
+<span><input id="del" type="button" value="삭제"/></span>
+
+<c:if test="${sessionScope.user.idx!=null}">
+<span id="like" style="cursor:pointer;">추천<img style="height:20px; width:20px" src="<c:url value='/resources/images/heart.jpg'/>"></img></span>
+<span id="likeShow" style="cursor:pointer; display:none">추천취소<img style="height:20px; width:20px" src="<c:url value='/resources/images/heart2.jpg'/>"></img></span>
+</c:if>
 </form>
-</div>
-
-<div>
-<%-- <c:if test=""> --%>
-<button><img src=""></img></button>
-
 </div>
 
 <div>
@@ -91,6 +91,22 @@
 </div>
 
 <script type="text/javascript">
+var sojuLikeCheck = ${like.like_status};
+switch (sojuLikeCheck) {
+   case 1 : 
+      $('#like').hide();
+      $('#likeShow').show();
+      break;
+   case null :
+      $('#like').show();
+      $('#likeShow').hide();
+      break;
+   default :
+      $('#like').show();
+      $('#likeShow').hide();
+      break;
+}
+//더보기 기능
 $(document).ready(function(){
 
     var list = $(".loadStart .loading");
@@ -113,12 +129,31 @@ $(document).ready(function(){
     });
 
 });
-
+$('#like').click(function() {
+	$('#like').hide();
+	$('#likeShow').show();
+	var likeStatus=1;
+	$.ajax({
+		  type: "POST",
+		  url: "/web/beer/${beer.idx}/like",
+		  data:  {"likeStatus":likeStatus},
+		});
+});
+$('#likeShow').click(function() {
+	$('#like').show();
+	$('#likeShow').hide();
+	$.ajax({
+		  type: "POST",
+		  url: "/web/beer/${beer.idx}/like/cancle"
+		});
+});
+//글 수정폼
 function updatePopup() {
 	window.name = "/web/beer/${beer.idx}";
     window.open("/web/beer/board/${beer.idx}", "update",
             "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
 }
+//글삭제로직
 $('#del').click(function() {
 	var answer=confirm("글을 삭제하시겠습니까?");
 	if (answer == true) {
@@ -129,6 +164,7 @@ $('#del').click(function() {
 		return;
 	 }
  });
+//댓글쓰기로직
 $('#commentNew').click(function() {
 	document.form1.action = '/web/beer/'+${beer.idx}+'/commentNew';
 	document.form1.submit();
@@ -138,11 +174,7 @@ $('#commentNew').click(function() {
 // 	$('.replyEditForm').show();
 // 	$('.commentContent').hide();
 // });
-$('.editReply').click(function() {
-	$('.editReply').size();
-	alert("사이즈: "+$('.editReply').size());
-});
-
+//댓글수정폼
 function editReply(beerId,commentId){
 	var replyEditForm='#replyEditForm'+commentId;
 	var commentContent='#commentContent'+commentId;
@@ -154,6 +186,7 @@ function editReply(beerId,commentId){
 // 		$(commentContent).show();
 // 		$(butt).show();
 }
+//댓글수정로직
 function upReply(beerId,commentId){
 	var re="#re"+commentId;
 	var answer=confirm("댓글을 수정하시겠습니까?");
@@ -164,6 +197,7 @@ function upReply(beerId,commentId){
 		return;
 	 }
 }
+//댓글삭제로직
 function delReply(beerId,commentId){
 // 	삭제시 어떤form이든 상관없고 그냥 form에서 method post만 빌리는듯함
 	var answer=confirm("댓글을 삭제하시겠습니까?");

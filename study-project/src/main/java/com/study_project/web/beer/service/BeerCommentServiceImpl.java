@@ -18,8 +18,8 @@ public class BeerCommentServiceImpl implements BeerCommentService{
 	private BeerDao beerDao;
 	
 	@Override
-	public List<Comment> getCommentList(Integer beer_idx) throws Exception {
-		return beerCommentDao.readCommentList(beer_idx);
+	public List<Comment> getCommentList(Integer beer_id) throws Exception {
+		return beerCommentDao.readCommentList(beer_id);
 	}
 
 	@Override

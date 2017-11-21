@@ -77,7 +77,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		area,
 		thumb,
 		ad,
-		company
+		company,
+		user_id
 		)
 		VALUES
 		(
@@ -88,7 +89,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{area},
 		#{thumb},
 		#{ad},
-		#{company}
+		#{company},
+		#{user_id}
 		)
 	</insert>
 	

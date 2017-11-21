@@ -1,5 +1,7 @@
 package com.study_project.web.beer.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.study_project.web.beer.model.Comment;
 import com.study_project.web.beer.service.BeerCommentService;
+import com.study_project.web.user.model.User;
 
 @Controller
 @RequestMapping("/beer")
@@ -21,8 +24,10 @@ public class BeerCommentController {
 	
 	//댓글쓰기로직
 	@RequestMapping(value = "/{idx}/commentNew", method=RequestMethod.POST)
-	public String doCommentWrite(@PathVariable("idx") Integer beer_id, Comment comment) throws Exception{
+	public String doCommentWrite(@PathVariable("idx") Integer beer_id, Comment comment, HttpSession session) throws Exception{
 		comment.setBeer_id(beer_id);
+		User user=(User) session.getAttribute("user");
+		comment.setUser_id(user.getIdx());
 		beerCommentService.writeComment(comment);
 		logger.info("[ beerReg toString ] " + comment.toString());
 		return "redirect:/beer/{idx}";

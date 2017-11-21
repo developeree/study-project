@@ -17,8 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.study_project.web.beer.model.Beer;
 import com.study_project.web.beer.model.Comment;
+import com.study_project.web.beer.model.Like;
 import com.study_project.web.beer.service.BeerCommentService;
+import com.study_project.web.beer.service.BeerLikeService;
 import com.study_project.web.beer.service.BeerService;
+import com.study_project.web.user.model.User;
 
 @Controller
 @RequestMapping("/beer")
@@ -30,6 +33,8 @@ public class BeerController {
 	private BeerService beerService;
 	@Autowired
 	private BeerCommentService beerCommentService;
+	@Autowired
+	private BeerLikeService beerLikeService;
 
 	@RequestMapping(value = "/test", method=RequestMethod.GET)
 	public String test(
@@ -67,13 +72,23 @@ public class BeerController {
 
 	//상세페이지폼
 	@RequestMapping(value = "/{idx}", method=RequestMethod.GET)
-	public String detail(@PathVariable("idx") Integer idx, Model model) throws Exception{
+	public String detail(@PathVariable("idx") Integer idx, Model model, HttpSession session) throws Exception{
+		User user=(User) session.getAttribute("user");
+		Like like=new Like();
 		Beer beer=beerService.getBeerOne(idx);
 		List<Beer> bf=beerService.getBeerFiles(idx);
 		List<Comment> comment=beerCommentService.getCommentList(idx);
+		if(user!=null||like.getLike_status()==null){
+		like=beerLikeService.getLikeOne(idx, user.getIdx());
+		model.addAttribute("like", like);
+		}
 		model.addAttribute("beer", beer);
 		model.addAttribute("bf", bf);
 		model.addAttribute("comment", comment);
+		
+		logger.info("[ 비어정보 ] " + beer.toString());
+		logger.info("[ 댓글정보 ] " + comment.toString());
+		
 		return "beer/beerDetail";
 	}
 
@@ -96,7 +111,8 @@ public class BeerController {
 		//		String title=beer.getTitle();
 		//		String ban=title.replaceAll("<[^>]*>", "");
 		//		beer.setTitle(ban);
-
+		User user=(User) session.getAttribute("user");
+		beer.setUser_id(user.getIdx());
 		if(thumbnail.isEmpty()&&media.isEmpty()){
 			System.out.println("여기는 글만 있을경우1");
 			beerService.writeBeer(beer);

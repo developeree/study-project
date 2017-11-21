@@ -4,6 +4,8 @@
 <configuration>
 	<typeAliases>
         <typeAlias type="com.study_project.web.beer.model.Beer" alias="Beer" />
+        <typeAlias type="com.study_project.web.beer.model.Comment" alias="Comment" />
+        <typeAlias type="com.study_project.web.beer.model.Like" alias="Like" />
     </typeAliases>
     
 	<mappers>
@@ -11,6 +13,8 @@
 		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_soju.xml"/>
 		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_beer.xml"/>
 		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_sojuLike.xml"/>
+		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_beerComment.xml"/>
+		<mapper resource="com/study_project/web/mapper/sqlMap/sqlmap_beerLike.xml"/>
 	</mappers>
 
 </configuration>
