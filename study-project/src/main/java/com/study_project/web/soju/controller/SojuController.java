@@ -95,12 +95,15 @@ public class SojuController {
 			return "/user/login";
 		}
 		String loginUserCheck = user.getName();
+		String sojuLike = "N";
 		
+		sojuLike = sojuService.sojuLikeSelect(idx, session);
 		Soju soju = sojuService.getSoju(idx);
 		List<Soju> sojuFileList = sojuService.selectSojuFile(idx);
 		List<SojuComment> sojuCommentList = sojuCommentService.selectSojuCommentList(idx);
 		Integer sojuCommentCount = sojuCommentService.count(idx);
 		
+		model.addAttribute("sojuLike", sojuLike);
 		model.addAttribute("sojuCommentCount", sojuCommentCount);
 		model.addAttribute("sojuCommentList", sojuCommentList);
 		model.addAttribute("soju", soju);
@@ -202,12 +205,10 @@ public class SojuController {
 			//썸네일 이미지 삭제
 			Soju sojuDetail = sojuService.getSoju(idx);
 			soju1.setThumbnail(sojuDetail.getThumbnail());
-			System.out.println("썸네일이 들어왔나 = " + soju1.getThumbnail());
 			boolean thumbnailDelete = fileUtil.deleteFile(fileUtil.SojuThumbnailPath, soju1.getThumbnail());
 			if (thumbnailDelete == true) {
 				//상품소개(다중) 삭제
 				for (Soju soju : sojuFileList) {
-					System.out.println("fileidx == " + soju.getFile_idx());
 					logger.info("logger file idx tostring = " + sojuFileList.get(0).getFile_idx());
 					fileDelete =fileUtil.deleteFile(fileUtil.SojuproductImagePath, soju.getTrans_name());
 				}
@@ -259,7 +260,6 @@ public class SojuController {
 			, Model model, HttpSession session, SojuComment sojuComment) throws Exception {
 		logger.info(" [ welcome soju Modify Comment ] ");
 		logger.info(" [ SojuComment Model > ]" + sojuComment);
-		System.out.println("에딧 = " + edit);
 		sojuComment.setContents(edit);
 		sojuComment.setIdx(commentidx);
 		sojuComment.setSoju_idx(idx);

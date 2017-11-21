@@ -19,10 +19,9 @@
 			)
 	</insert>
 	
-	<delete id="sojuLikeDelete">
-		DELETE soju_like
-		WHERE idx = #{idx}
-		AND soju_idx = #{soju_idx}
+	<delete id="sojuLikeDelete" parameterType="com.study_project.web.soju.model.SojuLike">
+		DELETE FROM soju_like
+		WHERE soju_idx = #{soju_idx}
 		AND user_id = #{user_id}
 	</delete>
 </mapper>

@@ -26,12 +26,13 @@
 			<!-- 리스트 컨테이너 -->
 			<div style="border-top: 1px solid #FF8000;">
 				<c:forEach var="sl" items="${sojuList}" varStatus="status">
-					<div class="sojuDetail" idx="${sl.idx}" style="border-bottom: 1px solid #F7BE81;">
+					<div class="sojuDetail" idx="${sl.idx}" style="border-bottom: 1px solid #F7BE81;" onclick="sojuDetail(${sl.idx})">
 						<span><img src="/thumbnail/${sl.thumbnail}" style="width: 50px; height: 50px;"></span>
 						<span>${sl.title}</span>
 						<span>${sl.price}</span>
 						<span>${sl.company}</span>
 					</div>
+					<input type="hidden" id="idx" name="idx" value="${sl.idx}">
 				</c:forEach>
 			</div>
 			
@@ -42,7 +43,7 @@
 				
 				<!-- <<부분 -->
 					<c:if test="${selectBlock > 0}">
-						<span onclick="paging('${selectBlock - 1}','${((selectBlock - 1) * 10)}')">
+						<span onclick="paging('${selectBlock - 1}','${((selectBlock - 1) * 10)}')" style="cursor:pointer;">
 							왼쪽
 							<!-- <img src="resources/images/pager/btn_first.gif"/> -->
 						</span>
@@ -56,7 +57,7 @@
 									<font class="paging-current">${(selectBlock * 10) + i + 1 }</font>
 								</c:when>
 								<c:otherwise>
-									<span onclick="paging('${selectBlock}','${(selectBlock * 10) + i }')">
+									<span onclick="paging('${selectBlock}','${(selectBlock * 10) + i }')" style="cursor:pointer;">
 										<font class="paging-clickable"> ${(selectBlock * 10) + i + 1 }</font>
 									</span>
 								</c:otherwise>
@@ -69,7 +70,7 @@
 					
 					<!-- >>부분 -->
 					<c:if test="${totalBlock > selectBlock}">
-						<span onclick="paging('${selectBlock + 1 }','${((selectBlock + 1) * 10)}')" >
+						<span onclick="paging('${selectBlock + 1 }','${((selectBlock + 1) * 10)}')" style="cursor:pointer;">
 							오른쪽
 							<!-- <img src="resources/images/pager/btn_last.gif"/> -->
 						</span>
@@ -82,16 +83,23 @@
 	</div>
 
 <script type="text/javascript">
+
+//상세페이지 이동
+function sojuDetail (idx) {
+	document.location.href = "/web/soju/" + idx;
+}
+
 $(function() {
 	$('#btnReg').click(function() {//등록
 		window.name = "/soju";
 		window.open("/web/soju/board/","insert","width=1000px,height=700px");
 	});
 	
-	$('.sojuDetail').click(function() {
-		var idx = $(this).attr('idx');
-		document.location.href = "/web/soju/" + idx;
-	});
+// 	$('.sojuDetail').click(function() {
+// // 		var idx = $(this).attr('idx');
+// 		var idx = $('#idx').val();
+// 		document.location.href = "/web/soju/" + idx;
+// 	});
 	
 	//검색
 	$("#searchCol").val("${searchCol}").prop("selected", true);

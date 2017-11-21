@@ -215,4 +215,19 @@
 		WHERE idx = #{idx}
 		AND soju_idx = #{soju_idx}
 	</update>
+	
+	<select id="sojuLikeSelect" resultType="java.lang.String" parameterType="com.study_project.web.soju.model.SojuLike">
+		SELECT
+			soju_like.status
+		FROM
+			soju_like
+		LEFT JOIN
+			soju
+		ON
+			soju.idx = soju_like.soju_idx
+		WHERE
+			soju.idx = #{soju_idx}
+		AND
+			soju_like.user_id = #{user_id}
+	</select>
 </mapper>

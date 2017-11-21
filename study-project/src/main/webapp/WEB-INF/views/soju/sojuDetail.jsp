@@ -95,9 +95,11 @@
 			</div>
 			
 			<!-- 더보기 -->
-			<div align="center" class="moreDiv">
-				<input type="button" id="btnMore" name="btnMore" value="더보기" style="width: 1350px;">
-			</div>
+			<c:if test="${sojuCommentCount > 3}">
+				<div align="center" class="moreDiv">
+					<input type="button" id="btnMore" name="btnMore" value="더보기" style="width: 1350px;">
+				</div>
+			</c:if>
 			
 			<!-- 상품평 작성 -->
 			<form id="form0" name="form0" action="form0" method="post">
@@ -128,6 +130,7 @@
 		<!-- 히든 영역 -->
 		<div>
 			<input type="hidden" id="h_idx" name="h_idx" value="${soju.idx}">
+			<input type="hidden" id="sojuLikeCheck" value="${sojuLike}">
 		</div>
 	</div>
 
@@ -139,6 +142,25 @@ var status = $(".more").length;
 var i = 0;
 for (i=0;i<maxMore;i++){
 	$(".more").eq(i).show();
+}
+var sojuLikeCheck = $('#sojuLikeCheck').val();
+switch (sojuLikeCheck) {
+	case "Y" : 
+		$('.like').hide();
+		$('.noLike').show();
+		break;
+	case "N" :
+		$('.like').show();
+		$('.noLike').hide();
+		break;
+	case "" :
+		$('.like').show();
+		$('.noLike').hide();
+		break;
+	default :
+		$('.like').show();
+		$('.noLike').hide();
+		break;
 }
 
 
@@ -205,7 +227,7 @@ $(document).ready(function() {
 		$('.noLike').show();
 		
 		var url="/web/soju/like.ajax";
-		var likeStatus = 1;
+		var likeStatus = "Y";
 		var idx = ${soju.idx};
 	    var data="likeStatus="+likeStatus; 
 		
@@ -221,14 +243,13 @@ $(document).ready(function() {
 		$('.noLike').hide();
 		$('.like').show();
 		
-		var url="/web/soju/like.ajax";
-		var idx = ${soju.idx};
-	    var data="likeStatus="+likeStatus; 
+		var url="/web/soju/nolike.ajax";
+		var soju_idx = ${soju.idx};
 		
 		$.ajax({
 		     type: "POST",
 		     url: url,
-		     data:  {"idx":idx},
+		     data:  {"soju_idx":soju_idx},
 		});
 	});
 	

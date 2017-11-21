@@ -16,7 +16,7 @@ public class SojuLikeServiceImpl implements SojuLikeService {
 	private SojuLikeDao sojuLikeDao;
 
 	@Override
-	public void insertLike(Integer idx, Integer likeStatus, HttpSession session) {
+	public void insertLike(Integer idx, String likeStatus, HttpSession session) {
 		SojuLike sojuLike = new SojuLike();
 		User user = (User)session.getAttribute("user");
 		sojuLike.setUser_idx(user.getIdx());
@@ -27,7 +27,12 @@ public class SojuLikeServiceImpl implements SojuLikeService {
 	}
 
 	@Override
-	public void deleteLike(SojuLike sojuLike) {
+	public void deleteLike(Integer soju_idx, HttpSession session) {
+		SojuLike sojuLike = new SojuLike();
+		User user = (User)session.getAttribute("user");
+		sojuLike.setSoju_idx(soju_idx);
+		sojuLike.setUser_id(user.getId());
+		sojuLike.setUser_idx(user.getIdx());
 		sojuLikeDao.deleteLike(sojuLike);
 	}
 	

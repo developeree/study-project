@@ -3,11 +3,15 @@ package com.study_project.web.soju.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study_project.web.soju.dao.SojuDao;
 import com.study_project.web.soju.model.Soju;
+import com.study_project.web.soju.model.SojuLike;
+import com.study_project.web.user.model.User;
 
 @Service
 public class SojuServiceImpl implements SojuService {
@@ -53,6 +57,15 @@ public class SojuServiceImpl implements SojuService {
 	@Override
 	public void deleteSoju(Integer idx) {
 		sojuDao.deleteSoju(idx);
+	}
+
+	@Override
+	public String sojuLikeSelect(Integer idx, HttpSession session) {
+		SojuLike sojuLike = new SojuLike();
+		User user = (User)session.getAttribute("user");
+		sojuLike.setSoju_idx(idx);
+		sojuLike.setUser_id(user.getId());
+		return sojuDao.sojuLikeSelect(sojuLike);
 	}
 	
 }

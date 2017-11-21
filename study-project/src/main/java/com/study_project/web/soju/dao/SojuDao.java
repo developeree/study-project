@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.study_project.web.soju.model.Soju;
+import com.study_project.web.soju.model.SojuLike;
 
 public interface SojuDao {
 	
@@ -64,4 +65,11 @@ public interface SojuDao {
 	 * @return void
 	 */
 	public void deleteSoju (Integer idx);
+	
+	/**
+	 * soju_like 테이블의 status 값을 불러온다.
+	 * @param SojuLike(Model)
+	 * @return Integer
+	 */
+	public String sojuLikeSelect (SojuLike sojuLike);
 }

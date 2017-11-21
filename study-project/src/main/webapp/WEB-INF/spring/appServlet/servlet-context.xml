@@ -37,5 +37,16 @@
 
 	<mybatis-spring:scan base-package="com.study_project.web.mapper"/>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/web/*"/>
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/web"/>
+			<exclude-mapping path="/web/user/login.html"/>
+			<exclude-mapping path="/web/user/login.do"/>
+			<exclude-mapping path="/web/user/main.html"/>
+			<beans:bean class="com.study_project.web.interceptor.Interceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

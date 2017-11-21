@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.study_project.web.soju.model.Soju;
+import com.study_project.web.soju.model.SojuLike;
 
 @Repository
 public class SojuDaoImpl implements SojuDao {
@@ -77,6 +78,13 @@ public class SojuDaoImpl implements SojuDao {
 	@Override
 	public void deleteSoju(Integer idx) {
 		session.delete("sojuSql.deleteSoju", idx);
+	}
+
+	@Override
+	public String sojuLikeSelect(SojuLike sojuLike) {
+		String result = "";
+		result = session.selectOne("sojuSql.sojuLikeSelect", sojuLike);
+		return result;
 	}
 	
 	

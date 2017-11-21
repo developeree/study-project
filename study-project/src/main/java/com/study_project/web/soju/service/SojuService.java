@@ -3,6 +3,8 @@ package com.study_project.web.soju.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.study_project.web.soju.model.Soju;
 
 public interface SojuService {
@@ -64,4 +66,11 @@ public interface SojuService {
 	 * @return void
 	 */
 	public void deleteSoju (Integer idx);
+	
+	/**
+	 * soju_like 테이블의 status 값을 불러온다.
+	 * @param SojuLike(Model)
+	 * @return Integer
+	 */
+	public String sojuLikeSelect (Integer idx, HttpSession session);
 }
