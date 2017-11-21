@@ -78,7 +78,7 @@ public class BeerController {
 		Beer beer=beerService.getBeerOne(idx);
 		List<Beer> bf=beerService.getBeerFiles(idx);
 		List<Comment> comment=beerCommentService.getCommentList(idx);
-		if(user!=null||like.getLike_status()==null){
+		if(user!=null||like==null){
 		like=beerLikeService.getLikeOne(idx, user.getIdx());
 		model.addAttribute("like", like);
 		}
