@@ -91,6 +91,7 @@ ${sessionScope.user.name }
 </div>
 
 <script type="text/javascript">
+$('#')
 var sojuLikeCheck = ${like.like_status};
 switch (sojuLikeCheck) {
    case 1 : 

@@ -11,7 +11,7 @@
 <body>
  
  ${sessionScope.user.name }님 안녕하세요 
-ㅅ시발진짜
+ㅅ시발진짜개새
 </body>
 <jsp:include page="include/footer.jsp"/>
 </html>
