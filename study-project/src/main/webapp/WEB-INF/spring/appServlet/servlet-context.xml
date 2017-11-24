@@ -35,7 +35,7 @@
 
 	<context:component-scan base-package="com.study_project.web" />
 
-	<mybatis-spring:scan base-package="com.study_project.web.mapper"/>
+	<mybatis-spring:scan base-package="com.study_project.web.mapper" />
 	
 	
 </beans:beans>
