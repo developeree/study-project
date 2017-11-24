@@ -11,12 +11,13 @@ import com.study_project.web.mapper.sqlMap.BeerCommentDao;
 import com.study_project.web.mapper.sqlMap.BeerDao;
 
 @Service
-public class BeerCommentServiceImpl implements BeerCommentService{
+public class BeerCommentServiceImpl implements BeerCommentService {
 	@Autowired
-	private BeerCommentDao beerCommentDao;
-	@Autowired
-	private BeerDao beerDao;
+	BeerCommentDao beerCommentDao;
 	
+	@Autowired
+	BeerDao beerDao;
+
 	@Override
 	public List<Comment> getCommentList(Integer beer_id) throws Exception {
 		return beerCommentDao.readCommentList(beer_id);
@@ -26,11 +27,11 @@ public class BeerCommentServiceImpl implements BeerCommentService{
 	public Comment getCommentOne(Integer comment_idx) throws Exception {
 		return beerCommentDao.readCommentOne(comment_idx);
 	}
-	
+
 	@Override
 	public void writeComment(Comment comment) throws Exception {
-		Beer beer=beerDao.readBeerOne(comment.getBeer_id());
-		beer.setComment_count(beer.getComment_count()+1);
+		Beer beer = beerDao.readBeerOne(comment.getBeer_id());
+		beer.setComment_count(beer.getComment_count() + 1);
 		beerDao.updateBeer(beer);
 		beerCommentDao.createComment(comment);
 	}
@@ -42,10 +43,10 @@ public class BeerCommentServiceImpl implements BeerCommentService{
 
 	@Override
 	public void removeComment(Integer comment_idx) throws Exception {
-		Comment get=beerCommentDao.readCommentOne(comment_idx);
-		System.out.println("삭제정보: "+get);
-		Beer beer=beerDao.readBeerOne(get.getBeer_id());
-		beer.setComment_count(beer.getComment_count()-1);
+		Comment get = beerCommentDao.readCommentOne(comment_idx);
+		System.out.println("삭제정보: " + get);
+		Beer beer = beerDao.readBeerOne(get.getBeer_id());
+		beer.setComment_count(beer.getComment_count() - 1);
 		beerDao.updateBeer(beer);
 		beerCommentDao.deleteComment(get.getComment_idx());
 	}
