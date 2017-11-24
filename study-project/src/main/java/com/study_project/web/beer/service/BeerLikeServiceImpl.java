@@ -19,7 +19,7 @@ public class BeerLikeServiceImpl implements BeerLikeService{
 	}
 
 	@Override
-	public Like getLikeOne(Integer beer_id, Integer user_id) throws Exception {
+	public Integer getLikeOne(Integer beer_id, Integer user_id) throws Exception {
 		Like set=new Like();
 		set.setBeer_id(beer_id);
 		set.setUser_id(user_id);

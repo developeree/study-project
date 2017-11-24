@@ -74,13 +74,14 @@ public class BeerController {
 	@RequestMapping(value = "/{idx}", method=RequestMethod.GET)
 	public String detail(@PathVariable("idx") Integer idx, Model model, HttpSession session) throws Exception{
 		User user=(User) session.getAttribute("user");
-		Like like=new Like();
+		Integer likeStatus;
 		Beer beer=beerService.getBeerOne(idx);
 		List<Beer> bf=beerService.getBeerFiles(idx);
 		List<Comment> comment=beerCommentService.getCommentList(idx);
-		if(user!=null||like==null){
-		like=beerLikeService.getLikeOne(idx, user.getIdx());
-		model.addAttribute("like", like);
+		if(user!=null){
+		likeStatus=beerLikeService.getLikeOne(idx, user.getIdx());
+		model.addAttribute("likeStatus", likeStatus);
+		System.out.println("likeStatus: "+likeStatus);
 		}
 		model.addAttribute("beer", beer);
 		model.addAttribute("bf", bf);
