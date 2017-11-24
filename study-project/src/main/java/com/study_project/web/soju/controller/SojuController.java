@@ -89,11 +89,11 @@ public class SojuController {
 	public String detailForm (@PathVariable("idx") Integer idx, Model model, HttpSession session) throws Exception {
 		logger.info("[ welcome sojuDetailForm ]");
 		User user = (User)session.getAttribute("user");
-		if (user == null) {
-			String loginAdvice = "로그인 후 이용하실 수 있습니다. 로그인 해주세요.";
-			model.addAttribute("loginAdvice", loginAdvice);
-			return "/user/login";
-		}
+//		if (user == null) {
+//			String loginAdvice = "로그인 후 이용하실 수 있습니다. 로그인 해주세요.";
+//			model.addAttribute("loginAdvice", loginAdvice);
+//			return "/user/login";
+//		}
 		String loginUserCheck = user.getName();
 		String sojuLike = "N";
 		

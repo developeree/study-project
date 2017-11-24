@@ -143,6 +143,7 @@ var i = 0;
 for (i=0;i<maxMore;i++){
 	$(".more").eq(i).show();
 }
+
 var sojuLikeCheck = $('#sojuLikeCheck').val();
 switch (sojuLikeCheck) {
 	case "Y" : 

@@ -1,13 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<jsp:include page="../include/util.jsp" />
-
+<jsp:include page="../include/util.jsp"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/login.css"/>
 <script type="text/javascript">
+//로그인메서드
+	function login() {
+		var userName = $("input[name=id]").val();
+		var password = $("input[name=password]").val();
+		
+		if (userName == null || userName.trim().length == 0) {
+			alert("아이디를 입력하세요.");
+			$("input[name=id]").focus();
+			return;
+		} else if (password == null || password.trim().length == 0) {
+			alert("패스워드를 입력하세요.");
+			$("input[name=password]").focus();
+			return;
+		} else {
+			document.form0.action = '/web/user/login.do';
+			document.form0.submit();
+		}
+	};
 	$(document).ready(function(){
 		$('#id, #password, #btnLogin').keydown(function (key) {
 			if (key.keyCode == 13) {
@@ -20,24 +38,7 @@
 			e.preventDefault();
 		});
 		
-		//로그인메서드
-		function login() {
-			var userName = $("input[name=id]").val();
-			var password = $("input[name=password]").val();
-			
-			if (userName == null || userName.trim().length == 0) {
-				alert("아이디를 입력하세요.");
-				$("input[name=id]").focus();
-				return;
-			} else if (password == null || password.trim().length == 0) {
-				alert("패스워드를 입력하세요.");
-				$("input[name=password]").focus();
-				return;
-			} else {
-				document.form0.action = '/web/user/login.do';
-				document.form0.submit();
-			}
-		}
+		
 	});
 </script>
 </head>
@@ -55,16 +56,16 @@
 					</h2>
 				</div>
 				
-				<div id="loginInput" align="left" style="width: 420px; height: 50px;">
+				<div id="loginInput">
 					<input type="text" name="id" id="id" style="font-size:x-large; width: 300px; height: 30px;" tabindex="1">
 					<br style="height: 5px;"/>
 					<input type="password" name="password" id="password" style="font-size:x-large; width: 300px; height: 30px;" tabindex="2">
 				</div>
 			</div>
 			
-			<div id="loginButtonWrapper">
-					<a id="btnLogin" tabindex="3"></a>
-			</div>
+
+			<img src="../resources/css/heart1.jpg">
+			<button style="background-image: url('../resources/css/heart1.jpg');"></button>
 			<div style="margin-top: 600px; font-size: xx-small;">
 				<jsp:include page="../include/footer.jsp"/>
 			</div>

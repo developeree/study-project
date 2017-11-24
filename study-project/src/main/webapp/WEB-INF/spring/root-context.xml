@@ -10,13 +10,13 @@
        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 
-<!--         <property name="url" value="jdbc:mysql://localhost:3306/project"/> -->
-<!--         <property name="username" value="root"/> -->
-<!--         <property name="password" value="123123"/> -->
+        <property name="url" value="jdbc:mysql://localhost:3306/project"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123123"/>
 
-          <property name="url" value="jdbc:mysql://localhost:3306/test"/>
-		 <property name="username" value="root"/>
-          <property name="password" value="13579"/>
+<!--           <property name="url" value="jdbc:mysql://localhost:3306/test"/> -->
+<!-- 		 <property name="username" value="root"/> -->
+<!--           <property name="password" value="13579"/> -->
 
         <property name="maxActive" value="100"/>
         <property name="maxWait" value="1000"/>

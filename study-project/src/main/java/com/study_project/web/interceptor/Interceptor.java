@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.study_project.web.user.model.User;
@@ -13,39 +14,33 @@ import com.study_project.web.user.model.User;
 public class Interceptor extends HandlerInterceptorAdapter {
 
 	private static final Logger logger = LoggerFactory.getLogger(Interceptor.class);
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.info("LoginCheckIntercepter preHandle");
+		logger.info(" ========== Interceptor preHandle Start ==========");
+		logger.info(" Request URI /t : " + request.getRequestURI());
+		HttpSession session = request.getSession();
+		System.out.println("세션 = " + session);
 		
-		boolean result = false;
-		String rootPath = request.getContextPath();
-		try {
-			
-			
-			HttpSession session = request.getSession(false);
-			
-			if (session == null) {
-				response.sendRedirect(rootPath);
-				return false;
-			} else {
-				User user = (User)session.getAttribute("user");
-				System.out.println("user="+user);
-				if (user != null && user.getId() != "") {
-					// Session exists.
-					request.setAttribute("userId", user.getId());
-				} else {
-					// Session not exists.
-					response.sendRedirect(rootPath);
-					return false;
-				}
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-			logger.info(e.getMessage());
+		if("/web/user/login.html".equals(request.getRequestURI())) return true; //제외
+		if("/web/user/login.do".equals(request.getRequestURI())) return true; //제외
+		if("/web/user/main.html".equals(request.getRequestURI())) return true; //제외
+		if("/web/user/logout.html".equals(request.getRequestURI())) return true; //제외
+		
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("/web/user/login.html");
+			return false;
 		}
-		return result;
+
+		return true;
+	}
+	
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		logger.info(" ========== Interceptor postHandle End ==========");
 	}
 	
 }
