@@ -44,7 +44,7 @@
 			<mvc:exclude-mapping path="/web/user/login.do"/>
 			<beans:bean class="com.study_project.web.interceptor.Interceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> 
 	
 	
 </beans:beans>

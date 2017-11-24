@@ -23,7 +23,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		logger.info(" Request URI /t : " + request.getRequestURI());
 		HttpSession session = request.getSession();
 		System.out.println("세션 = " + session);
-		
+		 
 		if("/web/user/login.html".equals(request.getRequestURI())) return true; //제외
 		if("/web/user/login.do".equals(request.getRequestURI())) return true; //제외
 		if("/web/user/main.html".equals(request.getRequestURI())) return true; //제외
