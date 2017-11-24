@@ -9,7 +9,7 @@
 <title>상세페이지</title>
 </head>
 <body>
-${sessionScope.user.name }
+${sessionScope.user.idx }
 <div>
 <fieldset>
 <!-- 상대경로 -->
@@ -27,9 +27,12 @@ ${sessionScope.user.name }
 <form name="form0" method="post">
 <span><input type="hidden" name="_method" value="get" id="method"/></span>
 <span><input type="button" value="목록" onclick="location.href='/web/beer'"/></span>
+<c:if test="${beer.user_id==sessionScope.user.idx }">
 <span><input id="edit" type="button" value="수정" onclick="updatePopup();"/></span>
 <span><input id="del" type="button" value="삭제"/></span>
+</c:if>
 
+<span><input type="hidden" value="${likeStatus}" id="hiddenLike"/></span>
 <c:if test="${sessionScope.user.idx!=null}">
 <span id="like" style="cursor:pointer;">추천<img style="height:20px; width:20px" src="<c:url value='/resources/images/heart.jpg'/>"></img></span>
 <span id="likeShow" style="cursor:pointer; display:none">추천취소<img style="height:20px; width:20px" src="<c:url value='/resources/images/heart2.jpg'/>"></img></span>
@@ -64,10 +67,10 @@ ${sessionScope.user.name }
 </label>
 
 <div id="butt${comment.comment_idx}">
-<%-- <c:if test="${comment.user.userId==sessionScope.loginUser.userId }" > --%>
+<c:if test="${comment.user_id==sessionScope.user.idx }" >
 <label style="float:right; margin-left:5px;"><input type="button" value="삭제" onclick="delReply(${beer.idx},${comment.comment_idx})"/></label>
 <label style="float:right; margin-left:5px;"><input type="button" value="수정" class="editReply" onclick="editReply(${beer.idx},${comment.comment_idx})"/></label>
-<%-- </c:if> --%>
+</c:if>
 </div>	
 <br/><br/>
 <label id="commentContent${comment.comment_idx}">${comment.comment_content }</label>
@@ -91,22 +94,19 @@ ${sessionScope.user.name }
 </div>
 
 <script type="text/javascript">
-$('#')
-var sojuLikeCheck = ${like.like_status};
-switch (sojuLikeCheck) {
-   case 1 : 
-      $('#like').hide();
-      $('#likeShow').show();
-      break;
-   case null :
-      $('#like').show();
-      $('#likeShow').hide();
-      break;
-   default :
-      $('#like').show();
-      $('#likeShow').hide();
-      break;
-}
+//좋아요 체크
+$(document).ready(function(){
+// 	var sojuLikeCheck = ${likeStatus};
+
+	var likeCheck = $('#hiddenLike').val();
+	if(likeCheck==1){
+		$('#like').hide();
+	      $('#likeShow').show();
+	}else{
+		$('#like').show();
+	      $('#likeShow').hide();
+	}
+});
 //더보기 기능
 $(document).ready(function(){
 
@@ -130,6 +130,7 @@ $(document).ready(function(){
     });
 
 });
+//좋아요 로직
 $('#like').click(function() {
 	$('#like').hide();
 	$('#likeShow').show();
@@ -140,6 +141,7 @@ $('#like').click(function() {
 		  data:  {"likeStatus":likeStatus},
 		});
 });
+//좋아요 취소 로직
 $('#likeShow').click(function() {
 	$('#like').show();
 	$('#likeShow').hide();

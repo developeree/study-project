@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.study_project.web.mapper.sqlMap.BeerLikeDao">
 
-	<select id="readLikeOne" resultType="Like">
-		SELECT *
+	<select id="readLikeOne" resultType="Integer">
+		SELECT like_status
 		FROM beer_likes
 		WHERE
 		beer_id=#{beer_id}
