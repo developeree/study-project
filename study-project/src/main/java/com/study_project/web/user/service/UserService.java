@@ -1,5 +1,7 @@
 package com.study_project.web.user.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.study_project.web.user.model.User;
 
 
@@ -12,5 +14,5 @@ public interface UserService {
 	 * 			User model이 정의되어야 합니다.
 	 * @return User
 	 */
-	public User loginUser (User user);
+	public User loginUser (String id, String password, HttpServletResponse res) throws Exception;
 }

@@ -1,5 +1,7 @@
 package com.study_project.web.user.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,11 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 
 	@Override
-	public User loginUser(User user) {
-		return userDao.loginUser(user);
+	public User loginUser(String id, String password, HttpServletResponse res) throws Exception{
+		User set=new User();
+		set.setId(id);
+		set.setPassword(password);
+		return userDao.loginUser(set,res);
 	}
 
 	

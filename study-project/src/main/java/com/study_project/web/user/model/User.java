@@ -12,11 +12,6 @@ public class User {
 	private String password;
 	private String birth;
 	private String phone;
-	
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String toString() {

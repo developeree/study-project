@@ -8,11 +8,14 @@
 <jsp:include page="../include/util.jsp"/>
 <link rel="stylesheet" type="text/css" href="../resources/css/login.css"/>
 <script type="text/javascript">
+
 //로그인메서드
 	function login() {
 		var userName = $("input[name=id]").val();
 		var password = $("input[name=password]").val();
-		
+		var refferer=document.referrer;
+		var windowOpener=window.opener;
+		//자바에서 id,pass 없을때 처리는 됬는데 자바스크립트딴이 문제임 e.prevent있어야대네..
 		if (userName == null || userName.trim().length == 0) {
 			alert("아이디를 입력하세요.");
 			$("input[name=id]").focus();
@@ -21,7 +24,19 @@
 			alert("패스워드를 입력하세요.");
 			$("input[name=password]").focus();
 			return;
-		} else {
+		}
+// 		else if ((userName == null || userName.trim().length == 0) && (password == null || password.trim().length == 0)) {
+// 			alert("아무것도 입력하지않았습니다.");
+// 			$("input[name=id]").focus();
+// 			return;
+// 		}
+		else if(windowOpener!=null){
+			form0.target = opener.name;
+			document.form0.action = '/web/user/login.do';
+			document.form0.submit();
+			window.close();
+		} 
+		else {
 			document.form0.action = '/web/user/login.do';
 			document.form0.submit();
 		}
@@ -64,8 +79,8 @@
 			</div>
 			
 
-			<img src="../resources/css/heart1.jpg">
-			<button style="background-image: url('../resources/css/heart1.jpg');"></button>
+<!-- 			<img src="/web/resources/images/heart.jpg"></img> -->
+			<button id="btnLogin"><img src="/web/resources/images/heart.jpg"></img></button>
 			<div style="margin-top: 600px; font-size: xx-small;">
 				<jsp:include page="../include/footer.jsp"/>
 			</div>

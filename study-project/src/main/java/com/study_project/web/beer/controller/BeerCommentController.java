@@ -23,7 +23,7 @@ public class BeerCommentController {
 	private BeerCommentService beerCommentService;
 	
 	//댓글쓰기로직
-	@RequestMapping(value = "/{idx}/commentNew", method=RequestMethod.POST)
+	@RequestMapping(value = "/{idx}/commentNew", method=RequestMethod.POST )
 	public String doCommentWrite(@PathVariable("idx") Integer beer_id, Comment comment, HttpSession session) throws Exception{
 		comment.setBeer_id(beer_id);
 		User user=(User) session.getAttribute("user");

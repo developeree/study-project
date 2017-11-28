@@ -15,9 +15,9 @@
 <body>
 <div align="center">
 <div>
-<c:if test="${sessionScope.user.idx != null }">
+<%-- <c:if test="${sessionScope.user.idx != null }"> --%>
 <input type="button" value="글쓰기" onclick="insertPopup();"/>
-</c:if>
+<%-- </c:if> --%>
 </div>
 <div>
 <c:forEach var="beer" items="${list}" varStatus="status">
