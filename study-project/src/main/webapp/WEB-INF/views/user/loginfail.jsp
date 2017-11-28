@@ -8,5 +8,6 @@
 </head>
 <body>
 로그인 실패
+<a href="/web/user/login.html">로그인</a>
 </body>
 </html>

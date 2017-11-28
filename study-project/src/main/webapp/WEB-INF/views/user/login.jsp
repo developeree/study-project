@@ -8,42 +8,44 @@
 <jsp:include page="../include/util.jsp"/>
 <link rel="stylesheet" type="text/css" href="../resources/css/login.css"/>
 <script type="text/javascript">
+
 //로그인메서드
+function login() {
+	var userName = $("input[name=id]").val();
+	var password = $("input[name=password]").val();
+	var windowOpener=window.opener;
 	
-	$(document).ready(function(){
-		$('#id, #password, #btnLogin').keydown(function (key) {
-			if (key.keyCode == 13) {
-				login();
-			}
- 		});
-		
-		$("#btnLogin").click(function(e){ 
-			alert("로그인을 클릭");
+	if (userName == null || userName.trim().length == 0) {
+		alert("아이디를 입력하세요.");
+		$("input[name=id]").focus();
+		return;
+	} else if (password == null || password.trim().length == 0) {
+		alert("패스워드를 입력하세요.");
+		$("input[name=password]").focus();
+		return;
+	} else if(windowOpener!=null){
+		form0.target = opener.name;
+		document.form0.action = '/web/user/login.do';
+		document.form0.submit();
+		window.close();
+	} else {
+		document.form0.action = '/web/user/login.do';
+		document.form0.submit();
+	}
+};
+$(document).ready(function(){
+	$('#id, #password, #btnLogin').keydown(function (key) {
+		if (key.keyCode == 13) {
 			login();
-			e.preventDefault();
-		});
-		
-		function login() {
-			var userName = $("input[name=id]").val();
-			var password = $("input[name=password]").val();
-			
-			if (userName == null || userName.trim().length == 0) {
-				alert("아이디를 입력하세요.");
-				$("input[name=id]").focus();
-				return;
-			} else if (password == null || password.trim().length == 0) {
-				alert("패스워드를 입력하세요.");
-				$("input[name=password]").focus();
-				return;
-			} else {
-				form0.target=opener.name;
-				document.form0.action = '/web/user/login.do';
-				document.form0.submit();
-				window.close();
-			}
-		};
-		
+		}
 	});
+	
+	$("#btnLogin").click(function(e){ 
+		alert("로그인을 클릭");
+		login();
+		e.preventDefault();
+	});
+});
 </script>
 </head>
 <body>
@@ -67,10 +69,11 @@
 				</div>
 			</div>
 			
-				<div id="loginButtonWrapper">
-					<a id="btnLogin" tabindex="3"></a>
-				</div>
+			<div id="loginButtonWrapper">
+				<a id="btnLogin" tabindex="3"></a>
+			</div>
 
+<!-- 			<button id="btnLogin"><img src="/web/resources/images/heart.jpg"></img></button> -->
 			<div style="margin-top: 600px; font-size: xx-small;">
 				<jsp:include page="../include/footer.jsp"/>
 			</div>

@@ -27,10 +27,10 @@ ${sessionScope.user.idx }
 <form name="form0" method="post">
 <span><input type="hidden" name="_method" value="get" id="method"/></span>
 <span><input type="button" value="목록" onclick="location.href='/web/beer'"/></span>
-<c:if test="${beer.user_id==sessionScope.user.idx }">
+<%-- <c:if test="${beer.user_id==sessionScope.user.idx }"> --%>
 <span><input id="edit" type="button" value="수정" onclick="updatePopup();"/></span>
 <span><input id="del" type="button" value="삭제"/></span>
-</c:if>
+<%-- </c:if> --%>
 
 <span><input type="hidden" value="${likeStatus}" id="hiddenLike"/></span>
 <c:if test="${sessionScope.user.idx!=null}">
@@ -67,10 +67,10 @@ ${sessionScope.user.idx }
 </label>
 
 <div id="butt${comment.comment_idx}">
-<c:if test="${comment.user_id==sessionScope.user.idx }" >
+<%-- <c:if test="${comment.user_id==sessionScope.user.idx }" > --%>
 <label style="float:right; margin-left:5px;"><input type="button" value="삭제" onclick="delReply(${beer.idx},${comment.comment_idx})"/></label>
 <label style="float:right; margin-left:5px;"><input type="button" value="수정" class="editReply" onclick="editReply(${beer.idx},${comment.comment_idx})"/></label>
-</c:if>
+<%-- </c:if> --%>
 </div>	
 <br/><br/>
 <label id="commentContent${comment.comment_idx}">${comment.comment_content }</label>
@@ -115,8 +115,11 @@ $(document).ready(function(){
     var button = $("#next");
     var numInList = list.length;
     list.hide();
+    if(numInList <= numToShow){
+    	button.hide();
+	}
     if (numInList > numToShow) {
-      button.show();
+      	button.show();
     }
     list.slice(0, numToShow).show();
 
@@ -130,6 +133,7 @@ $(document).ready(function(){
     });
 
 });
+
 //좋아요 로직
 $('#like').click(function() {
 	$('#like').hide();
@@ -155,6 +159,7 @@ function updatePopup() {
 	window.name = "/web/beer/${beer.idx}";
     window.open("/web/beer/board/${beer.idx}", "update",
             "width = 450, height = 500, resizable = no, scrollbars = no, status = no");
+//     alert(window.name);
 }
 //글삭제로직
 $('#del').click(function() {

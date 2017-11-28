@@ -29,6 +29,7 @@ body {
 }
 
 #btnLogin {
+<<<<<<< HEAD
 	display: inline-block;
 	width: 120px;
 	height: 120px;
@@ -40,5 +41,17 @@ body {
 	position: relative;
 	right: -390px;
 	top: 145px;
+=======
+/* 	display: inline-block; */
+/* 	width: 150px; */
+/* 	height: 150px; */
+/* 	border: 0px solid #ffffff; */
+/* 	background-image : url("/resources/images/heart.jpg"); */
+/* 	background-repeat: no-repeat; */
+/* 	text-decoration: none; */
+/* 	position: relative; */
+/* 	right: -390px; */
+/* 	top: 130px; */
+>>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 }
 
