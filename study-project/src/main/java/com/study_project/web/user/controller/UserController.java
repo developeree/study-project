@@ -32,8 +32,9 @@ public class UserController {
 	
 	//로그인 페이지 전환용 메서드
 	@RequestMapping(value="/login.html", method = RequestMethod.GET)
-	public String login () {
+	public String login (HttpServletRequest request, HttpSession session) {
 		logger.info(" [ welcome login.html [GET, pageTransform] ] ");
+		session.setAttribute("pageInfo", request.getHeader("referer"));
 		return "/user/login";
 	}
 	
@@ -44,11 +45,12 @@ public class UserController {
 		user = userService.loginUser(user);
 		System.out.println("아이피: "+request.getRemoteAddr());
 		if(user!=null){
-			System.out.println("아이피 한번 보자 = " + request.getRemoteAddr());
 			session.setAttribute("user", user);
 			logger.info("[Model User value > ] " + user.toString());
-//			return "redirect:/main";
-			return "/main";
+			String pageInfo = (String)session.getAttribute("pageInfo");
+			int extIdx = pageInfo.lastIndexOf("web")+3;
+			String pageSelect = pageInfo.substring(extIdx);
+			return "redirect:"+pageSelect;
 		}
 		return "redirect:/user/loginfail";
 	}

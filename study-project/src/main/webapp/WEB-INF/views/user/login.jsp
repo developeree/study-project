@@ -9,23 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/login.css"/>
 <script type="text/javascript">
 //로그인메서드
-	function login() {
-		var userName = $("input[name=id]").val();
-		var password = $("input[name=password]").val();
-		
-		if (userName == null || userName.trim().length == 0) {
-			alert("아이디를 입력하세요.");
-			$("input[name=id]").focus();
-			return;
-		} else if (password == null || password.trim().length == 0) {
-			alert("패스워드를 입력하세요.");
-			$("input[name=password]").focus();
-			return;
-		} else {
-			document.form0.action = '/web/user/login.do';
-			document.form0.submit();
-		}
-	};
+	
 	$(document).ready(function(){
 		$('#id, #password, #btnLogin').keydown(function (key) {
 			if (key.keyCode == 13) {
@@ -34,10 +18,30 @@
  		});
 		
 		$("#btnLogin").click(function(e){ 
+			alert("로그인을 클릭");
 			login();
 			e.preventDefault();
 		});
 		
+		function login() {
+			var userName = $("input[name=id]").val();
+			var password = $("input[name=password]").val();
+			
+			if (userName == null || userName.trim().length == 0) {
+				alert("아이디를 입력하세요.");
+				$("input[name=id]").focus();
+				return;
+			} else if (password == null || password.trim().length == 0) {
+				alert("패스워드를 입력하세요.");
+				$("input[name=password]").focus();
+				return;
+			} else {
+				form0.target=opener.name;
+				document.form0.action = '/web/user/login.do';
+				document.form0.submit();
+				window.close();
+			}
+		};
 		
 	});
 </script>
@@ -57,15 +61,16 @@
 				</div>
 				
 				<div id="loginInput">
-					<input type="text" name="id" id="id" style="font-size:x-large; width: 300px; height: 30px;" tabindex="1">
+					<input type="text" name="id" id="id" tabindex="1">
 					<br style="height: 5px;"/>
-					<input type="password" name="password" id="password" style="font-size:x-large; width: 300px; height: 30px;" tabindex="2">
+					<input type="password" name="password" id="password"  tabindex="2">
 				</div>
 			</div>
 			
+				<div id="loginButtonWrapper">
+					<a id="btnLogin" tabindex="3"></a>
+				</div>
 
-			<img src="../resources/css/heart1.jpg">
-			<button style="background-image: url('../resources/css/heart1.jpg');"></button>
 			<div style="margin-top: 600px; font-size: xx-small;">
 				<jsp:include page="../include/footer.jsp"/>
 			</div>

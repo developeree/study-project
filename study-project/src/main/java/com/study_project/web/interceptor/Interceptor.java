@@ -21,13 +21,22 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		logger.info("LoginCheckIntercepter preHandle");
 		logger.info(" ========== Interceptor preHandle Start ==========");
 		logger.info(" Request URI /t : " + request.getRequestURI());
+		System.out.println("이전페이지 정보 = " + request.getHeader("referer"));
 		HttpSession session = request.getSession();
 		System.out.println("세션 = " + session);
+		String test = (String)request.getAttribute("pageSelect");
+		System.out.println("페이지정보 = " + test);
 		 
 		if("/web/user/login.html".equals(request.getRequestURI())) return true; //제외
 		if("/web/user/login.do".equals(request.getRequestURI())) return true; //제외
 		if("/web/user/main.html".equals(request.getRequestURI())) return true; //제외
 		if("/web/user/logout.html".equals(request.getRequestURI())) return true; //제외
+		if("/web/soju//board/{idx}".equals(request.getRequestURI())) return true; //제외
+		if("/web/soju/soju.html".equals(request.getRequestURI())) return true; //제외
+		if("/web/resources/css/login.css".equals(request.getRequestURI())) return true; //제외
+		if("/web/resources/images".equals(request.getRequestURI())) return true; //제외
+		
+		if("/web/soju/{idx}".equals(request.getRequestURI())) return true; //제외
 		
 		if (session.getAttribute("user") == null) {
 			response.sendRedirect("/web/user/login.html");

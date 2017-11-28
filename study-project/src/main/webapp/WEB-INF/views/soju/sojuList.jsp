@@ -78,7 +78,7 @@
 				
 			</c:if>
 			</div>
-			
+			<input type="hidden" id="pageSelect" name="pageSelect" value="">
 		</div>
 	</div>
 
@@ -91,6 +91,8 @@ function sojuDetail (idx) {
 
 $(function() {
 	$('#btnReg').click(function() {//등록
+		$('#pageSelect').val(document.URL);
+// 		document.location.href ="/web/soju/board/";
 		window.name = "/soju";
 		window.open("/web/soju/board/","insert","width=1000px,height=700px");
 	});

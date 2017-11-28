@@ -96,7 +96,6 @@ public class SojuController {
 //		}
 		String loginUserCheck = user.getName();
 		String sojuLike = "N";
-		
 		sojuLike = sojuService.sojuLikeSelect(idx, session);
 		Soju soju = sojuService.getSoju(idx);
 		List<Soju> sojuFileList = sojuService.selectSojuFile(idx);
