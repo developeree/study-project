@@ -4,36 +4,41 @@ body {
 	font-family: sans-serif;
 }
 #login_content {
-/* 	position: absolute; */
-/* 	left: 50%; */
-/* 	top: 50%; */
-/* 	width: 600px; */
-/* 	height: 340px; */
-/* 	margin-left: -300px; */
-/* 	margin-top: -150px; */
-/* 	border: 1px solid #777777; */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 600px;
+	height: 340px;
+	margin-left: -300px;
+	margin-top: -150px;
+	border: 1px solid #777777;
+}
+
+#id,#password {
+	margin-left: -100px;
+	width: 250px;
+	height: 30px;
 }
 
 #loginButtonWrapper {
-/* 	position: absolute; */
-/* 	left: 50%; */
-/* 	top: 50%; */
-/* 	width: 600px; */
-/* 	height: 340px; */
-/* 	margin-left: -300px; */
-/* 	margin-top: -150px; */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -300px;
+	margin-top: -150px;
 }
 
 #btnLogin {
-/* 	display: inline-block; */
-/* 	width: 150px; */
-/* 	height: 150px; */
-/* 	border: 0px solid #ffffff; */
-	background-image : url("/resources/images/heart.jpg");
-/* 	background-repeat: no-repeat; */
-/* 	text-decoration: none; */
-/* 	position: relative; */
-/* 	right: -390px; */
-/* 	top: 130px; */
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	border: 0px solid #ffffff;
+	background-image : url("/web/resources/images/login.jpg");
+	background-size:120px;
+	background-repeat: no-repeat;
+	text-decoration: none;
+	position: relative;
+	right: -390px;
+	top: 145px;
 }
 
