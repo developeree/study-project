@@ -8,6 +8,7 @@
 <title>약관</title>
 </head>
 <body>
+<form name="formDefault"></form>
 동의합니다<input type="checkbox" id="check"/>
 <input type="button" value="다음" id="next" disabled/>
 <script type="text/javascript">
@@ -15,7 +16,9 @@ $("#check").click(function() {
 	if($("#check").is(":checked")==true){
 	$("#next").prop("disabled", false);
 	$("#next").click(function(){ 
-		window.location.href="/web/user/signup.html";
+		document.formDefault.method = 'POST';
+		document.formDefault.action = '/web/user/signup.html';
+		document.formDefault.submit();
 	});
 	}
 	else{

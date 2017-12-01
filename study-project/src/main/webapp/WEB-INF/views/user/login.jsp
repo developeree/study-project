@@ -41,7 +41,7 @@ $(document).ready(function(){
 			e.preventDefault();
 		});
 	
-	$("#signUp").click(function(e){ 
+	$("#btnSignup").click(function(e){ 
 		window.location.href="/web/user/terms";
 	});
 	
@@ -52,16 +52,10 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 	
-	$('#btnSignup').click(function(e) {
-		document.formDefault.method = 'POST';
-		document.formDefault.action = '/web/user/signup.html';
-		document.formDefault.submit();
-	});
 });
 </script>
 </head>
 <body>
-<input type="button" value="회원가입" id="signUp"/>
 	<form name=form0 method="post">
 		<div id="login_background">
 			<div style="margin-top: 0px;" align="center">
@@ -97,9 +91,6 @@ $(document).ready(function(){
 			</div>
 			
 		</div>
-	</form>
-	<form name="formDefault">
-		<div></div>
 	</form>
 </body>
 </html>
