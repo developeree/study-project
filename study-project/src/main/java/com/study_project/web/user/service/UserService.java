@@ -15,4 +15,12 @@ public interface UserService {
 	 * @return User
 	 */
 	public User loginUser (String id, String password, HttpServletResponse res) throws Exception;
+	
+	/**
+	 * 새로운 사용자를 등록합니다.
+	 * @param User
+	 * 			User model이 정의되어야 합니다.
+	 * @return boolean
+	 */
+	public boolean insertUser (User user) throws Exception;
 }

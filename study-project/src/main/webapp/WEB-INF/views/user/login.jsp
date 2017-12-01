@@ -45,6 +45,12 @@ $(document).ready(function(){
 		login();
 		e.preventDefault();
 	});
+	
+	$('#btnSignup').click(function(e) {
+		document.formDefault.method = 'POST';
+		document.formDefault.action = '/web/user/signup.html';
+		document.formDefault.submit();
+	});
 });
 </script>
 </head>
@@ -72,6 +78,11 @@ $(document).ready(function(){
 			<div id="loginButtonWrapper">
 				<a id="btnLogin" tabindex="3"></a>
 			</div>
+			
+			<div>
+				<input type="button" id="btnPwSelect" value="비밀번호찾기">
+				<input type="button" id="btnSignup" value="회원가입">
+			</div>
 
 <!-- 			<button id="btnLogin"><img src="/web/resources/images/heart.jpg"></img></button> -->
 			<div style="margin-top: 600px; font-size: xx-small;">
@@ -79,6 +90,9 @@ $(document).ready(function(){
 			</div>
 			
 		</div>
+	</form>
+	<form name="formDefault">
+		<div></div>
 	</form>
 </body>
 </html>

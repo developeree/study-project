@@ -23,5 +23,10 @@ public class UserServiceImpl implements UserService{
 		return userDao.loginUser(set,res);
 	}
 
+	@Override
+	public boolean insertUser(User user) throws Exception {
+		return userDao.insertUser(user);
+	}
+
 	
 }

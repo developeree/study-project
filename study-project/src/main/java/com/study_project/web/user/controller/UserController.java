@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,37 @@ public class UserController {
 		logger.info(" [ welcome main [GET, pageTransform] ] ");
 		return "/main";
 	}
+	
+	//회원가입 메이지 전환용 메서드
+	@RequestMapping(value="/signup.html", method = RequestMethod.POST)
+	public String signup () {
+		logger.info(" [ welcome signup.html [GET, pageTransform] ] ");
+		return "/user/signup";
+	}
+	
+	//회원가입 처리 메서드
+	@RequestMapping(value="/signup.do", method = RequestMethod.POST)
+	public String signup (Model model, User user, @RequestParam(value="secondMail")String secondMail) {
+		logger.info(" [ welcome signup.do [POST, pageTransform] ] ");
+		boolean signupComplate = false;
+		try {
+			user.setMail(user.getMail()+"@"+secondMail);
+			logger.info(user.toString());
+			signupComplate = userService.insertUser(user);
+			signupComplate = true;
+			model.addAttribute("signupComplate", signupComplate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "user/signupComplate";
+	}
+	
+	
+	
+	
 
+	
 	//로그인 페이지 전환용 메서드
 	@RequestMapping(value="/login.html", method = RequestMethod.GET)
 	public String login (HttpServletRequest request, HttpSession session) {
@@ -45,7 +76,10 @@ public class UserController {
 
 	//로그인 처리
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
-	public String login (HttpSession session, HttpServletRequest request, @RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse res) throws Exception {
+	public String login (HttpSession session, HttpServletRequest request
+			, @RequestParam("id") String id
+			, @RequestParam("password") String password
+			, HttpServletResponse res) throws Exception {
 		logger.info(" [ welcome login.do ] ");
 		
 		String rememberURI=(String)session.getAttribute("rememberURI");

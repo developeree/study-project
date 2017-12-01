@@ -18,4 +18,12 @@ public interface UserDao {
 	 */
 	public User loginUser(User user, HttpServletResponse res) throws Exception;
 //	public User getUser(User user);
+	
+	/**
+	 * 새로운 사용자를 등록합니다.
+	 * @param User
+	 * 			User model이 정의되어야 합니다.
+	 * @return boolean
+	 */
+	public boolean insertUser (User user) throws Exception;
 }

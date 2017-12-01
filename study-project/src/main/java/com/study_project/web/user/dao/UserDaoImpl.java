@@ -32,15 +32,12 @@ public class UserDaoImpl implements UserDao{
 		
 		return resultUser;
 	}
-//	@Override
-//	public User getUser(User user) {
-//		User resultUser = null;
-//		resultUser = session.selectOne("loginSql.login", user);
-//		
-//		if (resultUser == null) {
-//			resultUser = new User();
-//		}
-//		
-//		return resultUser;
-//	}
+
+	@Override
+	public boolean insertUser(User user) throws Exception {
+		session.insert("loginSql.insertUser", user);
+		return false;
+	}
+	
+	
 }

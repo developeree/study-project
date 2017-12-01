@@ -14,4 +14,27 @@
 			password = #{password}
 	</select>
 	
+	<insert id="insertUser" parameterType="com.study_project.web.user.model.User">
+		INSERT INTO user_info
+		(
+			name,
+			gender,
+			mail,
+			id,
+			password,
+			birth,
+			phone
+		)
+		VALUES
+		(
+			#{name},
+			#{gender},
+			#{mail},
+			#{id},
+			md5(#{password}),
+			#{birth},
+			#{phone}
+		)
+	</insert>
+	
 </mapper>

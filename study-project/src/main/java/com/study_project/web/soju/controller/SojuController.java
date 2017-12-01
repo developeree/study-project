@@ -260,6 +260,10 @@ public class SojuController {
 		return "redirect:/soju/{idx}";
 	}
 	
-	
+	@RequestMapping(value="/notetest.html", method = RequestMethod.GET)
+	public String notetest () throws Exception {
+		logger.info("테스트페이지에 들어옴");
+		return "/soju/notetest";
+	}
 	
 }

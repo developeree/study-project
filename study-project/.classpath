@@ -33,6 +33,14 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/apache-tomcat-7.0.73-windows-x64/apache-tomcat-7.0.73/lib/websocket-api.jar"/>
+	<classpathentry kind="lib" path="C:/dev/apache-maven-3.3.9-bin/apache-maven-3.3.9/repository/org/apache/tomcat/embed/tomcat-embed-websocket/8.5.16/tomcat-embed-websocket-8.5.16.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.apache.tomcat.embed"/>
+			<attribute name="maven.artifactId" value="tomcat-embed-websocket"/>
+			<attribute name="maven.version" value="8.5.16"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

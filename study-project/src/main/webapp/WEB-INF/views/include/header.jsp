@@ -31,6 +31,11 @@ $(document).ready(function(){
 	$("#herderLogout").click(function(e){ 
 		document.location.href = '/web/user/logout';
 	});
+	
+	//test
+	$("#note2").click(function(e) {
+		document.location.href = '/web/soju/notetest.html';
+	});
 
 });
 </script>
@@ -62,6 +67,7 @@ $(document).ready(function(){
 			<input type="button" class="tab-button nav" id="btnBeer" value="맥주" onclick="location.href='/web/beer'" >
 			<input type="button" class="tab-button nav" id="btnTest" value="테스트">
 			<input type="button" class="tab-button nav" id="btnTest1" value="테스트1">
+			<input type="button" class="tab-button nav" id="note2" value="테스트2">
 		</div>
 	</div>
 </div>
