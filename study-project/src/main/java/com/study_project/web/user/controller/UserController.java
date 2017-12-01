@@ -31,6 +31,10 @@ public class UserController {
 		logger.info(" [ welcome main [GET, pageTransform] ] ");
 		return "/main";
 	}
+	@RequestMapping(value="/terms", method = RequestMethod.GET)
+	public String terms () {
+		return "/user/terms";
+	}
 
 	//로그인 페이지 전환용 메서드
 	@RequestMapping(value="/login.html", method = RequestMethod.GET)

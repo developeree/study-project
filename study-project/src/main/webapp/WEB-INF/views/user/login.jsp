@@ -52,12 +52,15 @@
 			login();
 			e.preventDefault();
 		});
-		
+		$("#signUp").click(function(e){ 
+			window.location.href="/web/user/terms";
+		});
 		
 	});
 </script>
 </head>
 <body>
+<input type="button" value="회원가입" id="signUp"/>
 	<form name=form0 method="post">
 		<div id="login_background">
 			<div style="margin-top: 0px;" align="center">

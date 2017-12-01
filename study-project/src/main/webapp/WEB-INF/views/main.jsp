@@ -26,6 +26,7 @@
             <div id="messageWindow"></div>
             <br /> <input id="inputMessage" type="text" onkeyup="enterkey()" />
             <input type="submit" value="send" onclick="send()" />
+            <input onclick="disconnect()" value="채팅종료" type="button">
         </fieldset>
     </div>
     <img class="chat" src="../resources/images/heart.jpg" />
@@ -110,6 +111,10 @@
         var elem = document.getElementById('messageWindow');
         elem.scrollTop = elem.scrollHeight;
     }, 0);
+    //웹소켓 종료
+    function disconnect(){
+        webSocket.close();
+    }
 </script>
     
 </body>
