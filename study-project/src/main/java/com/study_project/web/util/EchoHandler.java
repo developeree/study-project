@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.websocket.OnClose;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -30,14 +31,14 @@ private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Se
     
     @OnOpen
     public void onOpen(Session session){
-        System.out.println(session);
         clients.add(session);
+        System.out.println("시작하냐");
     }
     
-    @OnClose
-    public void onClose(Session session){
-        clients.remove(session);
-        clients.clear();
-    }
+//    @OnClose
+//    public void onClose(Session session){
+//        clients.remove(session);
+//        System.out.println("닫히냐");
+//    }
 
 }

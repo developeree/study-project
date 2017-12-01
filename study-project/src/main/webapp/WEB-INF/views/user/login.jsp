@@ -38,7 +38,13 @@ $(document).ready(function(){
 		if (key.keyCode == 13) {
 			login();
 		}
+			e.preventDefault();
+		});
+	
+	$("#signUp").click(function(e){ 
+		window.location.href="/web/user/terms";
 	});
+	
 	
 	$("#btnLogin").click(function(e){ 
 		alert("로그인을 클릭");
@@ -55,6 +61,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<input type="button" value="회원가입" id="signUp"/>
 	<form name=form0 method="post">
 		<div id="login_background">
 			<div style="margin-top: 0px;" align="center">

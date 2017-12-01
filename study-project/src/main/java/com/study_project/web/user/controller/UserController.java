@@ -60,6 +60,10 @@ public class UserController {
 	
 	
 	
+	@RequestMapping(value="/terms", method = RequestMethod.GET)
+	public String terms () {
+		return "/user/terms";
+	}
 
 	
 	//로그인 페이지 전환용 메서드
