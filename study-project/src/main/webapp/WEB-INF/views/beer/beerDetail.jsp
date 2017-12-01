@@ -27,10 +27,10 @@ ${sessionScope.user.idx }
 <form name="form0" method="post">
 <span><input type="hidden" name="_method" value="get" id="method"/></span>
 <span><input type="button" value="목록" onclick="location.href='/web/beer'"/></span>
-<%-- <c:if test="${beer.user_id==sessionScope.user.idx }"> --%>
+<c:if test="${beer.user_id==sessionScope.user.idx }">
 <span><input id="edit" type="button" value="수정" onclick="updatePopup();"/></span>
 <span><input id="del" type="button" value="삭제"/></span>
-<%-- </c:if> --%>
+</c:if>
 
 <span><input type="hidden" value="${likeStatus}" id="hiddenLike"/></span>
 <c:if test="${sessionScope.user.idx!=null}">

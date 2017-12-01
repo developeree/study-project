@@ -28,10 +28,11 @@ public class Interceptor extends HandlerInterceptorAdapter {
 			
 			if(beerUri.equals(request.getRequestURI())) return true; //제외
 			if(sojuUri.equals(request.getRequestURI())) return true; //제외
+			
 		}
 
 		HttpSession session = request.getSession();
-		
+//		if("/web/soju/".equals(request.getRequestURI())) return true; //제외
 
 		if (session.getAttribute("user") == null) {
 			response.sendRedirect("/web/user/login.html");

@@ -88,13 +88,6 @@ public class SojuController {
 	@RequestMapping(value="/{idx}", method = RequestMethod.GET)
 	public String detailForm (@PathVariable("idx") Integer idx, Model model, HttpSession session) throws Exception {
 		logger.info("[ welcome sojuDetailForm ]");
-		User user = (User)session.getAttribute("user");
-//		if (user == null) {
-//			String loginAdvice = "로그인 후 이용하실 수 있습니다. 로그인 해주세요.";
-//			model.addAttribute("loginAdvice", loginAdvice);
-//			return "/user/login";
-//		}
-		String loginUserCheck = user.getName();
 		String sojuLike = "N";
 		sojuLike = sojuService.sojuLikeSelect(idx, session);
 		Soju soju = sojuService.getSoju(idx);
@@ -107,7 +100,6 @@ public class SojuController {
 		model.addAttribute("sojuCommentList", sojuCommentList);
 		model.addAttribute("soju", soju);
 		model.addAttribute("sojuFile",sojuFileList);
-		model.addAttribute("loginUserCheck", loginUserCheck);
 		return "/soju/sojuDetail";
 	}
 	

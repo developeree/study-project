@@ -58,8 +58,12 @@
 			
 			<div>
 				<span>상품평 ${sojuCommentCount} 개</span>
-				<span class="like" style="cursor:pointer;"><img style="width: 20px; height: 20px;" src="<c:url value='/resources/images/heart.jpg'/>"></img> 좋아요 </span>
-				<span class="noLike" style="cursor:pointer; display: none;"><img style="width: 20px; height: 20px;" src="<c:url value='/resources/images/heart2.jpg'/>"></img> 좋아요 </span>
+				
+				<c:if test="${sessionScope.user.idx != null}">
+					<span class="like" style="cursor:pointer;"><img style="width: 20px; height: 20px;" src="<c:url value='/resources/images/heart.jpg'/>"></img> 좋아요 </span>
+					<span class="noLike" style="cursor:pointer; display: none;"><img style="width: 20px; height: 20px;" src="<c:url value='/resources/images/heart2.jpg'/>"></img> 좋아요 </span>
+				</c:if>
+				
 				<!-- 상품평 목록 -->
 				<c:forEach var="comment" items="${sojuCommentList}" varStatus="status">
 					<div class="more" style="display:none;border: solid 1px #777777;" idx="${comment.idx}">

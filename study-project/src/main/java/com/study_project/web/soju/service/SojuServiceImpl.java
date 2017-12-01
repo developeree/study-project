@@ -63,8 +63,10 @@ public class SojuServiceImpl implements SojuService {
 	public String sojuLikeSelect(Integer idx, HttpSession session) {
 		SojuLike sojuLike = new SojuLike();
 		User user = (User)session.getAttribute("user");
-		sojuLike.setSoju_idx(idx);
-		sojuLike.setUser_id(user.getId());
+		if (user != null) {
+			sojuLike.setSoju_idx(idx);
+			sojuLike.setUser_id(user.getId());
+		}
 		return sojuDao.sojuLikeSelect(sojuLike);
 	}
 	
