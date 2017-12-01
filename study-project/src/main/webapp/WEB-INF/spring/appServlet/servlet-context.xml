@@ -49,12 +49,9 @@
 			<mvc:exclude-mapping path="/user/*"/>
 			
 			<mvc:exclude-mapping path="/beer"/>
-<<<<<<< HEAD
 <!-- 			<mvc:exclude-mapping path="/soju"/> -->
 			<mvc:exclude-mapping path="/soju/soju.html"/>
-=======
 			<mvc:exclude-mapping path="/echo"/>
->>>>>>> branch 'master' of https://github.com/developeree/study-project.git
 			<beans:bean class="com.study_project.web.interceptor.Interceptor"/>
 			
 		</mvc:interceptor>
