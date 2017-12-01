@@ -9,7 +9,7 @@
 <body>
 회원가입이 성공
 <div>
-	<a href="/web/user/main.html">목록으로 가기</a>
+	<a href="/web/user/main.html">목록으로 가기</a>  
 </div>
 </body>
 </html>
