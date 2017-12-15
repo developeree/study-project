@@ -11,7 +11,9 @@
 		WHERE
 			id = #{id}
 		AND
+<!-- 		AES_DECRYPT(UNHEX(필드명, 암호화키)) 암호화키는 귀찮으니 걍 파라미터로 하겠다 -->
 		AES_DECRYPT(UNHEX(password), #{password})
+
 <!-- 			password =#{password}  -->
 	</select>
 	
@@ -32,8 +34,9 @@
 			#{gender},
 			#{mail},
 			#{id},
-<!-- 			이렇게 하니까 암호화된걸 직업 써줘야댐..비번이 1이면 1로 로그인 안대고 암호화를 쳐야.. -->
+<!-- HEX(AES_ENCRYPT(파라미터값, 암호화키) 암호화키는 귀찮으니 걍 파라미터로 하겠다 -->
 			HEX(AES_ENCRYPT(#{password}, #{password})),
+<!-- 			이렇게 하니까 암호화된걸 직업 써줘야댐..비번이 1이면 1로 로그인 안대고 암호화를 쳐야.. -->
 <!-- 			#{password}, -->
 			#{birth},
 			#{phone}
