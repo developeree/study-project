@@ -11,7 +11,8 @@
 		WHERE
 			id = #{id}
 		AND
-			password = #{password}
+		AES_DECRYPT(UNHEX(password), #{password})
+<!-- 			password =#{password}  -->
 	</select>
 	
 	<insert id="insertUser" parameterType="com.study_project.web.user.model.User">
@@ -31,7 +32,9 @@
 			#{gender},
 			#{mail},
 			#{id},
-			md5(#{password}),
+<!-- 			이렇게 하니까 암호화된걸 직업 써줘야댐..비번이 1이면 1로 로그인 안대고 암호화를 쳐야.. -->
+			HEX(AES_ENCRYPT(#{password}, #{password})),
+<!-- 			#{password}, -->
 			#{birth},
 			#{phone}
 		)
