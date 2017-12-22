@@ -10,9 +10,9 @@
        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 
-        <property name="url" value="jdbc:mysql://localhost:3306/project"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/test2"/>
         <property name="username" value="root"/>
-        <property name="password" value="123123"/>
+        <property name="password" value="root"/>
 
 <!--           <property name="url" value="jdbc:mysql://localhost:3306/test"/> -->
 <!-- 		 <property name="username" value="root"/> -->
@@ -35,7 +35,9 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	
+<!-- 	web.xml에 multipartFilter 이거먹이면 multipartResolver->filterMultipartResolver 변경해서 아다리 맞춰줘야댄데 이거땜에 등록수정이 안댐 ㅜ -->
+	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 			
 <!-- 요청을 파싱할 때 사용할 캐릭터 인코딩. 지정하지 않을 경우, HttpServletRequest.setCharacterEncoding() 메서드로 지정한 캐릭터 셋이 사용. 아무 값도 없을 경우 ISO-8859-1을 사용. -->
 		<property name="defaultEncoding" value=""/>
